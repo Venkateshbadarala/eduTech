@@ -35,3 +35,108 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+
+/* ROOT */
+.phone-root {
+  width: 100%;
+}
+
+/* CONTAINER */
+.phone-container {
+  width: 100% !important;
+  position: relative;
+}
+
+/* INPUT FIELD */
+.phone-input {
+  width: 100% !important;
+  height: 58px !important;
+  padding-left: 90px !important;
+  border-radius: 14px !important;
+  border: 1px solid #e5e7eb !important;
+  background: linear-gradient(135deg, #f8fafc, #eef2ff) !important;
+  font-size: 15px;
+  transition: all 0.25s ease;
+}
+
+/* REMOVE WHITE ON FOCUS */
+.phone-input:focus {
+  outline: none !important;
+  border-color: #6366f1 !important;
+  background: linear-gradient(135deg, #f8fafc, #eef2ff) !important;
+ 
+}
+
+/* FLAG BUTTON */
+.phone-flag {
+  width: 85px !important;
+  height: 58px !important;
+  border-radius: 14px 0 0 14px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+
+}
+
+
+
+/* FLAG + CODE CENTER */
+.phone-flag .selected-flag {
+  background: transparent !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px;
+}
+
+
+
+/* COUNTRY CODE */
+.phone-flag .dial-code {
+  color: white !important;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* DROPDOWN */
+/* Dropdown aligned under flag */
+.phone-dropdown {
+  position: absolute !important;
+  top: 60px !important;       /* same as input height */
+  left: 0 !important;         /* aligns with flag box */
+  width: 280px !important;
+
+  border-radius: 12px !important;
+  overflow: hidden;
+  z-index: 9999 !important;
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15) !important;
+}
+/* Ensure dropdown doesn't shift */
+.react-tel-input .country-list {
+  margin: 0 !important;
+}
+
+/* Optional: smooth dropdown feel */
+.phone-dropdown li {
+  padding: 10px 14px !important;
+}
+
+.phone-dropdown li:hover {
+  color: black;
+}
+
+/* REMOVE EXTRA INPUT LOOK */
+.react-tel-input input {
+  background: transparent !important;
+}
+
+/* ERROR */
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function CoursesDashboard() {
   const [courses, setCourses] = useState<any[]>([]);
@@ -77,10 +78,10 @@ export default function CoursesDashboard() {
   };
 
   return (
-    <div className="p-10 bg-gray-50 min-h-screen">
+    <div className="px-10 py-16 bg-gray-50 min-h-screen">
       {/* HEADER */}
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">
+      <div className="flex justify-between items-center ">
+        <h1 className="md:text-3xl text-2xl font-bold text-gray-800">
           🎓 Courses Dashboard
         </h1>
 
@@ -112,9 +113,11 @@ export default function CoursesDashboard() {
           >
             {/* IMAGE */}
             <div className="h-60 w-full overflow-hidden">
-              <img
+              <Image
                 src={course.image || "/placeholder.jpg"}
                 alt={course.title}
+                width={400}
+                height={400}
                 className="w-full h-full object-cover group-hover:scale-105 transition"
               />
             </div>

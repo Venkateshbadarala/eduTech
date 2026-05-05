@@ -15,7 +15,7 @@ export default function ModulesSection({ modules }: any) {
 
       {/* 🔥 HEADING */}
       <div className="text-center mb-14">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-800">
+        <h2 className="text-3xl md:text-5xl font-bold text-gray-800">
           Explore Our <span className="text-(--color-secondary)">Course Modules</span> 
         </h2>
 
@@ -49,7 +49,7 @@ export default function ModulesSection({ modules }: any) {
               >
                 <h3
                   className={`text-lg font-semibold ${
-                    isOpen ? "text-(--color-secondary)" : "text-(--color-primary)"
+                    isOpen ? "text-black-1" : "text-(--color-primary)"
                   }`}
                 >
                   {mod.title}

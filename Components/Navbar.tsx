@@ -1,15 +1,29 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import Image from "next/image";
+import {
+  motion,
+  useScroll,
+  useMotionValueEvent,
+  AnimatePresence,
+} from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
-import Image from "next/image";
 
-import { CancelIcon, HamburgerIcon } from "@/constants/svgIcons";
+import Logo from "@/public/logo.png";
+import { HamburgerIcon } from "@/constants/svgIcons";
 import AuthModal from "./AuthModal";
-import { LogOut, LogOutIcon } from "lucide-react";
+
+import {
+  LogOutIcon,
+  User,
+  Home,
+  Info,
+  Briefcase,
+  User2,
+} from "lucide-react";
 
 interface NavbarProps {
   onOpenSidebar: () => void;
@@ -17,32 +31,11 @@ interface NavbarProps {
 
 const baseNavItems = [
   { label: "Home", href: "/" },
+  { label: "About", href: "/About" },
   { label: "Careers", href: "/Careers" },
-  { label: "About Us", href: "/About" },
-  { label: "Blog", href: "/blog" },
+  { label: "Ambassador", href: "/Ambassador" },
   { label: "Dashboard", href: "/admin" },
 ];
-
-const NavLink = ({
-  href,
-  label,
-  isActive,
-}: {
-  href: string;
-  label: string;
-  isActive: boolean;
-}) => (
-  <Link
-    href={href}
-    className={`relative transition ${
-      isActive
-        ? "text-(--color-primary) font-bold text-[17px]"
-        : "text-(--color-black-8) hover:text-(--color-primary) font-medium text-[17px]"
-    }`}
-  >
-    {label}
-  </Link>
-);
 
 const Navbar = ({ onOpenSidebar }: NavbarProps) => {
   const { scrollY } = useScroll();
@@ -51,10 +44,11 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
 
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
 
-  const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // 🔥 scroll hide
+  // 🔥 scroll hide (desktop navbar)
   useMotionValueEvent(scrollY, "change", (latest) => {
     const prev = scrollY.getPrevious();
     if (prev !== undefined && latest > prev && latest > 50) {
@@ -64,86 +58,169 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
     }
   });
 
-  // ✅ build nav items dynamically
-  const navItems = [...baseNavItems];
+  // 🔥 close dropdown
+  useEffect(() => {
+    const handleClickOutside = (e: any) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setProfileOpen(false);
+      }
+    };
 
-  if (session?.user?.email === adminEmail) {
-    navItems.push({ label: "Dashboard", href: "/admin" });
-  }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // 🔥 Mobile nav with icons
+  const mobileNav = [
+    { label: "Home", href: "/", icon: <Home size={18} /> },
+    { label: "About", href: "/About", icon: <Info size={18} /> },
+    { label: "Careers", href: "/Careers", icon: <Briefcase size={18} /> },
+    { label: "Ambassador", href: "/Ambassador", icon: <User2 size={18} /> },
+  ];
 
   return (
     <>
+      {/* ================= DESKTOP NAVBAR ================= */}
       <motion.nav
         animate={hidden ? { y: "-120%", opacity: 0 } : { y: 0, opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className="fixed top-2 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-6xl"
+        className=" fixed top-2 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-6xl"
       >
         <div className="flex items-center justify-between bg-white rounded-2xl px-6 py-2 shadow-xl">
-
           {/* LOGO */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 ">
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-pink-500 to-purple-500" />
-              <span className="font-bold text-lg">StartHub</span>
+              <Image src={Logo} alt="Logo" width={50} height={50} />
             </Link>
 
             <button
               type="button"
               onClick={onOpenSidebar}
-              className="border border-blue-500 px-4 py-2 rounded-full flex items-center gap-1"
+              className="border border-primary px-4 py-2 rounded-full lg:flex items-center gap-1 hidden"
             >
               <HamburgerIcon /> Programs
             </button>
           </div>
 
-          {/* RIGHT SIDE */}
+          {/* NAV LINKS */}
           <div className="flex items-center gap-5">
+             <button
+              type="button"
+              onClick={onOpenSidebar}
+              className=" rounded-full md:hidden items-center gap-1 sm:flex "
+            >
+              <HamburgerIcon /> 
+            </button>
+            <div className="hidden lg:flex gap-5 ">
+{baseNavItems.map((item) => {
+              const isActive = pathname === item.href;
 
-            {/* NAV LINKS */}
-            {navItems.map((item) => (
-              <NavLink
-                key={item.href}
-                href={item.href}
-                label={item.label}
-                isActive={pathname === item.href}
-              />
-            ))}
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`transition text-[16px] ${
+                    isActive
+                      ? "text-blue-600 font-bold"
+                      : "text-gray-700 hover:text-blue-600"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+            </div>
+            
 
-            {/* 🔥 AUTH UI */}
+            {/* AUTH */}
             {!session ? (
               <button
-                type="button"
+              type="button"
                 onClick={() => setOpen(true)}
                 className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-5 py-2 rounded-full"
               >
                 Login
               </button>
             ) : (
-              <div className="flex items-center gap-3">
-
-                {/* PROFILE IMAGE */}
+              <div className="relative" ref={dropdownRef}>
                 <Image
-                  src={`https://avatarfiles.alphacoders.com/375/thumb-1920-375473.jpeg`}
+                  src="https://avatarfiles.alphacoders.com/375/thumb-1920-375473.jpeg"
                   alt="profile"
                   width={36}
                   height={36}
-                  className="rounded-full border"
+                  onClick={() => setProfileOpen(!profileOpen)}
+                  className="rounded-full cursor-pointer"
                 />
 
-                {/* LOGOUT */}
-                <button
-                type="button"
-                  onClick={() => signOut()}
-                  className="text-sm text-gray-500 hover:text-red-500"
-                >
-                  <LogOutIcon/>
-                </button>
+                <AnimatePresence>
+                  {profileOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute right-0 mt-3 w-44 bg-white rounded-xl shadow-lg border p-2"
+                    >
+                      <Link
+                        href="/profile"
+                        className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 text-sm"
+                      >
+                        <User size={16} />
+                        Profile
+                      </Link>
+
+                      <button
+                        onClick={() => signOut()}
+                        className="w-full flex items-center gap-2 px-3 py-2 hover:bg-red-50 text-sm text-red-500"
+                      >
+                        <LogOutIcon size={16} />
+                        Logout
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             )}
           </div>
         </div>
       </motion.nav>
 
+      {/* ================= MOBILE FLOATING NAV ================= */}
+      <div className="fixed bottom-3 left-1/2 -translate-x-1/2 w-[65%] max-w-md bg-white/90 backdrop-blur-md shadow-xl rounded-2xl px-4 py-2 flex justify-between items-center z-50 lg:hidden">
+        {mobileNav.map((item) => {
+          const isActive = pathname === item.href;
+
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="flex flex-col items-center text-xs"
+            >
+              <div
+                className={`w-9 h-9 flex items-center justify-center rounded-full transition ${
+                  isActive
+                    ? "bg-secondary text-white scale-110"
+                    : "text-gray-2"
+                }`}
+              >
+                {item.icon}
+              </div>
+
+              <span
+                className={`mt-1 ${
+                  isActive
+                    ? "text-primary font-semibold"
+                    : "text-gray-2"
+                }`}
+              >
+                {item.label}
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+
+      {/* AUTH MODAL */}
       <AuthModal isOpen={open} onClose={() => setOpen(false)} />
     </>
   );

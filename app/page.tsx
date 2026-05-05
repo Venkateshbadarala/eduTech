@@ -11,6 +11,9 @@ import LearningJourney from "@/Components/LearningJourney";
 import Companies from "@/Components/Companies";
 import TeamSection from "@/Components/TeamsSection";
 import TrendingCourses from "@/Components/TrendingCourses";
+import WhyChooseSection from "@/Components/landingPage/WhyChooseSection";
+import StatsFloatingCards from "@/Components/StatsFloatingCards";
+import FAQSection from "@/Components/FAQSection";
 
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -43,11 +46,14 @@ export default function Home() {
         </div>
       )}
       <Hero />
-      <TrendingCourses/>
+      <StatsFloatingCards />
+      <TrendingCourses />
+      <WhyChooseSection />
       <LearningJourney />
       <Companies />
       <TeamSection />
       <Testimonials />
+      <FAQSection />
     </>
   );
 }

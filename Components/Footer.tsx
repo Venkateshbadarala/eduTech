@@ -30,75 +30,55 @@ export default function Footer() {
   );
 
   return (
-    <footer className="bg-(--color-black-1) text-(--color-white)  md:px-16 py-16 ">
+    <footer className="bg-(--color-black-1) text-(--color-white) px-4 sm:px-6 md:px-10 lg:px-16 py-12 md:py-16">
 
       {/* 🔥 DESKTOP */}
-      <div className="hidden md:grid grid-cols-2 gap-14 px-14">
+      <div className="hidden md:grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
 
         {/* LEFT SIDE */}
-        <div className="max-w-xl">
+        <div className="max-w-xl space-y-6">
 
-          {/* 🔹 NEWSLETTER */}
+          {/* NEWSLETTER */}
           <div>
             <h3 className="text-xl font-semibold mb-4">
               Join Our Newsletter
             </h3>
 
-            <div className="flex gap-2 mb-4">
+            <div className="flex flex-col sm:flex-row gap-3 mb-4">
               <input
-              name="email"
+                name="email"
                 placeholder="Enter your email"
-                className="px-4 py-2 rounded-full outline-none text-(--color-black) w-full border bg-(--color-white)"
+                className="px-4 py-2 rounded-full outline-none text-black w-full border bg-white"
               />
-              <button className="bg-(--color-secondary) px-5 rounded-full text-(--color-white) hover:scale-105 transition">
+              <button className="bg-(--color-secondary) px-5 py-2 rounded-full text-white hover:scale-105 transition">
                 Subscribe
               </button>
             </div>
 
-            <p className="text-sm text-(--color-gray-1) leading-relaxed">
+            <p className="text-sm text-(--color-gray-1)">
               Stay ahead with updates on new courses, offers, and career opportunities.
             </p>
           </div>
 
-        
-
-          {/* 🔹 ADDRESS */}
-          <div className="mt-2  ">
+          {/* ADDRESS */}
+          <div>
             <h4 className="text-lg font-semibold mb-3">Address</h4>
 
-            <div className="flex items-start gap-2 text-sm text-(--color-gray-1) leading-relaxed">
+            <div className="flex items-start gap-2 text-sm text-(--color-gray-1)">
               <MapPin size={16} className="mt-1" />
               <p>
-                5, 14th Main Road, 15th Cross, Sector 4,  
-                HSR Layout, Bangalore South,  
+                5, 14th Main Road, 15th Cross, Sector 4,
+                HSR Layout, Bangalore South,
                 Karnataka – 560102, India
               </p>
             </div>
           </div>
 
-          {/* 🔹 SOCIAL */}
-          <div className="mt-2">
-            <h4 className="text-lg font-semibold mb-3">Social Links</h4>
-
-            <div className="flex gap-4">
-              {socialIcons.map((item, i) => (
-                <Link
-                  key={i}
-                  href={item.link}
-                  target="_blank"
-                  title={item.name}
-                  className=" hover:bg-(--color-primary) transition"
-                >
-                  {item.icon}
-                </Link>
-              ))}
-            </div>
-          </div>
-            {/* 🔹 CONTACT */}
-          <div className="mt-2">
+          {/* CONTACT */}
+          <div>
             <h4 className="text-lg font-semibold mb-3">Contact Us</h4>
 
-            <div className="space-y-3 text-sm text-(--color-gray-1)">
+            <div className="space-y-2 text-sm text-(--color-gray-1)">
               <div className="flex items-center gap-2">
                 <Mail size={16} /> support@mindenious.com
               </div>
@@ -109,10 +89,26 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* SOCIAL */}
+          <div>
+            <h4 className="text-lg font-semibold mb-3">Social Links</h4>
+
+            <div className="flex gap-4 flex-wrap">
+              {socialIcons.map((item, i) => (
+                <Link
+                  key={i}
+                  href={item.link}
+                  className="hover:bg-(--color-primary) p-2 rounded-full transition"
+                >
+                  {item.icon}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="grid grid-cols-3 gap-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
 
           {/* TECH */}
           <div>
@@ -122,7 +118,7 @@ export default function Footer() {
                 <li key={i}>
                   <Link
                     href={`/courses/${c.slug || i}`}
-                    className="hover:text-(--color-primary) transition"
+                    className="hover:text-(--color-primary)"
                   >
                     {c.title}
                   </Link>
@@ -139,7 +135,7 @@ export default function Footer() {
                 <li key={i}>
                   <Link
                     href={`/courses/${c.slug || i}`}
-                    className="hover:text-(--color-primary) transition"
+                    className="hover:text-(--color-primary)"
                   >
                     {c.title}
                   </Link>
@@ -159,42 +155,58 @@ export default function Footer() {
                 "Terms & Conditions",
                 "Careers",
               ].map((item, i) => (
-                <li
-                  key={i}
-                  className="hover:text-(--color-primary) cursor-pointer"
-                >
+                <li key={i} className="hover:text-(--color-primary)">
                   {item}
                 </li>
               ))}
             </ul>
           </div>
-
         </div>
       </div>
 
       {/* 🔥 MOBILE */}
       <div className="md:hidden space-y-6">
 
-        {/* CONTACT + NEWSLETTER */}
-        <div>
+        {/* NEWSLETTER */}
+        <div className="space-y-4">
           <h3 className="text-lg font-semibold mb-3">Newsletter</h3>
 
           <div className="flex gap-2 mb-3">
             <input
               placeholder="Email"
-              className="px-4 py-2 rounded-full text-(--color-black-1) w-full border"
+              className="px-4 py-2 rounded-full outline-none text-black w-full border bg-white"
             />
             <button className="bg-(--color-secondary) px-4 rounded-full">
               Go
             </button>
           </div>
 
-          <div className="text-sm text-(--color-gray-2) space-y-2">
-            <p>support@mindenious.com</p>
-            <p>+91 9108126243</p>
-            <p className="text-(--color-gray-2) text-xs">
-              Bangalore, Karnataka, India
-            </p>
+          <div>
+            <h4 className="text-lg font-semibold mb-3">Address</h4>
+
+            <div className="flex items-start gap-2 text-sm text-(--color-gray-1)">
+              <MapPin size={28} className="mt-1" />
+              <p>
+                5, 14th Main Road, 15th Cross, Sector 4,
+                HSR Layout, Bangalore South,
+                Karnataka – 560102, India
+              </p>
+            </div>
+          </div>
+
+          {/* CONTACT */}
+          <div>
+            <h4 className="text-lg font-semibold mb-3">Contact Us</h4>
+
+            <div className="space-y-2 text-sm text-(--color-gray-1)">
+              <div className="flex items-center gap-2">
+                <Mail size={16} /> support@mindenious.com
+              </div>
+
+              <div className="flex items-center gap-2">
+                <Phone size={16} /> +91 9108126243
+              </div>
+            </div>
           </div>
 
           <div className="flex gap-3 mt-4">
@@ -223,7 +235,7 @@ export default function Footer() {
           <div key={section.key}>
             <button
               onClick={() => setOpen(open === section.key ? null : section.key)}
-              className="w-full flex justify-between font-semibold"
+              className="w-full flex justify-between items-center font-semibold"
             >
               {section.title}
               <span>{open === section.key ? "-" : "+"}</span>
@@ -241,7 +253,7 @@ export default function Footer() {
       </div>
 
       {/* 🔥 BOTTOM */}
-      <div className="mt-10 text-center text-sm bg-(--color-black-4) p-3 rounded-xl font-medium px-14">
+      <div className="mt-10 text-center text-xs sm:text-sm bg-(--color-black-4) py-3 px-4 rounded-xl">
         © 2026 Venkatesh Edutech LLP. All rights reserved
       </div>
     </footer>

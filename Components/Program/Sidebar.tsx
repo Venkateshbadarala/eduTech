@@ -4,7 +4,7 @@ import { FC, JSX, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation"; // ✅ for redirect
-
+import Logo from "@/public/logo.png";
 import {
   IBMIcon,
   ManagementIcon,
@@ -22,6 +22,8 @@ import {
   AllIcon,
   CancelIcon,
 } from "@/constants/svgIcons";
+import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   onSelectCategory: (category: string) => void;
@@ -116,8 +118,7 @@ const Sidebar: FC<Props> = ({ onSelectCategory, onClose }) => {
   const grouped = courses.reduce((acc: any, course: any) => {
     const normalized = normalizeCategory(course.category);
 
-    const displayCategory =
-      categoryLabelMap[normalized] || "Advanced Programs";
+    const displayCategory = categoryLabelMap[normalized] || "Advanced Programs";
 
     if (!acc[displayCategory]) acc[displayCategory] = [];
 
@@ -141,32 +142,36 @@ const Sidebar: FC<Props> = ({ onSelectCategory, onClose }) => {
       className="w-80 h-screen bg-white shadow-2xl flex flex-col"
     >
       {/* HEADER */}
-      <div className="flex justify-between items-center p-4 border-b">
-        <h2 className="font-semibold text-lg flex items-center gap-2">
-          <AllIcon /> Courses
-        </h2>
+      <div className="flex justify-between items-center p-2 border-b">
+        <Link href="/" className="flex items-center gap-2">
+          <Image src={Logo} alt="Logo" width={50} height={50} />
+        </Link>
+        <div className="flex flex-row gap-4">
+          <button
+            type="button"
+            className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 rounded-full"
+          >
+            Talk with us  
+          </button>
 
-        <motion.button
-          onClick={onClose}
-          whileHover={{ rotate: 90, scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="hover:bg-gray-100 p-2 rounded-full transition"
-        >
-          <CancelIcon />
-        </motion.button>
+          <motion.button
+            onClick={onClose}
+            whileHover={{ rotate: 90, scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="hover:bg-gray-100 p-2 rounded-full transition"
+          >
+            <CancelIcon />
+          </motion.button>
+        </div>
       </div>
 
       {/* CONTENT */}
       <div className="flex-1 overflow-y-auto p-3 space-y-2">
-
         {/* 🔥 SKELETON LOADING */}
         {loading && (
           <div className="space-y-3">
             {[1, 2, 3, 4].map((i) => (
-              <div
-                key={i}
-                className="p-3 rounded-lg bg-gray-100 animate-pulse"
-              >
+              <div key={i} className="p-3 rounded-lg bg-gray-100 animate-pulse">
                 <div className="h-4 bg-gray-300 rounded w-2/3 mb-2"></div>
                 <div className="h-3 bg-gray-200 rounded w-1/2"></div>
               </div>
@@ -175,9 +180,7 @@ const Sidebar: FC<Props> = ({ onSelectCategory, onClose }) => {
         )}
 
         {!loading && categoryList.length === 0 && (
-          <p className="text-center text-gray-400">
-            No courses available
-          </p>
+          <p className="text-center text-gray-400">No courses available</p>
         )}
 
         {!loading &&
@@ -203,11 +206,7 @@ const Sidebar: FC<Props> = ({ onSelectCategory, onClose }) => {
                     <div
                       className={`
                         p-2 rounded-md
-                        ${
-                          isActiveCategory
-                            ? "bg-blue-100"
-                            : "bg-gray-100"
-                        }
+                        ${isActiveCategory ? "bg-blue-100" : "bg-gray-100"}
                       `}
                     >
                       {iconMap[category] || <AllIcon />}
@@ -216,9 +215,7 @@ const Sidebar: FC<Props> = ({ onSelectCategory, onClose }) => {
                     <span className="font-medium">{category}</span>
                   </div>
 
-                  <motion.div
-                    animate={{ rotate: isActiveCategory ? 180 : 0 }}
-                  >
+                  <motion.div animate={{ rotate: isActiveCategory ? 180 : 0 }}>
                     <DownIcon />
                   </motion.div>
                 </motion.div>
@@ -233,10 +230,8 @@ const Sidebar: FC<Props> = ({ onSelectCategory, onClose }) => {
                       className="overflow-hidden"
                     >
                       <div className="pl-3 mt-2 space-y-2 border-l-2 border-blue-100">
-
                         {grouped[category].map((course: any, i: number) => {
-                          const isActiveCourse =
-                            activeCourse === course.title;
+                          const isActiveCourse = activeCourse === course.title;
 
                           return (
                             <motion.div
@@ -274,7 +269,6 @@ const Sidebar: FC<Props> = ({ onSelectCategory, onClose }) => {
                             </motion.div>
                           );
                         })}
-
                       </div>
                     </motion.div>
                   )}

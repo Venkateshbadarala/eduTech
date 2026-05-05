@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import StatsEditor from "./StatsEditor";
 import SkillsEditor from "./SkillsEditor";
@@ -8,6 +8,7 @@ import ModulesEditor from "./ModulesEditor";
 import PricingEditor from "./PricingEditor";
 import BrochureEditor from "./BrochureEditor";
 import ToolsEditor from "./ToolsEditor";
+import { BadgePlus, Clock, ImagePlus, TrendingUp } from "lucide-react";
 
 const emptyCourse = {
   title: "",
@@ -29,42 +30,42 @@ const emptyCourse = {
 };
 export default function CreateCoursePage({ slug }: any) {
   const isEdit = !!slug;
-
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState<any>(emptyCourse);
   const [preview, setPreview] = useState("");
   const [loading, setLoading] = useState(false);
 
   // 🔥 FETCH COURSE (EDIT MODE)
- useEffect(() => {
-  if (!slug) return;
+  useEffect(() => {
+    if (!slug) return;
 
-  const fetchCourse = async () => {
-    try {
-      setLoading(true);
+    const fetchCourse = async () => {
+      try {
+        setLoading(true);
 
-      const res = await fetch(`/api/courses/${slug}`);
+        const res = await fetch(`/api/courses/${slug}`);
 
-      if (!res.ok) {
-        throw new Error("Failed to fetch course");
+        if (!res.ok) {
+          throw new Error("Failed to fetch course");
+        }
+
+        const data = await res.json();
+
+        // 🔥 If your API returns { course: {...} }
+        const course = data.course || data;
+        console.log("API RESPONSE:", data);
+        setForm(course);
+        setPreview(course.image || "");
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
       }
+    };
 
-      const data = await res.json();
-
-      // 🔥 If your API returns { course: {...} }
-      const course = data.course || data;
-console.log("API RESPONSE:", data);
-      setForm(course);
-      setPreview(course.image || "");
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  fetchCourse();
-}, [slug]);
+    fetchCourse();
+  }, [slug]);
 
   // 🔹 HANDLE CHANGE
   const handleChange = (key: string, value: any) => {
@@ -113,6 +114,18 @@ console.log("API RESPONSE:", data);
     }
   };
 
+    // ✅ CLOSE DROPDOWN ON OUTSIDE CLICK
+    useEffect(() => {
+      const handleClickOutside = (e: any) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+          setOpen(false);
+        }
+      };
+  
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
   return (
     <div className="p-10">
       <Toaster />
@@ -121,16 +134,16 @@ console.log("API RESPONSE:", data);
       {!isEdit && (
         <button
           onClick={() => setOpen(true)}
-          className="bg-blue-600 text-white px-6 py-3 rounded-xl"
+          className="bg-primary text-white px-6  py-3 rounded-xl flex gap-2 "
         >
-          + Create Course
+        <BadgePlus /> <p className="hidden md:block">Create Course</p>
         </button>
       )}
 
       {/* MODAL / EDIT PAGE */}
       {(open || isEdit) && (
-        <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
-          <div className="bg-white w-[900px] max-h-[90vh] overflow-y-auto p-6 rounded-xl shadow-xl">
+        <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50" >
+          <div className="bg-white w-[900px] max-h-[90vh] overflow-y-auto p-6 rounded-xl shadow-xl flex flex-col gap-4" ref={dropdownRef}>
             <h2 className="text-2xl font-bold mb-4">
               {isEdit ? "Edit Course" : "Create Course"}
             </h2>
@@ -138,80 +151,176 @@ console.log("API RESPONSE:", data);
             {loading && <p className="text-sm">Loading...</p>}
 
             {/* BASIC */}
-            <input
-              placeholder="Title"
-              className="input"
-              value={form.title}
-              onChange={(e) => handleChange("title", e.target.value)}
-            />
+            <div className="bg-white p-6 rounded-2xl shadow-md space-y-5">
+              <h2 className="text-lg font-semibold text-gray-700">
+                📘 Basic Information
+              </h2>
 
-            <input
-              placeholder="Category"
-              className="input"
-              value={form.category}
-              onChange={(e) => handleChange("category", e.target.value)}
-            />
+              <div className="grid md:grid-cols-2 gap-5">
+                {/* TITLE */}
+                <div>
+                  <label className="label">Course Title</label>
+                  <div className="relative">
+                    <input
+                      className="input-style pl-10"
+                      value={form.title || ""}
+                      onChange={(e) => handleChange("title", e.target.value)}
+                      placeholder="Enter course title"
+                    />
+                  </div>
+                </div>
 
-            <textarea
-              placeholder="Description"
-              className="input"
-              value={form.description}
-              onChange={(e) => handleChange("description", e.target.value)}
-            />
+                {/* CATEGORY */}
+                <div>
+                  <label className="label">Category</label>
+                  <div className="relative">
+                    <input
+                      className="input-style pl-10"
+                      value={form.category || ""}
+                      onChange={(e) => handleChange("category", e.target.value)}
+                      placeholder="Enter category"
+                    />
+                  </div>
+                </div>
 
-            <input
-              placeholder="Headline"
-              className="input"
-              value={form.headline}
-              onChange={(e) => handleChange("headline", e.target.value)}
-            />
+                <div>
+                  <label className="label">Sub-Category</label>
+                  <div className="relative">
+                    <input
+                      className="input-style pl-10"
+                      value={form.subcategory || ""}
+                      onChange={(e) =>
+                        handleChange("subcategory", e.target.value)
+                      }
+                      placeholder="Enter Sub-category"
+                    />
+                  </div>
+                </div>
 
-            <input
-              placeholder="Tagline"
-              className="input"
-              value={form.tagline}
-              onChange={(e) => handleChange("tagline", e.target.value)}
-            />
+                {/* DESCRIPTION */}
+                <div className="md:col-span-2">
+                  <label className="label">Description</label>
+                  <textarea
+                    className="input-style"
+                    value={form.description || ""}
+                    onChange={(e) =>
+                      handleChange("description", e.target.value)
+                    }
+                    placeholder="Write course description..."
+                  />
+                </div>
 
-            {/* START */}
-            <select
-              className="input"
-              value={form.start}
-              onChange={(e) => handleChange("start", e.target.value)}
-            >
-              <option value="ongoing">Ongoing</option>
-              <option value="completed">Completed</option>
-            </select>
+                {/* HEADLINE */}
+                <div>
+                  <label className="label">Headline</label>
+                  <input
+                    className="input-style"
+                    value={form.headline || ""}
+                    onChange={(e) => handleChange("headline", e.target.value)}
+                  />
+                </div>
 
-            {/* IMAGE */}
-            <div className="border p-4 rounded">
-              {preview && <img src={preview} className="h-40 mb-2 rounded" />}
-              <input type="file" onChange={handleImage} />
+                {/* TAGLINE */}
+                <div>
+                  <label className="label">Tagline</label>
+                  <input
+                    className="input-style"
+                    value={form.tagline || ""}
+                    onChange={(e) => handleChange("tagline", e.target.value)}
+                  />
+                </div>
+              </div>
             </div>
 
-            {/* TREND */}
-            <div className="flex gap-2 items-center">
-              <input
-                type="checkbox"
-                checked={form.trend}
-                onChange={(e) => handleChange("trend", e.target.checked)}
-              />
-              Trending
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* STATUS */}
+              <div className="bg-white p-6 rounded-2xl shadow-md space-y-4">
+                <h2 className="text-lg font-semibold flex items-center gap-2">
+                  <Clock size={18} /> Status & Settings
+                </h2>
+
+                <div>
+                  <label className="label">Course Status</label>
+                  <select
+                    className="input-style"
+                    value={form.start}
+                    onChange={(e) => handleChange("start", e.target.value)}
+                  >
+                    <option value="ongoing">Ongoing</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <TrendingUp className="text-orange-500" size={18} />
+                  <label className="text-gray-700 flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={form.trend}
+                      onChange={(e) => handleChange("trend", e.target.checked)}
+                    />
+                    Trending Course
+                  </label>
+                </div>
+
+                <div>
+                  <label className="label">Trend Description</label>
+                  <input
+                    className="input-style"
+                    value={form.trenddesc || ""}
+                    onChange={(e) => handleChange("trenddesc", e.target.value)}
+                  />
+                </div>
+
+                <div>
+                  <label className="label">Duration</label>
+                  <input
+                    className="input-style"
+                    value={form.duration || ""}
+                    onChange={(e) => handleChange("duration", e.target.value)}
+                  />
+                </div>
+              </div>
+
+              {/* IMAGE */}
+              <div className="bg-white p-6 rounded-2xl shadow-md">
+                <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                  <ImagePlus size={18} /> Course Image
+                </h2>
+
+                <div className="relative border-2 border-dashed rounded-xl overflow-hidden group">
+                  {preview ? (
+                    <>
+                      <img
+                        src={preview}
+                        className="h-70 w-full object-cover rounded"
+                      />
+
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+                        <label className="cursor-pointer bg-white px-4 py-2 rounded-lg text-sm font-medium">
+                          Change Image
+                          <input
+                            type="file"
+                            onChange={handleImage}
+                            className="hidden"
+                          />
+                        </label>
+                      </div>
+                    </>
+                  ) : (
+                    <label className="h-48 flex flex-col items-center justify-center text-gray-400 cursor-pointer">
+                      <ImagePlus size={32} />
+                      <span className="text-sm mt-2">Upload Image</span>
+                      <input
+                        type="file"
+                        onChange={handleImage}
+                        className="hidden"
+                      />
+                    </label>
+                  )}
+                </div>
+              </div>
             </div>
-
-            <input
-              placeholder="Trend Description"
-              className="input"
-              value={form.trenddesc}
-              onChange={(e) => handleChange("trenddesc", e.target.value)}
-            />
-
-            <input
-              placeholder="Duration"
-              className="input"
-              value={form.duration}
-              onChange={(e) => handleChange("duration", e.target.value)}
-            />
 
             {/* 🔥 CHILD EDITORS */}
             <StatsEditor
@@ -260,6 +369,38 @@ console.log("API RESPONSE:", data);
           </div>
         </div>
       )}
+      <style jsx>{`
+        .input-style {
+          width: 100%;
+          border: 1px solid #e5e7eb;
+          padding: 12px;
+          border-radius: 10px;
+          outline: none;
+          transition: all 0.2s;
+          background: #fafafa;
+        }
+
+        .input-style:focus {
+          border-color: #6366f1;
+          background: white;
+          box-shadow: 0 0 0 3px #6366f120;
+        }
+
+        .label {
+          font-size: 14px;
+          font-weight: 600;
+          color: #374151;
+          margin-bottom: 6px;
+          display: block;
+        }
+
+        .icon {
+          position: absolute;
+          left: 10px;
+          top: 12px;
+          color: #9ca3af;
+        }
+      `}</style>
     </div>
   );
 }

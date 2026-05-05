@@ -20,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={figtree.variable}>
-      <body className="font-sans bg-[linear-gradient(120deg,#eaf4ff_0%,#f5f9ff_40%,#eef2ff_100%)] ">
+    <html lang="en" className={figtree.variable} suppressHydrationWarning>
+      <body className="font-sans bg-gradient-to-br from-light via-white to-primary-light ">
         <LayoutClient>{children}</LayoutClient>
       </body>
     </html>

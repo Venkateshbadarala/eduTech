@@ -8,7 +8,7 @@ interface ToolItem {
 
 export default function TechSection({ tools }: { tools: ToolItem[] }) {
   return (
-    <div className="flex justify-center items-center gap-8 mt-10 flex-wrap ">
+    <div className="flex justify-center items-center gap-8 mt-10  ">
 
       {tools.map((item, i) => (
         <div

@@ -137,7 +137,7 @@ export default function ModulesEditor({ value, onChange }: Props) {
             {/* TOPICS */}
             <div className="space-y-2">
               {module.topics.map((topic, tIndex) => (
-                <div key={tIndex} className="flex gap-2">
+                <div key={tIndex} className="flex gap-1">
                   <input
                     value={topic}
                     onChange={(e) =>

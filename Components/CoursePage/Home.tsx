@@ -32,7 +32,7 @@ export default function Home({
   image,
 }: HomeProps) {
   return (
-    <div className="relative bg-(--color-white) overflow-hidden">
+    <div className="relative  overflow-hidden">
 
       {/* 🔵 CURVE BACKGROUND */}
       <div className="absolute top-0 left-0 w-full h-[50vh] z-0">
@@ -56,11 +56,11 @@ export default function Home({
         </svg>
 
         {/* TEXT */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 text-center text-white z-10 px-4">
-          <h1 className="text-5xl font-bold leading-tight">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 text-center text-white z-10 px-4 min-w-md">
+          <h1 className="md:text-5xl font-bold leading-tight text-2xl">
             {headline}
           </h1>
-          <p className="mt-3 text-sm md:text-lg opacity-90 max-w-2xl mx-auto">
+          <p className="mt-3 text-sm md:text-lg opacity-90  mx-auto">
             {tagline}
           </p>
         </div>
@@ -69,7 +69,7 @@ export default function Home({
       {/* 🔥 MAIN CONTAINER */}
       <div className="max-w-7xl mx-auto p-6">
 
-        <div className="grid md:grid-cols-2 gap-10 items-center pt-[36vh]">
+        <div className="grid lg:grid-cols-2 gap-10 items-center md:pt-[36vh] pt-55">
 
           {/* 🔥 LEFT SIDE (IMAGE CARD) */}
           <div className="relative rounded-xl overflow-hidden bg-black h-[25rem]">
@@ -97,7 +97,7 @@ export default function Home({
           </div>
 
           {/* 🔥 RIGHT SIDE (FEATURES - STATIC AS YOU SAID) */}
-          <div className="bg-white p-8 rounded-xl shadow-lg z-10 flex flex-col items-start h-[25rem]">
+          <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg z-10 flex flex-col items-start md:h-[20rem] lg:h-[25rem]">
             <h2 className="text-2xl text-black font-bold mb-6">
               Features Highlight
             </h2>
@@ -107,7 +107,7 @@ export default function Home({
                 <motion.div
                   key={index}
                   whileHover={{ scale: 1.05 }}
-                  className="bg-gray-100 px-4 py-2 rounded-full text-sm flex items-center gap-2 shadow-sm hover:shadow-md transition"
+                  className="bg-gray-100 px-2 sm:px-4 sm:py-2 py-1 rounded-full text-sm flex items-center gap-2 shadow-sm hover:shadow-md transition"
                 >
                   <span className="text-blue-500 font-bold">✔</span>
                   {item}

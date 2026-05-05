@@ -7,7 +7,9 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { CancelIcon } from "@/constants/svgIcons";
 import { CircleX } from "lucide-react";
-
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import { motion } from "framer-motion";
 interface LoginData {
   email: string;
   password: string;
@@ -36,7 +38,7 @@ export default function AuthModal({
 }) {
   const [view, setView] = useState<"login" | "register" | "forgot">("login");
   const [loading, setLoading] = useState(false);
-
+ const [phone, setPhone] = useState("");
   const loginForm = useForm<LoginData>({ mode: "onChange" });
   const registerForm = useForm<RegisterData>({ mode: "onChange" });
   const forgotForm = useForm<ForgotData>({ mode: "onChange" });
@@ -209,71 +211,114 @@ export default function AuthModal({
           )}
 
           {/* REGISTER */}
-          {view === "register" && (
-            <form
-              onSubmit={registerForm.handleSubmit(handleRegister)}
-              className="space-y-3"
-            >
-              <input
-                placeholder="Name"
-                {...registerForm.register("name", { required: "Name required" })}
-                className="input-style"
-              />
-              {registerForm.formState.errors.name && (
-                <p className="error-text">
-                  {registerForm.formState.errors.name.message}
-                </p>
-              )}
+         {view === "register" && (
+  <motion.form
+    initial={{ opacity: 0, y: 40 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.4 }}
+    onSubmit={registerForm.handleSubmit(handleRegister)}
+    className="space-y-4"
+  >
+    {/* NAME */}
+    <div>
+      <input
+        placeholder="Full Name"
+        {...registerForm.register("name", { required: "Name required" })}
+        className="input-modern"
+      />
+      {registerForm.formState.errors.name && (
+        <p className="error-text">
+          {registerForm.formState.errors.name.message}
+        </p>
+      )}
+    </div>
 
-              <input
-                placeholder="Email"
-                {...registerForm.register("email", { required: "Email required" })}
-                className="input-style"
-              />
-              {registerForm.formState.errors.email && (
-                <p className="error-text">
-                  {registerForm.formState.errors.email.message}
-                </p>
-              )}
+    {/* EMAIL */}
+    <div>
+      <input
+        placeholder="Email Address"
+        {...registerForm.register("email", { required: "Email required" })}
+        className="input-modern"
+      />
+      {registerForm.formState.errors.email && (
+        <p className="error-text">
+          {registerForm.formState.errors.email.message}
+        </p>
+      )}
+    </div>
 
-              <input
-                placeholder="Phone"
-                {...registerForm.register("phone", {
-                  required: "Phone required",
-                })}
-                className="input-style"
-              />
+    {/* 📱 PHONE WITH COUNTRY */}
+     <div className="phone-root">
 
-              <input
-                type="password"
-                placeholder="Password"
-                {...registerForm.register("password", {
-                  required: "Password required",
-                })}
-                className="input-style"
-              />
+      <PhoneInput
+        country={"in"} // ✅ default India
+        enableSearch
+        value={registerForm.watch("phone")}
+        onChange={(phone) => registerForm.setValue("phone", phone)}
 
-              <input
-                type="password"
-                placeholder="Confirm Password"
-                {...registerForm.register("confirmPassword", {
-                  required: "Confirm password required",
-                })}
-                className="input-style"
-              />
+        inputClass="phone-input"
+        buttonClass="phone-flag"
+        containerClass="phone-container"
+        dropdownClass="phone-dropdown"
+      />
 
-              <button className="w-full bg-(--color-secondary) text-white py-2 rounded-lg hover:scale-105 transition">
-                {loading ? "Loading..." : "Register"}
-              </button>
+      {/* ERROR */}
+      {registerForm.formState.errors.phone && (
+        <p className="error-text">
+          {registerForm.formState.errors.phone.message}
+        </p>
+      )}
+    </div>
 
-              <p
-                onClick={() => setView("login")}
-                className="text-center text-(--color-black-1) cursor-pointer"
-              >
-                Back to Login
-              </p>
-            </form>
-          )}
+    {/* PASSWORD */}
+    <div>
+      <input
+        type="password"
+        placeholder="Password"
+        {...registerForm.register("password", {
+          required: "Password required",
+          minLength: { value: 6, message: "Min 6 characters" },
+        })}
+        className="input-modern"
+      />
+      {registerForm.formState.errors.password && (
+        <p className="error-text">
+          {registerForm.formState.errors.password.message}
+        </p>
+      )}
+    </div>
+
+    {/* CONFIRM PASSWORD */}
+    <div>
+      <input
+        type="password"
+        placeholder="Confirm Password"
+        {...registerForm.register("confirmPassword", {
+          required: "Confirm password required",
+        })}
+        className="input-modern"
+      />
+    </div>
+
+    {/* BUTTON */}
+    <motion.button
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.95 }}
+      className="w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-3 rounded-xl font-semibold shadow-md"
+    >
+      {loading ? "Creating..." : "Create Account"}
+    </motion.button>
+
+    {/* SWITCH */}
+    <p
+      onClick={() => setView("login")}
+      className="text-center text-gray-600 cursor-pointer text-sm"
+    >
+      Already have an account?{" "}
+      <span className="text-blue-600 font-semibold">Login</span>
+    </p>
+  </motion.form>
+)}
 
           {/* FORGOT */}
           {view === "forgot" && (
@@ -342,23 +387,55 @@ export default function AuthModal({
       </div>
 
       {/* Tailwind helpers */}
-      <style jsx>{`
-        .input-style {
-          width: 100%;
-          border: 1px solid #ddd;
-          padding: 10px;
-          border-radius: 5px;
-          outline: none;
-        }
-        .input-style:focus {
-          border-color: #6366f1;
-          box-shadow: 0 0 0 2px #6366f130;
-        }
-        .error-text {
-          color: red;
-          font-size: 12px;
-        }
-      `}</style>
+     <style jsx>{`
+  .input-modern {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    outline: none;
+    transition: all 0.25s ease;
+    background: #f9fafb;
+  }
+
+  .input-modern:focus {
+    border-color: #6366f1;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  }
+
+  .error-text {
+    color: #ef4444;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
+  .phone-container {
+    width: 100%;
+  }
+
+  .phone-input {
+    width: 100% !important;
+    padding: 12px 14px 12px 50px !important;
+    border-radius: 10px !important;
+    border: 1px solid #e5e7eb !important;
+    background: #f9fafb !important;
+    font-size: 14px;
+    transition: all 0.25s ease;
+  }
+
+  .phone-input:focus {
+    border-color: #6366f1 !important;
+    background: white !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  }
+
+  .phone-flag {
+    border: none !important;
+    background: transparent !important;
+    margin-left: 6px;
+  }
+`}</style>
     </div>
   );
 }

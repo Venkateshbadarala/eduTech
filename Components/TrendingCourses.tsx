@@ -2,106 +2,238 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { coursesData } from "@/lib/courseData";
-import { CalendarDays, DownloadCloud, Lock } from "lucide-react";
+import { CalendarDays, ChartColumnBig, DownloadCloud, Lock, ThumbsUpIcon } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import { ElectricalIcon } from "@/constants/svgIcons";
 
 export default function TrendingCourses() {
-  const trendingCourses = Object.entries(coursesData)
-    .filter(([_, course]: any) => course.trend)
-    .slice(0, 6);
+  const [courses, setCourses] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // 🔥 FETCH COURSES FROM DB
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const res = await fetch("/api/courses", {
+          cache: "no-store",
+        });
+
+        if (!res.ok) throw new Error("Failed");
+
+        const data = await res.json();
+        setCourses(data.courses || []);
+      } catch {
+        toast.error("Failed to load courses ❌");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
+  // ✅ FILTER TRENDING COURSES
+  const trendingCourses = courses.filter((c) => c.trend === true);
+
+  // 🌊 PARALLAX
+ const container = useRef<HTMLDivElement | null>(null);
+
+const { scrollYProgress } = useScroll({
+  target: container.current ? container : undefined,
+});
+
+  const headingY = useTransform(scrollYProgress, [0, 1], ["0%", "-40%"]);
+  const headingOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0]);
+  const cardY = useTransform(scrollYProgress, [0, 1], ["60px", "-20px"]);
+  const bubbleY1 = useTransform(scrollYProgress, [0, 1], ["0%", "140%"]);
+  const bubbleY2 = useTransform(scrollYProgress, [0, 1], ["0%", "200%"]);
+
+  // 🔥 LOADING SKELETON
+  if (loading) {
+    return (
+      <section className="py-16 px-6 md:px-16">
+        <div className="animate-pulse max-w-6xl mx-auto">
+          <div className="h-6 w-40 bg-gray-300 rounded-full mx-auto mb-6" />
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-white rounded-2xl shadow p-4">
+                <div className="h-40 bg-gray-200 rounded-xl mb-4" />
+                <div className="h-4 w-3/4 bg-gray-200 rounded mb-2" />
+                <div className="h-3 w-full bg-gray-200 rounded mb-2" />
+                <div className="h-8 w-full bg-gray-200 rounded" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <section className="py-24 px-6 md:px-16">
+    <section
+  ref={container}
+  className="relative py-16 px-6 md:px-16 overflow-hidden rounded-xl "
+>
+  {/* 🫧 BUBBLES */}
+  <motion.div
+    style={{ y: bubbleY1 }}
+    className="absolute top-10 left-10 w-52 h-52 bg-blue-400/20 rounded-full "
+  />
+  <motion.div
+    style={{ y: bubbleY2 }}
+    className="absolute top-40 right-10 w-40 h-40 bg-indigo-400/20 rounded-full "
+  />
 
-      {/* 🔥 HEADING */}
-      <div className="text-center mb-16">
-      <p className="text-2xl tracking-widest text-(--color-white)  mb-2  font-bold bg-(--color-secondary) inline-block px-4 py-1 rounded-full">
-  TRENDING COURSES
-</p>
+  {/* 🔥 HEADING */}
+  <motion.div
+    style={{ y: headingY, opacity: headingOpacity }}
+    className="text-center "
+  >
+    <p className="text-sm tracking-widest text-white font-semibold bg-gradient-to-r from-primary to-secondary inline-block px-6 py-1 rounded-full shadow-lg">
+      TRENDING COURSES
+    </p>
 
-        <h2 className="text-4xl md:text-5xl font-bold text-(--color-secondary) ">
-          Explore our advanced programs
-        </h2>
-      </div>
+    <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mt-6">
+      Explore our{" "}
+      <span className="text-blue-600">Top Programs</span>
+    </h2>
 
-      {/* 🔥 GRID */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+    <p className="text-gray-500 mt-4 max-w-xl mx-auto">
+      Hand-picked trending courses based on industry demand 🚀
+    </p>
+  </motion.div>
 
-        {trendingCourses.map(([slug, course]: any, i) => (
-          <div
-            key={i}
-            className="bg-(--color-white) rounded-xl p-5 shadow-md hover:shadow-xl transition duration-300 border-2  hover:border-(--color-secondary) border-(--color-white)"
-          >
+  {/* ❌ EMPTY */}
+  {trendingCourses.length === 0 && (
+    <p className="text-center text-gray-400">
+      No trending courses available 🚫
+    </p>
+  )}
 
-            {/* 🔥 IMAGE BOX */}
-            <div className="bg-(--color-primary-light) rounded-xl  flex items-center justify-center mb-5">
-              <Image
-                src={course.image}
-                alt={course.title}
-                width={400}
-                height={400}
-                className="object-contain rounded-xl"
-              />
-            </div>
+  {/* 🔥 GRID */}
+  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+    {trendingCourses.map((course: any, i) => (
+      <motion.div
+        key={i}
+        style={{ y: cardY }}
+        className="
+          group relative
+          bg-white/70 backdrop-blur-xl
+          rounded-3xl p-[1px]
+          bg-gradient-to-br from-blue-200/40 to-indigo-200/30
+          shadow-lg hover:shadow-2xl
+          transition duration-300
+        "
+      >
+        {/* INNER CARD */}
+        <div className="bg-white rounded-3xl p-5 h-full flex flex-col justify-between">
 
-            {/* 🔥 TITLE */}
-            <h3 className="text-xl font-bold text-(--color-secondary)">
-              {course.title}
-            </h3>
+          {/* IMAGE */}
+          <div className="relative rounded-2xl overflow-hidden mb-5 bg-blue-50">
+            <Image
+              src={course.image || "/placeholder.jpg"}
+              alt={course.title}
+              width={400}
+              height={400}
+              className="object-cover group-hover:scale-110 transition duration-500"
+            />
+          </div>
 
-            {/* 🔥 DESCRIPTION */}
-            <p className="text-(--color-gray-2) text-sm mt-2 leading-relaxed min-h-[60px]">
-              {course.trenddesc}
-            </p>
+          {/* TITLE */}
+          <h3 className="text-lg font-bold text-gray-800">
+            {course.title}
+          </h3>
 
-            {/* 🔥 TAG */}
-            {course.tag && (
-              <span className="inline-block mt-3 text-xs bg-gray-100 px-3 py-1 rounded-full text-(--color-gray-2)">
-                {course.tag}
-              </span>
-            )}
+          {/* DESC */}
+          <p className="text-gray-500 text-sm mt-2 min-h-[60px]">
+            {course.trenddesc || course.description}
+          </p>
 
-            {/* 🔥 TYPE */}
-            <p className="mt-4 text-sm text-gray-700 font-medium">
-              {course.type || "Certification"}
-            </p>
+          {/* BADGE */}
+          <div className="flex justify-between items-center mt-3">
+            <span className="text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">
+              {course.category}
+            </span>
 
-            {/* 🔥 DURATION */}
-            <div className="flex items-center gap-2 text-sm text-gray-500 mt-1">
+            <span className="text-xs text-green-600 font-semibold uppercase flex items-center gap-2 ">
+             <ChartColumnBig size={16}/>
+              {course.start || "ongoing"}
+            </span>
+          </div>
+
+          {/* META */}
+          <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
+            <div className="flex items-center gap-2">
               <CalendarDays size={16} />
-              {course.duration || "6 Months"}
+              {course.duration || "Flexible"}
             </div>
 
-            {/* 🔥 BUTTONS */}
-            <div className="flex gap-3 mt-5">
+            <div className="flex items-center gap-1 text-blue-500">
+              <ThumbsUpIcon size={14} />
+              Popular
+            </div>
+          </div>
 
-              {/* VIEW */}
-              <Link href={`/courses/${slug}`} className="flex-1">
-                <button className="w-full border bg-gradient-to-r from-(--color-primary) to-(--color-secondary) py-2 rounded-xl transition text-(--color-white)">
-                  View Program
+          {/* BUTTONS */}
+          <div className="flex gap-3 mt-5">
+            <Link href={`/courses/${course._id}`} className="flex-1">
+              <button className="
+                w-full
+                bg-gradient-to-r from-blue-500 to-indigo-500
+                text-white py-2 rounded-xl
+                shadow-md hover:shadow-lg
+                transition
+              ">
+                Explore
+              </button>
+            </Link>
+
+            {course.syllabus ? (
+              <Link href={course.syllabus}>
+                <button className="
+                  px-4 py-2
+                  bg-white border border-gray-200
+                  rounded-xl hover:bg-gray-50
+                  flex items-center gap-2
+                ">
+                  <DownloadCloud size={16} />
                 </button>
               </Link>
-
-              {/* SYLLABUS */}
-              {course.syllabus ? (
-                <Link href={course.syllabus}>
-                  <button className="px-4 py-2 bg-gradient-to-r from-(--color-primary) to-(--color-secondary) text-white rounded-xl hover:opacity-90 transition flex gap-2">
-                    <DownloadCloud/>
-                    Syllabus
-                  </button>
-                </Link>
-              ) : (
-                <button className="px-4 py-2 bg-gray-300 text-gray-600 rounded-xl flex items-center gap-1 cursor-not-allowed">
-                  <Lock size={14} />
-                  Syllabus
-                </button>
-              )}
-            </div>
-
+            ) : (
+              <button className="
+                px-4 py-2
+                bg-gray-200 text-gray-500
+                rounded-xl cursor-not-allowed
+              ">
+                <Lock size={14} />
+              </button>
+            )}
           </div>
-        ))}
+        </div>
+      </motion.div>
+    ))}
+  </div>
 
-      </div>
-    </section>
+  {/* 🔥 VIEW ALL BUTTON */}
+  <div className="flex justify-center mt-14">
+    <Link href="/courses">
+      <button
+        className="
+          px-8 py-3 rounded-full
+          bg-gradient-to-r from-primary to-secondary
+          text-white font-semibold
+          shadow-lg hover:shadow-xl
+          hover:scale-105
+          transition
+        "
+      >
+        View All Courses →
+      </button>
+    </Link>
+  </div>
+</section>
   );
 }

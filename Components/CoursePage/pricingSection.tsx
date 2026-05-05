@@ -41,12 +41,12 @@ export default function PricingSection({
   };
 
   return (
-    <section className="py-16 px-6 text-center">
+    <section className="py-10 px-6 text-center">
       {/* HEADING */}
       {/* 🔥 HEADING */}{" "}
       <div className="mb-10 px-4">
         {" "}
-        <h2 className="text-4xl md:text-5xl font-bold text-(--color-black-1) leading-tight">
+        <h2 className="text-3xl md:text-5xl font-bold text-(--color-black-1) leading-tight">
           {" "}
           Unlock Premium Learning at a Limited Price{" "}
         </h2>{" "}

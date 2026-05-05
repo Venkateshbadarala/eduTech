@@ -18,13 +18,15 @@
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.8.0",
     "mongoose": "^9.5.0",
-    "next": "16.2.4",
+    "next": "^16.2.4",
     "next-auth": "^4.24.14",
     "nodemailer": "^7.0.13",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-hook-form": "^7.74.0",
     "react-hot-toast": "^2.6.0",
+    "react-phone-input-2": "^2.15.1",
+    "react-phone-number-input": "^3.4.16",
     "react-redux": "^9.2.0",
     "react-toastify": "^11.1.0",
     "redux": "^5.0.1",
@@ -35,6 +37,7 @@
     "@types/axios": "^0.14.4",
     "@types/bcrypt": "^6.0.0",
     "@types/node": "^20",
+    "@types/nodemailer": "^8.0.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-toastify": "^4.1.0",
@@ -42,6 +45,6 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
     "tailwindcss": "^4.2.4",
-    "typescript": "^5"
+    "typescript": "^6.0.3"
   }
 }

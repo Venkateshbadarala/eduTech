@@ -23,6 +23,7 @@ import MasteryEditor from "@/Components/Admin/MasteryEditor";
 const emptyCourse = {
   title: "",
   category: "",
+  subcategory:"",
   description: "",
   image: "",
   headline: "",
@@ -204,6 +205,19 @@ console.log("API RESPONSE:", data);
         </div>
       </div>
 
+      <div>
+        <label className="label">Sub-Category</label>
+        <div className="relative">
+          
+          <input
+            className="input-style pl-10"
+            value={form.subcategory || ""}
+            onChange={(e) => handleChange("subcategory", e.target.value)}
+            placeholder="Enter Sub-category"
+          />
+        </div>
+      </div>
+
       {/* DESCRIPTION */}
       <div className="md:col-span-2">
         <label className="label">Description</label>
@@ -214,6 +228,8 @@ console.log("API RESPONSE:", data);
           placeholder="Write course description..."
         />
       </div>
+
+      
 
       {/* HEADLINE */}
       <div>
