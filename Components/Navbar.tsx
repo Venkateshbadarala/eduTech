@@ -31,10 +31,9 @@ interface NavbarProps {
 
 const baseNavItems = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/About" },
-  { label: "Careers", href: "/Careers" },
-  { label: "Ambassador", href: "/Ambassador" },
-  { label: "Dashboard", href: "/admin" },
+  { label: "About", href: "/about" },
+  { label: "Careers", href: "/careers" },
+  { label: "Ambassador", href: "/ambassador" },
 ];
 
 const Navbar = ({ onOpenSidebar }: NavbarProps) => {
@@ -49,14 +48,23 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // 🔥 scroll hide (desktop navbar)
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const prev = scrollY.getPrevious();
-    if (prev !== undefined && latest > prev && latest > 50) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
-  });
+ useMotionValueEvent(scrollY, "change", (latest) => {
+  const prev = scrollY.getPrevious();
+
+  // ✅ CLOSE PROFILE DROPDOWN ON SCROLL
+  setProfileOpen(false);
+
+  // ✅ HIDE NAVBAR ON SCROLL DOWN
+  if (
+    prev !== undefined &&
+    latest > prev &&
+    latest > 50
+  ) {
+    setHidden(true);
+  } else {
+    setHidden(false);
+  }
+});
 
   // 🔥 close dropdown
   useEffect(() => {
@@ -74,10 +82,13 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
   // 🔥 Mobile nav with icons
   const mobileNav = [
     { label: "Home", href: "/", icon: <Home size={18} /> },
-    { label: "About", href: "/About", icon: <Info size={18} /> },
-    { label: "Careers", href: "/Careers", icon: <Briefcase size={18} /> },
-    { label: "Ambassador", href: "/Ambassador", icon: <User2 size={18} /> },
+    { label: "About", href: "/about", icon: <Info size={18} /> },
+    { label: "Careers", href: "/careers", icon: <Briefcase size={18} /> },
+    { label: "Ambassador", href: "/ambassador", icon: <User2 size={18} /> },
   ];
+
+  const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+const isAdmin = session?.user?.email === adminEmail;
 
   return (
     <>
@@ -128,8 +139,21 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
                 >
                   {item.label}
                 </Link>
+                
               );
             })}
+             {isAdmin && (
+    <Link
+      href="/admin"
+      className={`transition text-[16px] ${
+        pathname === "/admin"
+          ? "text-blue-600 font-bold"
+          : "text-gray-700 hover:text-blue-600"
+      }`}
+    >
+      Dashboard
+    </Link>
+  )}
             </div>
             
 

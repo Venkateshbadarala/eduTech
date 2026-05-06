@@ -52,16 +52,39 @@ export default function FAQSection() {
   return (
     <section className="md:py-16 px-6 py-10 ">
       {/* 🔥 HEADER */}
-      <div className="text-center mb-16 max-w-3xl mx-auto">
-        <h2 className="text-3xl md:text-5xl font-bold text-gray-900">
-          Frequently <span className="text-secondary">Asked Questions</span>
-        </h2>
+      <div className="text-center mb-16 max-w-3xl mx-auto flex flex-col items-center">
+  
+  <h2
+    className="
+      text-3xl md:text-5xl
+      font-bold
+      text-gray-900
+      leading-tight
+      text-center
+      flex flex-col md:block
+    "
+  >
+    Frequently{" "}
+    <span className="text-secondary">
+      Asked Questions
+    </span>
+  </h2>
 
-        <p className="text-gray-2 mt-4 text-lg">
-          Check out our FAQ section for quick answers to common questions. If
-          you don’t find what you’re looking for, feel free to contact us.
-        </p>
-      </div>
+  <p
+    className="
+      text-gray-500
+      mt-5
+      text-lg
+      leading-relaxed
+      text-center
+      max-w-3xl
+    "
+  >
+    Check out our FAQ section for quick answers to common questions.
+    If you don’t find what you’re looking for, feel free to contact us.
+  </p>
+
+</div>
 
       {/* 🔥 FAQ LIST */}
       <div className="max-w-5xl mx-auto space-y-5">

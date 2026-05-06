@@ -332,7 +332,7 @@ export default function AuthModal({
     {...forgotForm.register("email", {
       required: "Email required",
     })}
-    className="input-style"
+    className="input-modern"
   />
   {forgotForm.formState.errors.email && (
     <p className="error-text">
@@ -348,7 +348,7 @@ export default function AuthModal({
       required: "Password required",
       minLength: { value: 6, message: "Min 6 characters" },
     })}
-    className="input-style"
+    className="input-modern"
   />
   {forgotForm.formState.errors.password && (
     <p className="error-text">
@@ -363,7 +363,7 @@ export default function AuthModal({
     {...forgotForm.register("confirmPassword", {
       required: "Confirm password required",
     })}
-    className="input-style"
+    className="input-modern"
   />
   {forgotForm.formState.errors.confirmPassword && (
     <p className="error-text">
