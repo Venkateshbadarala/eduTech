@@ -38,13 +38,19 @@ export async function PATCH(
   try {
     await connectDB();
 
-    const { id } = await context.params; // ✅ FIX
+    const { id } = await context.params;
     const body = await req.json();
 
-    const updated = await Course.findByIdAndUpdate(id, body, {
-      new: true,
-      runValidators: true,
-    });
+    console.log("UPDATE BODY:", body);
+
+    const updated = await Course.findByIdAndUpdate(
+      id,
+      body,
+      {
+        returnDocument: "after",
+        runValidators: true,
+      }
+    );
 
     if (!updated) {
       return NextResponse.json(
@@ -53,10 +59,18 @@ export async function PATCH(
       );
     }
 
-    return NextResponse.json(updated);
-  } catch (error) {
+    return NextResponse.json(updated, {
+      status: 200,
+    });
+
+  } catch (error: any) {
+    console.log("PATCH ERROR:", error);
+
     return NextResponse.json(
-      { error: "Update failed" },
+      {
+        error:
+          error.message || "Update failed",
+      },
       { status: 500 }
     );
   }

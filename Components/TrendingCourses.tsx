@@ -16,9 +16,7 @@ export default function TrendingCourses() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const res = await fetch("/api/courses", {
-          cache: "no-store",
-        });
+        const res = await fetch("/api/courses");
 
         if (!res.ok) throw new Error("Failed");
 
@@ -132,15 +130,20 @@ const { scrollYProgress } = useScroll({
         <div className="bg-white rounded-3xl p-5 h-full flex flex-col justify-between">
 
           {/* IMAGE */}
-          <div className="relative rounded-2xl overflow-hidden mb-5 bg-blue-50">
-            <Image
-              src={course.image || "/placeholder.jpg"}
-              alt={course.title}
-              width={400}
-              height={400}
-              className="object-cover group-hover:scale-110 transition duration-500"
-            />
-          </div>
+          <div className="relative rounded-2xl overflow-hidden mb-5 bg-blue-50 h-56">
+  <Image
+    src={course.image || "/placeholder.jpg"}
+    alt={course.title}
+    fill
+    unoptimized
+    className="
+      object-cover
+      transition-transform
+      duration-500
+      group-hover:scale-105
+    "
+  />
+</div>
 
           {/* TITLE */}
           <h3 className="text-lg font-bold text-gray-800">

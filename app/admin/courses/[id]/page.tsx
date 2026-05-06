@@ -38,7 +38,9 @@ const emptyCourse = {
   mastery:[],
   tools: [],
   pricing: [],
-  brochure: "",
+  brochure: {
+    file: "",
+  },
 };
 
 export default function Page() {
@@ -73,7 +75,9 @@ console.log("API RESPONSE:", data);
           tools: course.tools || [],
           mastery: course.mastery || [],
           pricing: course.pricing || [],
-          brochure: course.brochure || "",
+          brochure: course?.brochure?.file
+    ? course.brochure
+    : { file: "" },
         });
 
         setPreview(course.image || "");
@@ -86,6 +90,8 @@ console.log("API RESPONSE:", data);
 
     fetchCourse();
   }, [id]);
+
+ 
 
   // 🔹 HANDLE CHANGE
   const handleChange = (key: string, value: any) => {
@@ -152,7 +158,7 @@ console.log("API RESPONSE:", data);
 
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-6 pt-[6rem]">
-  <Toaster />
+  
 
   {/* HEADER */}
   <div className="flex justify-between items-center">
@@ -349,11 +355,13 @@ console.log("API RESPONSE:", data);
   <PricingEditor value={form.pricing} onChange={(v) => handleChange("pricing", v)} />
 
   <BrochureEditor
-    value={{ file: form.brochure }}
-    onChange={(v) => handleChange("brochure", v.file)}
-  />
+  value={form.brochure}
+  onChange={(v) =>
+    handleChange("brochure", v)
+  }
+/>
 
-<MasteryEditor value={form.mastery} onChange={(v) => handleChange("mastery", v)} />
+  <MasteryEditor value={form.mastery} onChange={(v) => handleChange("mastery", v)} />
   <ToolsEditor value={form.tools} onChange={(v) => handleChange("tools", v)} />
 
   {/* ACTION BUTTON */}

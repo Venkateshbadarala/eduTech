@@ -9,7 +9,8 @@ import PricingEditor from "./PricingEditor";
 import BrochureEditor from "./BrochureEditor";
 import ToolsEditor from "./ToolsEditor";
 import { BadgePlus, Clock, ImagePlus, TrendingUp } from "lucide-react";
-
+import MasteryEditor from "./MasteryEditor";
+import { useRouter } from "next/navigation";
 const emptyCourse = {
   title: "",
   category: "",
@@ -24,6 +25,7 @@ const emptyCourse = {
   stats: [],
   skills: [],
   modules: [],
+  mastery:[],
   tools: [],
   pricing: [],
   brochure: { file: "" },
@@ -35,7 +37,7 @@ export default function CreateCoursePage({ slug }: any) {
   const [form, setForm] = useState<any>(emptyCourse);
   const [preview, setPreview] = useState("");
   const [loading, setLoading] = useState(false);
-
+const router = useRouter();
   // 🔥 FETCH COURSE (EDIT MODE)
   useEffect(() => {
     if (!slug) return;
@@ -88,31 +90,89 @@ export default function CreateCoursePage({ slug }: any) {
   };
 
   // 🔥 SUBMIT (CREATE / UPDATE)
+  // const handleSubmit = async () => {
+  //   setLoading(true);
+
+  //   const res = await fetch(isEdit ? `/api/course/${slug}` : "/api/course", {
+  //     method: isEdit ? "PATCH" : "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(form),
+  //   });
+
+  //   setLoading(false);
+
+  //   if (res.ok) {
+  //     toast.success(isEdit ? "Course Updated ✏️" : "Course Created 🚀");
+
+  //     if (!isEdit) {
+  //       setForm(emptyCourse);
+  //       setPreview("");
+  //       setOpen(false);
+  //     }
+  //   } else {
+  //     toast.error("Something went wrong ❌");
+  //   }
+  // };
+
   const handleSubmit = async () => {
+  try {
     setLoading(true);
 
-    const res = await fetch(isEdit ? `/api/course/${slug}` : "/api/course", {
-      method: isEdit ? "PATCH" : "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    });
-
-    setLoading(false);
-
-    if (res.ok) {
-      toast.success(isEdit ? "Course Updated ✏️" : "Course Created 🚀");
-
-      if (!isEdit) {
-        setForm(emptyCourse);
-        setPreview("");
-        setOpen(false);
+    const res = await fetch(
+      isEdit
+        ? `/api/course/${slug}`
+        : "/api/course",
+      {
+        method: isEdit ? "PATCH" : "POST",
+        headers: {
+          "Content-Type":
+            "application/json",
+        },
+        body: JSON.stringify(form),
       }
-    } else {
-      toast.error("Something went wrong ❌");
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      toast.error(
+        data.message ||
+          "Something went wrong ❌"
+      );
+      return;
     }
-  };
+
+    toast.success(
+      isEdit
+        ? "Course Updated ✏️"
+        : "Course Created 🚀"
+    );
+
+    // ✅ RESET FORM
+    if (!isEdit) {
+      setForm(emptyCourse);
+      setPreview("");
+      setOpen(false);
+    }
+
+    // ✅ REFRESH FRONTEND DATA
+    router.refresh();
+
+    // ✅ OPTIONAL HARD REFRESH
+    // window.location.reload();
+
+  } catch (error) {
+    console.log(error);
+
+    toast.error(
+      "Failed to save course ❌"
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
     // ✅ CLOSE DROPDOWN ON OUTSIDE CLICK
     useEffect(() => {
@@ -128,7 +188,7 @@ export default function CreateCoursePage({ slug }: any) {
 
   return (
     <div className="p-10">
-      <Toaster />
+     
 
       {/* OPEN BUTTON */}
       {!isEdit && (
@@ -340,9 +400,12 @@ export default function CreateCoursePage({ slug }: any) {
               onChange={(v) => handleChange("pricing", v)}
             />
             <BrochureEditor
-              value={form.brochure}
-              onChange={(v) => handleChange("brochure", v)}
-            />
+  value={form.brochure}
+  onChange={(v) =>
+    handleChange("brochure", v)
+  }
+/>
+            <MasteryEditor value={form.mastery} onChange={(v) => handleChange("mastery", v)} />
             <ToolsEditor
               value={form.tools}
               onChange={(v) => handleChange("tools", v)}

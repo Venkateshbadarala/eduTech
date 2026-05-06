@@ -16,6 +16,7 @@ import StatsFloatingCards from "@/Components/StatsFloatingCards";
 import FAQSection from "@/Components/FAQSection";
 import AutoPopupForm from "@/Components/Form/AutoPopupForm";
 
+
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 

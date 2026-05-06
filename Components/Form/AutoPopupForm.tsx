@@ -7,21 +7,32 @@ export default function AutoPopupForm() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    // 🔥 OPEN POPUP AFTER 2 MINUTES
+    // ✅ CHECK IF POPUP ALREADY SHOWN
+    const popupShown = localStorage.getItem(
+      "studentPopupShown"
+    );
+
+    // ✅ DON'T OPEN AGAIN
+    if (popupShown === "true") return;
+
+    // ✅ OPEN AFTER 10 SECONDS
     const timer = setTimeout(() => {
       setOpen(true);
-    }, 0 * 60 * 1000); // 2 minutes
+
+      // ✅ SAVE FLAG
+      localStorage.setItem(
+        "studentPopupShown",
+        "true"
+      );
+    }, 10 * 1000);
 
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <>
-      {/* 🔥 POPUP FORM */}
-      <StudentQueryForm
-        isOpen={open}
-        onClose={() => setOpen(false)}
-      />
-    </>
+    <StudentQueryForm
+      isOpen={open}
+      onClose={() => setOpen(false)}
+    />
   );
 }

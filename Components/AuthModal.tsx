@@ -121,7 +121,7 @@ export default function AuthModal({
 
   return (
     <div className="fixed inset-0 z-50 grid place-items-center px-3">
-      <Toaster position="top-center" />
+      
 
       {/* Overlay */}
       <div

@@ -52,9 +52,7 @@ export default function Page() {
 
     const fetchCourse = async () => {
       try {
-        const res = await fetch(`/api/course/${id}`, {
-          cache: "no-store",
-        });
+        const res = await fetch(`/api/course/${id}`);
 
         if (!res.ok) {
           const text = await res.text();

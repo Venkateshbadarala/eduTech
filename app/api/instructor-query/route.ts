@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    // 🔥 GET FORM DATA
+    // ✅ GET FORM DATA
     const body = await req.json();
 
     console.log(
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
       body
     );
 
-    // 🔥 VALIDATION
+    // ✅ VALIDATION
     if (
       !body.fullName ||
       !body.email ||
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
       );
     }
 
-    // 🔥 EMAIL VALIDATION
+    // ✅ EMAIL VALIDATION
     const emailRegex =
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -51,12 +51,13 @@ export async function POST(req: Request) {
       );
     }
 
-    // 🔥 GOOGLE AUTH
+    // ✅ GOOGLE AUTH
     const auth =
       new google.auth.GoogleAuth({
         credentials: {
           client_email:
-            process.env.GOOGLE_CLIENT_EMAIL,
+            process.env
+              .GOOGLE_CLIENT_EMAIL,
 
           private_key:
             process.env.GOOGLE_PRIVATE_KEY?.replace(
@@ -70,19 +71,87 @@ export async function POST(req: Request) {
         ],
       });
 
-    // 🔥 GOOGLE SHEETS INSTANCE
+    // ✅ GOOGLE SHEETS INSTANCE
     const sheets = google.sheets({
       version: "v4",
       auth,
     });
 
-    // 🔥 SAVE TO SHEET
-    await sheets.spreadsheets.values.append({
-      spreadsheetId:
-        process.env.GOOGLE_SHEET_ID,
+    const spreadsheetId =
+      process.env.GOOGLE_SHEET_ID!;
 
-      // ✅ SHEET NAME
-      range: "InstructorQuery!A:L",
+    const range =
+      "InstructorQuery!A:M";
+
+    // ✅ GET EXISTING DATA
+    const existingData =
+      await sheets.spreadsheets.values.get({
+        spreadsheetId,
+        range,
+      });
+
+    const rows =
+      existingData.data.values || [];
+
+    // ✅ CREATE HEADER IF EMPTY
+    if (rows.length === 0) {
+      await sheets.spreadsheets.values.append({
+        spreadsheetId,
+
+        range:
+          "InstructorQuery!A1:M1",
+
+        valueInputOption: "RAW",
+
+        requestBody: {
+          values: [
+            [
+              "Full Name",
+              "Email",
+              "Phone Number",
+              "Expertise",
+              "Experience",
+              "Qualification",
+              "LinkedIn",
+              "Portfolio",
+              "Course Topic",
+              "Teaching Mode",
+              "Expected Salary",
+              "About",
+              "Submitted At",
+            ],
+          ],
+        },
+      });
+    }
+
+    // ✅ CHECK DUPLICATE EMAIL
+    const emailExists = rows.some(
+      (row) =>
+        row[1]
+          ?.toLowerCase()
+          ?.trim() ===
+        body.email
+          ?.toLowerCase()
+          ?.trim()
+    );
+
+    if (emailExists) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "Instructor application already submitted",
+        },
+        { status: 409 }
+      );
+    }
+
+    // ✅ SAVE TO GOOGLE SHEET
+    await sheets.spreadsheets.values.append({
+      spreadsheetId,
+
+      range,
 
       valueInputOption:
         "USER_ENTERED",
@@ -94,7 +163,7 @@ export async function POST(req: Request) {
 
             body.email,
 
-            // ✅ STORE PHONE AS TEXT
+            // ✅ SAVE PHONE AS TEXT
             `'${body.phone}`,
 
             body.expertise,
@@ -122,7 +191,7 @@ export async function POST(req: Request) {
       },
     });
 
-    // 🔥 SUCCESS RESPONSE
+    // ✅ SUCCESS RESPONSE
     return NextResponse.json({
       success: true,
       message:

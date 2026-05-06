@@ -1,34 +1,16 @@
-// app/api/ambassador-query/route.ts
-
 import { google } from "googleapis";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    // ✅ GET FORM DATA
     const body = await req.json();
 
-    console.log(
-      "AMBASSADOR FORM DATA:",
-      body
-    );
-
     // ✅ VALIDATION
-    if (
-      !body.fullName ||
-      !body.email ||
-      !body.phone ||
-      !body.college ||
-      !body.city ||
-      !body.year ||
-      !body.linkedin ||
-      !body.whyJoin
-    ) {
+    if (!body.email) {
       return NextResponse.json(
         {
           success: false,
-          message:
-            "All fields are required",
+          message: "Email is required",
         },
         { status: 400 }
       );
@@ -49,24 +31,22 @@ export async function POST(req: Request) {
     }
 
     // ✅ GOOGLE AUTH
-    const auth =
-      new google.auth.GoogleAuth({
-        credentials: {
-          client_email:
-            process.env
-              .GOOGLE_CLIENT_EMAIL,
+    const auth = new google.auth.GoogleAuth({
+      credentials: {
+        client_email:
+          process.env.GOOGLE_CLIENT_EMAIL,
 
-          private_key:
-            process.env.GOOGLE_PRIVATE_KEY?.replace(
-              /\\n/g,
-              "\n"
-            ),
-        },
+        private_key:
+          process.env.GOOGLE_PRIVATE_KEY?.replace(
+            /\\n/g,
+            "\n"
+          ),
+      },
 
-        scopes: [
-          "https://www.googleapis.com/auth/spreadsheets",
-        ],
-      });
+      scopes: [
+        "https://www.googleapis.com/auth/spreadsheets",
+      ],
+    });
 
     // ✅ SHEETS INSTANCE
     const sheets = google.sheets({
@@ -77,14 +57,11 @@ export async function POST(req: Request) {
     const spreadsheetId =
       process.env.GOOGLE_SHEET_ID!;
 
-    const range =
-      "AmbassadorQuery!A:I";
-
     // ✅ GET EXISTING DATA
     const existingData =
       await sheets.spreadsheets.values.get({
         spreadsheetId,
-        range,
+        range: "Newsletter!A:B",
       });
 
     const rows =
@@ -95,24 +72,12 @@ export async function POST(req: Request) {
       await sheets.spreadsheets.values.append({
         spreadsheetId,
 
-        range: "AmbassadorQuery!A1:I1",
+        range: "Newsletter!A1:B1",
 
         valueInputOption: "RAW",
 
         requestBody: {
-          values: [
-            [
-              "Full Name",
-              "Email",
-              "Phone",
-              "College",
-              "City",
-              "Year",
-              "LinkedIn",
-              "Why Join",
-              "Submitted At",
-            ],
-          ],
+          values: [["Email", "Subscribed At"]],
         },
       });
     }
@@ -120,12 +85,8 @@ export async function POST(req: Request) {
     // ✅ CHECK DUPLICATES
     const emailExists = rows.some(
       (row) =>
-        row[1]
-          ?.toLowerCase()
-          ?.trim() ===
-        body.email
-          ?.toLowerCase()
-          ?.trim()
+        row[0]?.toLowerCase() ===
+        body.email.toLowerCase()
     );
 
     if (emailExists) {
@@ -133,40 +94,24 @@ export async function POST(req: Request) {
         {
           success: false,
           message:
-            "You already submitted the ambassador form",
+            "Email already subscribed",
         },
         { status: 409 }
       );
     }
 
-    // ✅ SAVE TO GOOGLE SHEET
+    // ✅ SAVE TO SHEET
     await sheets.spreadsheets.values.append({
       spreadsheetId,
 
-      range,
+      range: "Newsletter!A:B",
 
-      valueInputOption:
-        "USER_ENTERED",
+      valueInputOption: "USER_ENTERED",
 
       requestBody: {
         values: [
           [
-            body.fullName,
-
             body.email,
-
-            // ✅ SAVE PHONE AS TEXT
-            `'${body.phone}`,
-
-            body.college,
-
-            body.city,
-
-            body.year,
-
-            body.linkedin,
-
-            body.whyJoin,
 
             new Date().toLocaleString(),
           ],
@@ -174,24 +119,23 @@ export async function POST(req: Request) {
       },
     });
 
-    // ✅ SUCCESS RESPONSE
+    // ✅ SUCCESS
     return NextResponse.json({
       success: true,
       message:
-        "Ambassador application submitted successfully 🚀",
+        "Subscribed Successfully 🚀",
     });
 
-  } catch (error: any) {
+  } catch (error) {
     console.log(
-      "GOOGLE SHEETS ERROR:",
+      "NEWSLETTER ERROR:",
       error
     );
 
     return NextResponse.json(
       {
         success: false,
-        message:
-          "Failed to submit application",
+        message: "Failed to subscribe",
       },
       { status: 500 }
     );

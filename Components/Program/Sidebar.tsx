@@ -24,6 +24,7 @@ import {
 } from "@/constants/svgIcons";
 import Image from "next/image";
 import Link from "next/link";
+import { X } from "lucide-react";
 
 interface Props {
   onSelectCategory: (category: string) => void;
@@ -78,9 +79,7 @@ const Sidebar: FC<Props> = ({ onSelectCategory, onClose }) => {
     try {
       setLoading(true);
 
-      const res = await fetch("/api/courses", {
-        cache: "no-store",
-      });
+      const res = await fetch("/api/courses");
 
       if (!res.ok) {
         const text = await res.text();
@@ -116,7 +115,7 @@ const Sidebar: FC<Props> = ({ onSelectCategory, onClose }) => {
   }, []);
 
   const grouped = courses.reduce((acc: any, course: any) => {
-    const normalized = normalizeCategory(course.category);
+    const normalized = normalizeCategory(course.subcategory);
 
     const displayCategory = categoryLabelMap[normalized] || "Advanced Programs";
 
@@ -139,12 +138,12 @@ const Sidebar: FC<Props> = ({ onSelectCategory, onClose }) => {
       animate={{ x: 0 }}
       exit={{ x: "-100%" }}
       transition={{ duration: 0.4 }}
-      className="w-80 h-screen bg-white shadow-2xl flex flex-col"
+      className="w-80 h-screen bg-white shadow-2xl flex flex-col rounded-r-xl"
     >
       {/* HEADER */}
       <div className="flex justify-between items-center p-2 border-b">
         <Link href="/" className="flex items-center gap-2">
-          <Image src={Logo} alt="Logo" width={50} height={50} />
+          <Image src={Logo} alt="Logo" width={60} height={60} />
         </Link>
         <div className="flex flex-row gap-4">
           <button
@@ -154,14 +153,19 @@ const Sidebar: FC<Props> = ({ onSelectCategory, onClose }) => {
             Talk with us  
           </button>
 
-          <motion.button
+          <button
+            type="button"
             onClick={onClose}
-            whileHover={{ rotate: 90, scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="hover:bg-gray-100 p-2 rounded-full transition"
+            className="
+               top-5 right-5 z-20
+              w-8 h-8 rounded-full
+              bg-white shadow-lg
+              flex items-center justify-center
+              hover:rotate-90 transition
+            "
           >
-            <CancelIcon />
-          </motion.button>
+            <X size={20} />
+          </button>
         </div>
       </div>
 
@@ -241,7 +245,7 @@ const Sidebar: FC<Props> = ({ onSelectCategory, onClose }) => {
                               onClick={() => {
                                 setActiveCourse(course.title);
                                 onSelectCategory(category);
-
+                                 onClose?.();
                                 // ✅ REDIRECT TO COURSE PAGE
                                 router.push(`/courses/${course._id}`);
                               }}
@@ -280,7 +284,7 @@ const Sidebar: FC<Props> = ({ onSelectCategory, onClose }) => {
 
       {/* FOOTER */}
       <div className="p-4 border-t text-center text-sm text-gray-500">
-        © 2026 Venkatesh. All rights reserved.
+        © 2026 Cornixe. All rights reserved.
       </div>
     </motion.div>
   );

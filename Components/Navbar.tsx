@@ -108,7 +108,7 @@ const isAdmin = session?.user?.email === adminEmail;
             <button
               type="button"
               onClick={onOpenSidebar}
-              className="border border-primary px-4 py-2 rounded-full lg:flex items-center gap-1 hidden"
+              className="border border-primary px-4 py-2 rounded-full md:flex items-center gap-1 hidden"
             >
               <HamburgerIcon /> Programs
             </button>
@@ -123,7 +123,7 @@ const isAdmin = session?.user?.email === adminEmail;
             >
               <HamburgerIcon /> 
             </button>
-            <div className="hidden lg:flex gap-5 ">
+            <div className="hidden md:flex gap-5 ">
 {baseNavItems.map((item) => {
               const isActive = pathname === item.href;
 
@@ -210,7 +210,7 @@ const isAdmin = session?.user?.email === adminEmail;
       </motion.nav>
 
       {/* ================= MOBILE FLOATING NAV ================= */}
-      <div className="fixed bottom-3 left-1/2 -translate-x-1/2 w-[65%] max-w-md bg-white/90 backdrop-blur-md shadow-xl rounded-2xl px-4 py-2 flex justify-between items-center z-50 lg:hidden">
+      <div className="fixed bottom-3 left-1/2 -translate-x-1/2 w-[65%] max-w-md bg-white/90 backdrop-blur-md shadow-xl rounded-2xl px-4 py-2 flex justify-between items-center z-50 md:hidden">
         {mobileNav.map((item) => {
           const isActive = pathname === item.href;
 

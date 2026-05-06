@@ -159,8 +159,7 @@ const handleSubmit = async (
     <AnimatePresence>
       <div className="fixed inset-0 z-[9999] flex items-center justify-center px-4 py-6">
         
-        {/* 🔥 TOASTER */}
-        <Toaster position="top-center" />
+       
 
         {/* 🔥 OVERLAY */}
         <motion.div

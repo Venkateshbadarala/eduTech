@@ -16,9 +16,7 @@ export default function CoursesPage() {
     try {
       setLoading(true);
 
-      const res = await fetch("/api/courses", {
-        cache: "no-store",
-      });
+      const res = await fetch("/api/courses");
 
       if (!res.ok) throw new Error("Failed");
 

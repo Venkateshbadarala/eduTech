@@ -18,9 +18,7 @@ export default function CoursesDashboard() {
     try {
       setLoading(true);
 
-      const res = await fetch("/api/courses", {
-        cache: "no-store", // 🔥 VERY IMPORTANT
-      });
+      const res = await fetch("/api/courses");
 
       if (!res.ok) {
         const text = await res.text();
@@ -105,7 +103,7 @@ export default function CoursesDashboard() {
       )}
 
       {/* GRID */}
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-3 gap-2">
         {courses.map((course: any) => (
           <div
             key={course._id}

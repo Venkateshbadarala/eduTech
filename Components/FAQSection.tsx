@@ -106,6 +106,7 @@ export default function FAQSection() {
             >
               {/* QUESTION */}
               <button
+              type="button"
                 onClick={() => toggle(index)}
                 className="w-full flex justify-between items-center p-6 text-left"
               >

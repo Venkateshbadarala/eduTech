@@ -1,12 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Users, Code2, Video } from "lucide-react";
+import {
+  Users,
+  Code2,
+  Video,
+} from "lucide-react";
 
 type MasteryItem = {
   value: string;
   label: string;
-  icon: any;
+  icon: string;
 };
 
 type Props = {
@@ -14,40 +18,63 @@ type Props = {
   onChange: (data: MasteryItem[]) => void;
 };
 
-// 🔒 CONSTANT DATA
+// ✅ CONSTANT DATA
 const DEFAULT_MASTERY: MasteryItem[] = [
   {
     value: "",
     label: "Industry Experts",
-    icon: <Users />,
+    icon: "Users",
   },
   {
     value: "",
     label: "Real World Projects",
-    icon: <Code2 />,
+    icon: "Code2",
   },
   {
     value: "",
     label: "Hours of Live Classes",
-    icon: <Video />,
+    icon: "Video",
   },
 ];
 
-export default function MasteryEditor({ value, onChange }: Props) {
-  const [mastery, setMastery] = useState<MasteryItem[]>(
-    value?.length === 3 ? value : DEFAULT_MASTERY
-  );
+// ✅ ICON MAP
+const icons: any = {
+  Users: <Users />,
+  Code2: <Code2 />,
+  Video: <Video />,
+};
 
-  // 🔁 sync
+export default function MasteryEditor({
+  value,
+  onChange,
+}: Props) {
+  const [mastery, setMastery] =
+    useState<MasteryItem[]>(
+      value?.length === 3
+        ? value
+        : DEFAULT_MASTERY
+    );
+
+  // ✅ SEND FULL DATA
   useEffect(() => {
     onChange(mastery);
   }, [mastery]);
 
-  // 🔹 update only value
-  const updateValue = (index: number, val: string) => {
-    const updated = [...mastery];
-    updated[index].value = val;
-    setMastery(updated);
+  // ✅ UPDATE ONLY VALUE
+  const updateValue = (
+    index: number,
+    val: string
+  ) => {
+    setMastery((prev) =>
+      prev.map((item, i) =>
+        i === index
+          ? {
+              ...item,
+              value: val,
+            }
+          : item
+      )
+    );
   };
 
   return (
@@ -60,11 +87,25 @@ export default function MasteryEditor({ value, onChange }: Props) {
         {mastery.map((item, i) => (
           <div
             key={i}
-            className="bg-white border rounded-2xl p-5 shadow-sm hover:shadow-md transition"
+            className="
+              bg-white border rounded-2xl
+              p-5 shadow-sm
+              hover:shadow-md
+              transition
+            "
           >
             {/* ICON */}
-            <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-gray-100 text-blue-500 mb-3">
-              {item.icon}
+            <div
+              className="
+                w-12 h-12
+                flex items-center justify-center
+                rounded-lg
+                bg-gray-100
+                text-blue-500
+                mb-3
+              "
+            >
+              {icons[item.icon]}
             </div>
 
             {/* LABEL */}
@@ -72,13 +113,25 @@ export default function MasteryEditor({ value, onChange }: Props) {
               {item.label}
             </p>
 
-            {/* INPUT */}
+            {/* VALUE */}
             <input
               type="text"
-              placeholder="Enter value (e.g. 10+)"
+              placeholder="Enter value"
               value={item.value}
-              onChange={(e) => updateValue(i, e.target.value)}
-              className="w-full border p-2 rounded-lg text-lg font-semibold focus:ring-2 focus:ring-blue-400 outline-none"
+              onChange={(e) =>
+                updateValue(
+                  i,
+                  e.target.value
+                )
+              }
+              className="
+                w-full border p-2
+                rounded-lg
+                text-lg font-semibold
+                focus:ring-2
+                focus:ring-blue-400
+                outline-none
+              "
             />
           </div>
         ))}

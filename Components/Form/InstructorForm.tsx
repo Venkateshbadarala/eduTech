@@ -22,6 +22,7 @@ import {
   Sparkles,
   Award,
 } from "lucide-react";
+import CustomTeachingMode from "./CustomTeachingMode";
 
 interface InstructorFormProps {
   isOpen: boolean;
@@ -177,8 +178,7 @@ export default function InstructorForm({
     <AnimatePresence>
       <div className="fixed inset-0 z-[9999] flex items-center justify-center px-4 py-4">
 
-        {/* TOASTER */}
-        <Toaster position="top-center" />
+        
 
         {/* OVERLAY */}
         <motion.div
@@ -335,49 +335,10 @@ export default function InstructorForm({
                 placeholder="Full Stack Development"
               />
 
-              <div>
-                <label className="text-sm font-semibold text-gray-700 mb-2 block">
-                  Teaching Mode
-                </label>
-
-                <div className="relative">
-                  <Clock3
-                    size={18}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 text-(--color-primary)"
-                  />
-
-                  <select
-                    name="teachingMode"
-                    value={formData.teachingMode}
-                    onChange={handleChange}
-                    className="
-                      w-full h-14 pl-12 pr-4
-                      rounded-2xl
-                      border border-gray-200
-                      bg-white/70
-                      outline-none
-                      focus:border-(--color-primary)
-                      focus:ring-4 focus:ring-blue-100
-                    "
-                  >
-                    <option value="">
-                      Select Mode
-                    </option>
-
-                    <option value="Online">
-                      Online
-                    </option>
-
-                    <option value="Offline">
-                      Offline
-                    </option>
-
-                    <option value="Hybrid">
-                      Hybrid
-                    </option>
-                  </select>
-                </div>
-              </div>
+              <CustomTeachingMode
+  formData={formData}
+  setFormData={setFormData}
+/>
 
               <InputField
                 icon={<FileUser size={18} />}
