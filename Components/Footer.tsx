@@ -293,26 +293,31 @@ const nonTechCourses = courses.filter(
         title: "About Us",
         href: "/about",
       },
-      
+
       {
         title: "Privacy Policy",
         href: "/privacypolicy",
       },
+
       {
         title: "Terms & Conditions",
         href: "/termsandconditions",
       },
+
       {
         title: "Careers",
         href: "/careers",
       },
+
       {
-        title: "Ambassador", href: "/ambassador"
+        title: "Ambassador",
+        href: "/ambassador",
       },
     ].map((item, i) => (
       <li key={i}>
         <Link
           href={item.href}
+          scroll={true}
           className="
             hover:text-(--color-primary)
             transition

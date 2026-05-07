@@ -235,7 +235,7 @@ export default function TrendingCourses() {
       </div>
 
       {/* 🔥 VIEW ALL BUTTON */}
-      <div className="flex justify-center mt-14">
+      <div className="flex justify-center mt-24">
         <Link href="/courses">
           <button
             className="
