@@ -1,5 +1,3 @@
-// app/privacy-policy/page.tsx
-
 "use client";
 
 import {
@@ -11,7 +9,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-export default function PrivacyPolicyPage() {
+export default function Page() {
   const cards = [
     {
       icon: <Database size={24} />,

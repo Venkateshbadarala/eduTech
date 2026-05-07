@@ -1,5 +1,3 @@
-// app/terms-and-conditions/page.tsx
-
 "use client";
 
 import {
@@ -13,7 +11,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-export default function TermsPage() {
+export default function Page() {
   const sections = [
     {
       icon: <Scale size={26} />,
