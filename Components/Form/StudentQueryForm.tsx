@@ -180,8 +180,9 @@ const handleSubmit = async (
             relative
             w-full
             max-w-3xl
-            max-h-[95vh]
+            max-h-[75vh]
             overflow-y-auto
+            no-scrollbar
             bg-white/90
             backdrop-blur-2xl
             border border-white/20

@@ -142,7 +142,7 @@ export default function CoursesPage() {
                 {groupedCourses[category].map((course: any) => (
                   <div
                     key={course._id}
-                    className="min-w-[250px] bg-white rounded-xl shadow-md hover:shadow-xl transition group"
+                    className="max-w-[400px] bg-white rounded-xl shadow-md hover:shadow-xl transition group"
                   >
                     {/* IMAGE */}
                     <div className="h-60 w-full overflow-hidden rounded-t-xl">
@@ -161,7 +161,7 @@ export default function CoursesPage() {
                         {course.title}
                       </h3>
 
-                      <p className="text-xs text-gray-500 mt-1 line-clamp-2">
+                      <p className="text-xs text-gray-500 mt-1 line-clamp-2" >
                         {course.description}
                       </p>
 
