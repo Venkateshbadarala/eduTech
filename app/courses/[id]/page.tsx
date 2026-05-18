@@ -195,7 +195,7 @@ export default function Page() {
         <section className="py-10 text-center max-w-7xl mx-auto px-6">
           <div className="mb-7 px-4">
             <h2 className="text-3xl md:text-5xl font-bold text-gray-800 leading-tight">
-              Get to Know These Skills and Tools as You Learn
+              Get to Know These Skills as You Learn
             </h2>
 
             <p className="text-gray-500 mt-4 max-w-2xl mx-auto text-base md:text-lg">

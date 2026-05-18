@@ -22,12 +22,12 @@ export default function Card({ item }: { item: SkillItem }) {
       "
     >
       {/* ICON */}
-      <div className="w-14 h-14 flex items-center justify-center bg-(--color-light)  rounded-xl mb-4">
+      <div className="w-20 h-20 flex items-center justify-center   rounded-xl mb-4">
         <img
           src={item.icon}
           alt={item.title}
-          width={28}
-          height={28}
+          width={100}
+          height={100}
           className="object-contain"
         />
       </div>
