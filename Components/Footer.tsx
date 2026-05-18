@@ -236,7 +236,7 @@ const nonTechCourses = courses.filter(
                 <Link
                   key={i}
                   href={item.link}
-                  className="hover:bg-(--color-primary) p-2 rounded-full transition"
+                  className="hover:bg-(--color-light) p-2 rounded-full transition"
                 >
                   {item.icon}
                 </Link>
@@ -441,7 +441,7 @@ const nonTechCourses = courses.filter(
 
       {/* 🔥 BOTTOM */}
       <div className="mt-10 text-center text-xs sm:text-sm bg-(--color-black-4) py-3 px-4 rounded-xl">
-        © 2026 Venkatesh Edutech LLP. All rights reserved
+        © 2026 CORNIXE LLP. All rights reserved
       </div>
     </footer>
   );

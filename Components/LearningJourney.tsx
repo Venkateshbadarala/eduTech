@@ -17,7 +17,7 @@ export default function LearningJourney() {
   const headingY = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
   const imageY = useTransform(scrollYProgress, [0, 1], ["50px", "-80px"]);
-const dotCircleRef = useRef<HTMLDivElement | null>(null);
+  const dotCircleRef = useRef<HTMLDivElement | null>(null);
   const bubbleY1 = useTransform(scrollYProgress, [0, 1], ["0%", "120%"]);
   const bubbleY2 = useTransform(scrollYProgress, [0, 1], ["0%", "180%"]);
 
@@ -55,7 +55,7 @@ const dotCircleRef = useRef<HTMLDivElement | null>(null);
       >
         Transform Your Future with{" "}
         <span className="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text uppercase">
-          cornixe Edtech
+          cornixe
         </span>
       </motion.h2>
 
@@ -66,11 +66,12 @@ const dotCircleRef = useRef<HTMLDivElement | null>(null);
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
-        className="text-gray-500 mt-5 max-w-2xl mx-auto text-md md:text-lg leading-relaxed relative z-10"
+        className="text-gray-500 mt-5 max-w-6xl mx-auto text-md md:text-lg leading-relaxed relative z-10"
       >
-        Step into a smarter way of learning — where industry-driven courses,
-        expert mentorship, and real-world projects come together to help you
-        build skills, gain confidence, and achieve your career goals faster.
+        True empowerment goes beyond earning a degree — it begins with vision.
+        At Cornixe, we combine industryfocused learning with globally recognized
+        certifications and real-world expertise, empowering future professionals
+        to excel in leading global MNCs.
       </motion.p>
 
       {/* 🔥 IMAGE PARALLAX */}

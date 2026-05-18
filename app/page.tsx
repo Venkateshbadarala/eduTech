@@ -15,6 +15,7 @@ import WhyChooseSection from "@/Components/landingPage/WhyChooseSection";
 import StatsFloatingCards from "@/Components/StatsFloatingCards";
 import FAQSection from "@/Components/FAQSection";
 import AutoPopupForm from "@/Components/Form/AutoPopupForm";
+import ElitePacks from "@/Components/Program/ElitePacks";
 
 
 export default function Home() {
@@ -54,6 +55,7 @@ export default function Home() {
       <WhyChooseSection />
       <LearningJourney />
       <Companies />
+      <ElitePacks/>
       <TeamSection />
       <Testimonials />
       <FAQSection />

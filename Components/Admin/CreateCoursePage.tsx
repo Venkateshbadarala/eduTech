@@ -11,6 +11,8 @@ import ToolsEditor from "./ToolsEditor";
 import { BadgePlus, Clock, ImagePlus, TrendingUp } from "lucide-react";
 import MasteryEditor from "./MasteryEditor";
 import { useRouter } from "next/navigation";
+import CapstoneProjectEditor from "./CapstoneProjectEditor";
+import JobRolesEditor from "./JobRolesEditor";
 const emptyCourse = {
   title: "",
   category: "",
@@ -26,18 +28,22 @@ const emptyCourse = {
   skills: [],
   modules: [],
   mastery:[],
+capstoneProjects:[],
+jobRoles:[],
   tools: [],
   pricing: [],
   brochure: { file: "" },
 };
+
+
 export default function CreateCoursePage({ slug }: any) {
   const isEdit = !!slug;
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState<any>(emptyCourse);
-  const [preview, setPreview] = useState("");
+  const [preview, setPreview] = useState<string>("");
   const [loading, setLoading] = useState(false);
-const router = useRouter();
+  const router = useRouter();
   // 🔥 FETCH COURSE (EDIT MODE)
   useEffect(() => {
     if (!slug) return;
@@ -117,93 +123,78 @@ const router = useRouter();
   // };
 
   const handleSubmit = async () => {
-  try {
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    const res = await fetch(
-      isEdit
-        ? `/api/course/${slug}`
-        : "/api/course",
-      {
+      const res = await fetch(isEdit ? `/api/course/${slug}` : "/api/course", {
         method: isEdit ? "PATCH" : "POST",
         headers: {
-          "Content-Type":
-            "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data.message || "Something went wrong ❌");
+        return;
       }
-    );
 
-    const data = await res.json();
+      toast.success(isEdit ? "Course Updated ✏️" : "Course Created 🚀");
 
-    if (!res.ok) {
-      toast.error(
-        data.message ||
-          "Something went wrong ❌"
-      );
-      return;
+      // ✅ RESET FORM
+      if (!isEdit) {
+        setForm(emptyCourse);
+        setPreview("");
+        setOpen(false);
+      }
+
+      // ✅ REFRESH FRONTEND DATA
+      router.refresh();
+
+      // ✅ OPTIONAL HARD REFRESH
+      // window.location.reload();
+    } catch (error) {
+      console.log(error);
+
+      toast.error("Failed to save course ❌");
+    } finally {
+      setLoading(false);
     }
+  };
 
-    toast.success(
-      isEdit
-        ? "Course Updated ✏️"
-        : "Course Created 🚀"
-    );
+  // ✅ CLOSE DROPDOWN ON OUTSIDE CLICK
+  useEffect(() => {
+    const handleClickOutside = (e: any) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
 
-    // ✅ RESET FORM
-    if (!isEdit) {
-      setForm(emptyCourse);
-      setPreview("");
-      setOpen(false);
-    }
-
-    // ✅ REFRESH FRONTEND DATA
-    router.refresh();
-
-    // ✅ OPTIONAL HARD REFRESH
-    // window.location.reload();
-
-  } catch (error) {
-    console.log(error);
-
-    toast.error(
-      "Failed to save course ❌"
-    );
-  } finally {
-    setLoading(false);
-  }
-};
-
-    // ✅ CLOSE DROPDOWN ON OUTSIDE CLICK
-    useEffect(() => {
-      const handleClickOutside = (e: any) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-          setOpen(false);
-        }
-      };
-  
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="p-10">
-     
-
       {/* OPEN BUTTON */}
       {!isEdit && (
         <button
           onClick={() => setOpen(true)}
           className="bg-primary text-white px-6  py-3 rounded-xl flex gap-2 "
         >
-        <BadgePlus /> <p className="hidden md:block">Create Course</p>
+          <BadgePlus /> <p className="hidden md:block">Create Course</p>
         </button>
       )}
 
       {/* MODAL / EDIT PAGE */}
       {(open || isEdit) && (
-        <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50" >
-          <div className="bg-white w-[900px] max-h-[90vh] overflow-y-auto p-6 rounded-xl shadow-xl flex flex-col gap-4" ref={dropdownRef}>
+        <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+          <div
+            className="bg-white w-[900px] max-h-[90vh] overflow-y-auto p-6 rounded-xl shadow-xl flex flex-col gap-4"
+            ref={dropdownRef}
+          >
             <h2 className="text-2xl font-bold mb-4">
               {isEdit ? "Edit Course" : "Create Course"}
             </h2>
@@ -348,35 +339,32 @@ const router = useRouter();
                   <ImagePlus size={18} /> Course Image
                 </h2>
 
+                <input
+                  value={form.image || ""}
+                  onChange={(e) => handleChange("image", e.target.value)}
+                  placeholder="Icon URL"
+                  className="w-full border p-2 rounded mb-3 focus:ring-2 focus:ring-blue-400 outline-none"
+                />
                 <div className="relative border-2 border-dashed rounded-xl overflow-hidden group">
-                  {preview ? (
-                    <>
+                  {form.image ? (
+                    <div className="flex items-center gap-2 ">
                       <img
-                        src={preview}
-                        className="h-70 w-full object-cover rounded"
+                        src={form.image}
+                        alt="Course Preview"
+                        className="h-60 w-full object-cover rounded"
+                      />
+                    </div>
+                  ) : (
+                    <div className="h-48 flex flex-col items-center justify-center text-gray-400 cursor-pointer">
+                      <ImagePlus
+                        size={40}
+                        className="mx-auto mb-2 text-blue-400"
                       />
 
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
-                        <label className="cursor-pointer bg-white px-4 py-2 rounded-lg text-sm font-medium">
-                          Change Image
-                          <input
-                            type="file"
-                            onChange={handleImage}
-                            className="hidden"
-                          />
-                        </label>
-                      </div>
-                    </>
-                  ) : (
-                    <label className="h-48 flex flex-col items-center justify-center text-gray-400 cursor-pointer">
-                      <ImagePlus size={32} />
-                      <span className="text-sm mt-2">Upload Image</span>
-                      <input
-                        type="file"
-                        onChange={handleImage}
-                        className="hidden"
-                      />
-                    </label>
+                      <p className="font-medium">Image Preview</p>
+
+                      <p className="text-sm mt-1">Paste image URL to preview</p>
+                    </div>
                   )}
                 </div>
               </div>
@@ -400,12 +388,21 @@ const router = useRouter();
               onChange={(v) => handleChange("pricing", v)}
             />
             <BrochureEditor
-  value={form.brochure}
-  onChange={(v) =>
-    handleChange("brochure", v)
-  }
-/>
-            <MasteryEditor value={form.mastery} onChange={(v) => handleChange("mastery", v)} />
+              value={form.brochure}
+              onChange={(v) => handleChange("brochure", v)}
+            />
+            <CapstoneProjectEditor
+              value={form.capstoneProjects}
+              onChange={(v) => handleChange("capstoneProjects", v)}
+            />
+            <JobRolesEditor
+              value={form.jobRoles}
+              onChange={(v) => handleChange("jobRoles", v)}
+            />
+            <MasteryEditor
+              value={form.mastery}
+              onChange={(v) => handleChange("mastery", v)}
+            />
             <ToolsEditor
               value={form.tools}
               onChange={(v) => handleChange("tools", v)}

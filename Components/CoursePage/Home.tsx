@@ -7,7 +7,7 @@ interface HomeProps {
   headline: string;
   tagline: string;
   courseName: string;
-  image: StaticImageData;
+  image: string;
 }
 
 const features = [
@@ -74,7 +74,7 @@ export default function Home({
           {/* 🔥 LEFT SIDE (IMAGE CARD) */}
           <div className="relative rounded-xl overflow-hidden bg-black h-[25rem]">
 
-            <Image
+            <img
               src={image}
               width={300}
               height={200}

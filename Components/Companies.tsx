@@ -36,15 +36,16 @@ export default function Companies() {
         className="text-center "
       >
         <h2 className="text-3xl md:text-5xl font-bold text-(--color-black-1) leading-tight">
-          Where Our Students{" "}
+          Where our Learners{" "}
           <span className="bg-gradient-to-r from-(--color-primary) to-(--color-secondary) text-transparent bg-clip-text">
-            Build Their Careers
+            Evolves their career
           </span>
         </h2>
 
         <p className="text-(--color-gray-2) mt-5 max-w-2xl mx-auto text-md md:text-lg leading-relaxed">
-          Our learners are shaping their future at leading global companies.
-          Explore the organizations where their skills and ambition are making an impact.
+          Our learners are advancing into dynamic professional environments where their expertise, adaptability, and
+industry-ready capabilities contribute to meaningful organizational growth and long-term career success.
+
         </p>
       </motion.div>
 

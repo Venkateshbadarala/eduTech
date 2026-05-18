@@ -60,7 +60,7 @@ export default function CoursesDashboard() {
     if (!confirm("Delete this course?")) return;
 
     try {
-      const res = await fetch(`/api/courses/${id}`, {
+      const res = await fetch(`/api/course/${id}`, {
         method: "DELETE",
       });
 
@@ -111,7 +111,7 @@ export default function CoursesDashboard() {
           >
             {/* IMAGE */}
             <div className="h-60 w-full overflow-hidden">
-              <Image
+              <img
                 src={course.image || "/placeholder.jpg"}
                 alt={course.title}
                 width={400}

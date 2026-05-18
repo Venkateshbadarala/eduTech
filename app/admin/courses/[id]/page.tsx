@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
- import {
+import {
   Trash2,
   ImagePlus,
   Tag,
@@ -19,11 +19,13 @@ import PricingEditor from "@/Components/Admin/PricingEditor";
 import BrochureEditor from "@/Components/Admin/BrochureEditor";
 import ToolsEditor from "@/Components/Admin/ToolsEditor";
 import MasteryEditor from "@/Components/Admin/MasteryEditor";
+import JobRolesEditor from "@/Components/Admin/JobRolesEditor";
+import CapstoneProjectEditor from "@/Components/Admin/CapstoneProjectEditor";
 
 const emptyCourse = {
   title: "",
   category: "",
-  subcategory:"",
+  subcategory: "",
   description: "",
   image: "",
   headline: "",
@@ -35,7 +37,9 @@ const emptyCourse = {
   stats: [],
   skills: [],
   modules: [],
-  mastery:[],
+  mastery: [],
+  capstoneProjects:[],
+jobRoles:[],
   tools: [],
   pricing: [],
   brochure: {
@@ -64,7 +68,7 @@ export default function Page() {
 
         const data = await res.json();
         const course = data.course || data;
-console.log("API RESPONSE:", data);
+        console.log("API RESPONSE:", data);
         // ✅ normalize data
         setForm({
           ...emptyCourse,
@@ -75,9 +79,9 @@ console.log("API RESPONSE:", data);
           tools: course.tools || [],
           mastery: course.mastery || [],
           pricing: course.pricing || [],
-          brochure: course?.brochure?.file
-    ? course.brochure
-    : { file: "" },
+          capstoneProjects:course.capstoneProjects || [],
+          JobRolesEditor:course.jobRoles || [],
+          brochure: course?.brochure?.file ? course.brochure : { file: "" },
         });
 
         setPreview(course.image || "");
@@ -90,8 +94,6 @@ console.log("API RESPONSE:", data);
 
     fetchCourse();
   }, [id]);
-
- 
 
   // 🔹 HANDLE CHANGE
   const handleChange = (key: string, value: any) => {
@@ -158,253 +160,269 @@ console.log("API RESPONSE:", data);
 
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-6 pt-[6rem]">
-  
+      {/* HEADER */}
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
+          <FileText size={28} /> Edit Course
+        </h1>
 
-  {/* HEADER */}
-  <div className="flex justify-between items-center">
-    <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
-      <FileText size={28} /> Edit Course
-    </h1>
-
-    <button
-      onClick={handleDelete}
-      className="flex items-center gap-2 bg-red-500 text-white px-5 py-2 rounded-lg hover:bg-red-600 transition"
-    >
-      <Trash2 size={18} />
-      Delete
-    </button>
-  </div>
-
-  {/* BASIC INFO */}
-  <div className="bg-white p-6 rounded-2xl shadow-md space-y-5">
-    <h2 className="text-lg font-semibold text-gray-700">
-      📘 Basic Information
-    </h2>
-
-    <div className="grid md:grid-cols-2 gap-5">
-
-      {/* TITLE */}
-      <div>
-        <label className="label">Course Title</label>
-        <div className="relative">
-         
-          <input
-            className="input-style pl-10"
-            value={form.title || ""}
-            onChange={(e) => handleChange("title", e.target.value)}
-            placeholder="Enter course title"
-          />
-        </div>
-      </div>
-
-      {/* CATEGORY */}
-      <div>
-        <label className="label">Category</label>
-        <div className="relative">
-          
-          <input
-            className="input-style pl-10"
-            value={form.category || ""}
-            onChange={(e) => handleChange("category", e.target.value)}
-            placeholder="Enter category"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label className="label">Sub-Category</label>
-        <div className="relative">
-          
-          <input
-            className="input-style pl-10"
-            value={form.subcategory || ""}
-            onChange={(e) => handleChange("subcategory", e.target.value)}
-            placeholder="Enter Sub-category"
-          />
-        </div>
-      </div>
-
-      {/* DESCRIPTION */}
-      <div className="md:col-span-2">
-        <label className="label">Description</label>
-        <textarea
-          className="input-style"
-          value={form.description || ""}
-          onChange={(e) => handleChange("description", e.target.value)}
-          placeholder="Write course description..."
-        />
-      </div>
-
-      
-
-      {/* HEADLINE */}
-      <div>
-        <label className="label">Headline</label>
-        <input
-          className="input-style"
-          value={form.headline || ""}
-          onChange={(e) => handleChange("headline", e.target.value)}
-        />
-      </div>
-
-      {/* TAGLINE */}
-      <div>
-        <label className="label">Tagline</label>
-        <input
-          className="input-style"
-          value={form.tagline || ""}
-          onChange={(e) => handleChange("tagline", e.target.value)}
-        />
-      </div>
-    </div>
-  </div>
-
-  {/* STATUS + IMAGE */}
-  <div className="grid md:grid-cols-2 gap-6">
-
-    {/* STATUS */}
-    <div className="bg-white p-6 rounded-2xl shadow-md space-y-4">
-      <h2 className="text-lg font-semibold flex items-center gap-2">
-        <Clock size={18} /> Status & Settings
-      </h2>
-
-      <div>
-        <label className="label">Course Status</label>
-        <select
-          className="input-style"
-          value={form.start}
-          onChange={(e) => handleChange("start", e.target.value)}
+        <button
+          onClick={handleDelete}
+          className="flex items-center gap-2 bg-red-500 text-white px-5 py-2 rounded-lg hover:bg-red-600 transition"
         >
-          <option value="ongoing">Ongoing</option>
-          <option value="completed">Completed</option>
-        </select>
+          <Trash2 size={18} />
+          Delete
+        </button>
       </div>
 
-      <div className="flex items-center gap-3">
-        <TrendingUp className="text-orange-500" size={18} />
-        <label className="text-gray-700 flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={form.trend}
-            onChange={(e) => handleChange("trend", e.target.checked)}
-          />
-          Trending Course
-        </label>
-      </div>
+      {/* BASIC INFO */}
+      <div className="bg-white p-6 rounded-2xl shadow-md space-y-5">
+        <h2 className="text-lg font-semibold text-gray-700">
+          📘 Basic Information
+        </h2>
 
-      <div>
-        <label className="label">Trend Description</label>
-        <input
-          className="input-style"
-          value={form.trenddesc || ""}
-          onChange={(e) => handleChange("trenddesc", e.target.value)}
-        />
-      </div>
-
-      <div>
-        <label className="label">Duration</label>
-        <input
-          className="input-style"
-          value={form.duration || ""}
-          onChange={(e) => handleChange("duration", e.target.value)}
-        />
-      </div>
-    </div>
-
-    {/* IMAGE */}
-    <div className="bg-white p-6 rounded-2xl shadow-md">
-      <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-        <ImagePlus size={18} /> Course Image
-      </h2>
-
-      <div className="relative border-2 border-dashed rounded-xl overflow-hidden group">
-
-        {preview ? (
-          <>
-            <img
-              src={preview}
-              className="h-70 w-full object-cover rounded"
-            />
-
-            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
-              <label className="cursor-pointer bg-white px-4 py-2 rounded-lg text-sm font-medium">
-                Change Image
-                <input
-                  type="file"
-                  onChange={handleImage}
-                  className="hidden"
-                />
-              </label>
+        <div className="grid md:grid-cols-2 gap-5">
+          {/* TITLE */}
+          <div>
+            <label className="label">Course Title</label>
+            <div className="relative">
+              <input
+                className="input-style pl-10"
+                value={form.title || ""}
+                onChange={(e) => handleChange("title", e.target.value)}
+                placeholder="Enter course title"
+              />
             </div>
-          </>
-        ) : (
-          <label className="h-48 flex flex-col items-center justify-center text-gray-400 cursor-pointer">
-            <ImagePlus size={32} />
-            <span className="text-sm mt-2">Upload Image</span>
-            <input type="file" onChange={handleImage} className="hidden" />
-          </label>
-        )}
+          </div>
+
+          {/* CATEGORY */}
+          <div>
+            <label className="label">Category</label>
+            <div className="relative">
+              <input
+                className="input-style pl-10"
+                value={form.category || ""}
+                onChange={(e) => handleChange("category", e.target.value)}
+                placeholder="Enter category"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="label">Sub-Category</label>
+            <div className="relative">
+              <input
+                className="input-style pl-10"
+                value={form.subcategory || ""}
+                onChange={(e) => handleChange("subcategory", e.target.value)}
+                placeholder="Enter Sub-category"
+              />
+            </div>
+          </div>
+
+          {/* DESCRIPTION */}
+          <div className="md:col-span-2">
+            <label className="label">Description</label>
+            <textarea
+              className="input-style"
+              value={form.description || ""}
+              onChange={(e) => handleChange("description", e.target.value)}
+              placeholder="Write course description..."
+            />
+          </div>
+
+          {/* HEADLINE */}
+          <div>
+            <label className="label">Headline</label>
+            <input
+              className="input-style"
+              value={form.headline || ""}
+              onChange={(e) => handleChange("headline", e.target.value)}
+            />
+          </div>
+
+          {/* TAGLINE */}
+          <div>
+            <label className="label">Tagline</label>
+            <input
+              className="input-style"
+              value={form.tagline || ""}
+              onChange={(e) => handleChange("tagline", e.target.value)}
+            />
+          </div>
+        </div>
       </div>
+
+      {/* STATUS + IMAGE */}
+      <div className="grid md:grid-cols-2 gap-6">
+        {/* STATUS */}
+        <div className="bg-white p-6 rounded-2xl shadow-md space-y-4">
+          <h2 className="text-lg font-semibold flex items-center gap-2">
+            <Clock size={18} /> Status & Settings
+          </h2>
+
+          <div>
+            <label className="label">Course Status</label>
+            <select
+              className="input-style"
+              value={form.start}
+              onChange={(e) => handleChange("start", e.target.value)}
+            >
+              <option value="ongoing">Ongoing</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <TrendingUp className="text-orange-500" size={18} />
+            <label className="text-gray-700 flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={form.trend}
+                onChange={(e) => handleChange("trend", e.target.checked)}
+              />
+              Trending Course
+            </label>
+          </div>
+
+          <div>
+            <label className="label">Trend Description</label>
+            <input
+              className="input-style"
+              value={form.trenddesc || ""}
+              onChange={(e) => handleChange("trenddesc", e.target.value)}
+            />
+          </div>
+
+          <div>
+            <label className="label">Duration</label>
+            <input
+              className="input-style"
+              value={form.duration || ""}
+              onChange={(e) => handleChange("duration", e.target.value)}
+            />
+          </div>
+        </div>
+
+        {/* IMAGE */}
+        <div className="bg-white p-6 rounded-2xl shadow-md">
+          <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
+            <ImagePlus size={18} /> Course Image
+          </h2>
+
+          <input
+            value={form.image || ""}
+            onChange={(e) => handleChange("image", e.target.value)}
+            placeholder="Icon URL"
+            className="w-full border p-2 rounded mb-3 focus:ring-2 focus:ring-blue-400 outline-none"
+          />
+          <div className="relative border-2 border-dashed rounded-xl overflow-hidden group">
+            {form.image ? (
+              <div className="flex items-center gap-2 ">
+                <img
+                  src={form.image}
+                  alt="Course Preview"
+                  className="h-60 w-full object-cover rounded"
+                />
+              </div>
+            ) : (
+              <div className="h-48 flex flex-col items-center justify-center text-gray-400 cursor-pointer">
+                <ImagePlus size={40} className="mx-auto mb-2 text-blue-400" />
+
+                <p className="font-medium">Image Preview</p>
+
+                <p className="text-sm mt-1">Paste image URL to preview</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* EDITORS */}
+      <StatsEditor
+        value={form.stats}
+        onChange={(v) => handleChange("stats", v)}
+      />
+      <SkillsEditor
+        value={form.skills}
+        onChange={(v) => handleChange("skills", v)}
+      />
+      <ModulesEditor
+        value={form.modules}
+        onChange={(v) => handleChange("modules", v)}
+      />
+      <PricingEditor
+        value={form.pricing}
+        onChange={(v) => handleChange("pricing", v)}
+      />
+
+      <BrochureEditor
+        value={form.brochure}
+        onChange={(v) => handleChange("brochure", v)}
+      />
+
+      <MasteryEditor
+        value={form.mastery}
+        onChange={(v) => handleChange("mastery", v)}
+      />
+      <ToolsEditor
+        value={form.tools}
+        onChange={(v) => handleChange("tools", v)}
+      />
+      <CapstoneProjectEditor
+      value={form.capstoneProjects}
+       onChange={(v) =>
+          handleChange("capstoneProjects", v)
+        }
+      />
+      <JobRolesEditor
+      value={form.JobRolesEditor}
+       onChange={(v) =>
+          handleChange("JobRolesEditor", v)
+        }
+      />
+
+      {/* ACTION BUTTON */}
+      <div className="flex justify-end">
+        <button
+          onClick={handleUpdate}
+          className="bg-green-600 text-white px-8 py-3 rounded-xl hover:bg-green-700 transition shadow-md"
+        >
+          {saving ? "Updating..." : "Update Course"}
+        </button>
+      </div>
+      <style jsx>{`
+        .input-style {
+          width: 100%;
+          border: 1px solid #e5e7eb;
+          padding: 12px;
+          border-radius: 10px;
+          outline: none;
+          transition: all 0.2s;
+          background: #fafafa;
+        }
+
+        .input-style:focus {
+          border-color: #6366f1;
+          background: white;
+          box-shadow: 0 0 0 3px #6366f120;
+        }
+
+        .label {
+          font-size: 14px;
+          font-weight: 600;
+          color: #374151;
+          margin-bottom: 6px;
+          display: block;
+        }
+
+        .icon {
+          position: absolute;
+          left: 10px;
+          top: 12px;
+          color: #9ca3af;
+        }
+      `}</style>
     </div>
-  </div>
-
-  {/* EDITORS */}
-  <StatsEditor value={form.stats} onChange={(v) => handleChange("stats", v)} />
-  <SkillsEditor value={form.skills} onChange={(v) => handleChange("skills", v)} />
-  <ModulesEditor value={form.modules} onChange={(v) => handleChange("modules", v)} />
-  <PricingEditor value={form.pricing} onChange={(v) => handleChange("pricing", v)} />
-
-  <BrochureEditor
-  value={form.brochure}
-  onChange={(v) =>
-    handleChange("brochure", v)
-  }
-/>
-
-  <MasteryEditor value={form.mastery} onChange={(v) => handleChange("mastery", v)} />
-  <ToolsEditor value={form.tools} onChange={(v) => handleChange("tools", v)} />
-
-  {/* ACTION BUTTON */}
-  <div className="flex justify-end">
-    <button
-      onClick={handleUpdate}
-      className="bg-green-600 text-white px-8 py-3 rounded-xl hover:bg-green-700 transition shadow-md"
-    >
-      {saving ? "Updating..." : "Update Course"}
-    </button>
-  </div>
-  <style jsx>{`
-  .input-style {
-    width: 100%;
-    border: 1px solid #e5e7eb;
-    padding: 12px;
-    border-radius: 10px;
-    outline: none;
-    transition: all 0.2s;
-    background: #fafafa;
-  }
-
-  .input-style:focus {
-    border-color: #6366f1;
-    background: white;
-    box-shadow: 0 0 0 3px #6366f120;
-  }
-
-  .label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #374151;
-    margin-bottom: 6px;
-    display: block;
-  }
-
-  .icon {
-    position: absolute;
-    left: 10px;
-    top: 12px;
-    color: #9ca3af;
-  }
-`}</style>
-</div>
   );
 }

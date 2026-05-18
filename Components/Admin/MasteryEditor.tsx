@@ -39,9 +39,9 @@ const DEFAULT_MASTERY: MasteryItem[] = [
 
 // ✅ ICON MAP
 const icons: any = {
-  Users: <Users />,
-  Code2: <Code2 />,
-  Video: <Video />,
+  Users: <Users/>,
+  Code2: <Code2/>,
+  Video: <Video/>,
 };
 
 export default function MasteryEditor({

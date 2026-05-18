@@ -242,6 +242,8 @@ export default function HeroEditor() {
           )}
         </div>
 
+        
+
       </div>
     </div>
   );

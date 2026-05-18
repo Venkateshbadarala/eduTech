@@ -5,6 +5,7 @@ import {
   Users,
   Code2,
   Video,
+  Sparkles,
 } from "lucide-react";
 
 type MasteryValue = {
@@ -20,22 +21,18 @@ function CountUp({
 }: {
   value: string;
 }) {
-  const [count, setCount] =
-    useState(0);
+  const [count, setCount] = useState(0);
 
   const numericValue = parseInt(
     (value || "0").replace(/\D/g, "")
   );
-
-  const suffix =
-    value?.replace(/[0-9]/g, "") || "";
 
   useEffect(() => {
     if (!numericValue) return;
 
     let start = 0;
 
-    const duration = 1200;
+    const duration = 1400;
 
     const increment =
       numericValue / (duration / 16);
@@ -51,16 +48,10 @@ function CountUp({
       }
     }, 16);
 
-    return () =>
-      clearInterval(counter);
+    return () => clearInterval(counter);
   }, [numericValue]);
 
-  return (
-    <>
-      {count}
-      
-    </>
-  );
+  return <>{count}</>;
 }
 
 export default function MasterySection({
@@ -70,81 +61,144 @@ export default function MasterySection({
     {
       title: "Industry Experts",
       suffix: "+",
-      icon: <Users size={22} />,
-      bg: "bg-blue-50",
-      text: "text-blue-600",
+      icon: <Users size={26} />,
+      bg: "from-blue-500 to-cyan-500",
+      light: "bg-blue-50",
+      glow: "shadow-blue-500/20",
     },
 
     {
       title: "Real Projects",
-      icon: <Code2 size={22} />,
       suffix: "+",
-      bg: "bg-violet-50",
-      text: "text-violet-600",
+      icon: <Code2 size={26} />,
+      bg: "from-violet-500 to-fuchsia-500",
+      light: "bg-violet-50",
+      glow: "shadow-violet-500/20",
     },
 
     {
       title: "Live Classes",
-      icon: <Video size={22} />,
       suffix: "+",
-      bg: "bg-orange-50",
-      text: "text-orange-600",
+      icon: <Video size={26} />,
+      bg: "from-orange-500 to-amber-500",
+      light: "bg-orange-50",
+      glow: "shadow-orange-500/20",
     },
   ];
 
   return (
-    <section className="py-12">
-      <div className="flex flex-col md:flex-row gap-6 max-w-6xl mx-auto px-6">
-        {cards.map((card, i) => (
-          <div
-            key={i}
-            className="
-              flex-1
-              bg-white
-              border border-gray-100
-              rounded-3xl
-              p-6
-              shadow-sm
-              hover:shadow-lg
-              transition-all duration-300
-            "
-          >
-            {/* TOP */}
-            <div className="flex items-center gap-4 justify-around">
-              
-              {/* ICON */}
+    <section className="relative ">
+
+      {/* BACKGROUND GLOW */}
+      <div className="absolute top-0 left-10 w-72 h-72   rounded-full" />
+      <div className="absolute bottom-0 right-10 w-72 h-72 bg-violet-200/30 blur-3xl rounded-full" />
+
+      <div className="relative max-w-7xl mx-auto px-6">
+
+        {/* HEADING */}
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-5 py-2 rounded-full text-sm font-semibold mb-5">
+            <Sparkles size={16} />
+            Learning Excellence
+          </div>
+
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-800 leading-tight">
+            Mastery Through Advanced Programs
+          </h2>
+
+          <p className="text-gray-500 mt-4  mx-auto text-base md:text-lg">
+            Elevate your skills with in-depth, hands-on training led by industry
+            experts. Our advanced programs are designed to equip you with
+            specialized knowledge and real-world experience for career
+            excellence in high-demand fields.
+          </p>
+        </div>
+
+        {/* CARDS */}
+        <div className="grid md:grid-cols-3 gap-8">
+
+          {cards.map((card, i) => (
+            <div
+              key={i}
+              className={`
+                relative group overflow-hidden
+                rounded-3xl bg-white/90 backdrop-blur-xl
+                border border-white/50
+                shadow-2xl ${card.glow}
+                hover:-translate-y-3
+                transition-all duration-500
+              `}
+            >
+
+              {/* TOP GLOW */}
               <div
                 className={`
-                  w-14 h-14
-                  rounded-2xl
-                  flex items-center justify-center
-                  ${card.bg}
-                  ${card.text}
-                  shrink-0
+                  absolute inset-0 opacity-0
+                  group-hover:opacity-100
+                  transition duration-500
+                  
+                  blur-3xl
                 `}
-              >
-                {card.icon}
-              </div>
+              />
 
               {/* CONTENT */}
-              <div>
-                <h2 className="text-4xl font-black text-gray-900 leading-none">
+              <div className="relative z-10 p-8">
+
+                {/* ICON */}
+                <div
+                  className={`
+                    w-20 h-20 rounded-3xl
+                    flex items-center justify-center
+                    bg-gradient-to-br ${card.bg}
+                    text-white
+                    shadow-xl
+                    mb-8
+                    group-hover:scale-110
+                    group-hover:rotate-6
+                    transition-all duration-500
+                  `}
+                >
+                  {card.icon}
+                </div>
+
+                {/* VALUE */}
+                <h2 className="text-6xl font-black text-gray-900 leading-none tracking-tight">
                   <CountUp
                     value={
-                      value?.[i]?.value ||
-                      "0+"
+                      value?.[i]?.value || "0"
                     }
                   />
-                  {card.suffix}
+                  <span
+                    className={`
+                      bg-gradient-to-r ${card.bg}
+                      bg-clip-text text-transparent
+                    `}
+                  >
+                    {card.suffix}
+                  </span>
                 </h2>
 
-                <p className="text-gray-500 text-sm mt-2 font-medium">
+                {/* TITLE */}
+                <p className="mt-5 text-xl font-bold text-gray-800">
                   {card.title}
                 </p>
+
+                
               </div>
+
+              {/* BOTTOM LINE */}
+              <div
+                className={`
+                  absolute bottom-0 left-0
+                  h-1 w-0
+                  bg-gradient-to-r ${card.bg}
+                  group-hover:w-full
+                  transition-all duration-500
+                `}
+              />
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

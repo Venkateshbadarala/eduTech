@@ -18,6 +18,10 @@ import PricingSection from "@/Components/CoursePage/pricingSection";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import FAQSection from "@/Components/FAQSection";
+import { Sparkles } from "lucide-react";
+import CapstoneProjectsSection from "@/Components/CoursePage/CapstoneProjectsSection";
+import JobRolesEditor from "@/Components/Admin/JobRolesEditor";
+import JobRolesSection from "@/Components/CoursePage/JobRolesSection";
 
 const emptyCourse = {
   title: "",
@@ -34,6 +38,8 @@ const emptyCourse = {
   stats: [],
   skills: [],
   modules: [],
+  capstoneProjects:[],
+  jobRoles:[],
   mastery: [],
   tools: [],
   pricing: [],
@@ -76,6 +82,8 @@ export default function Page() {
           tools: courseData.tools || [],
           mastery: courseData.mastery || [],
           pricing: courseData.pricing || [],
+          capstoneProjects:courseData.capstoneProjects  || [],
+  jobRoles:courseData.jobRoles || [],
           brochure: courseData.brochure || "",
         });
       } catch {
@@ -199,13 +207,7 @@ export default function Page() {
           {/* Grid */}
           <div className="space-y-6">
             <div className="grid md:grid-cols-3 gap-6">
-              {course.skills.slice(0, 3).map((item: any, i: any) => (
-                <Card key={i} item={item} />
-              ))}
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6 md:w-2/3 mx-auto">
-              {course.skills.slice(3).map((item: any, i: any) => (
+              {course.skills.map((item: any, i: any) => (
                 <Card key={i} item={item} />
               ))}
             </div>
@@ -242,37 +244,23 @@ export default function Page() {
       {/* 🔥 MASTERY */}
       {course.mastery && (
         <section className="py-16 text-center max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-800 leading-tight">
-            Mastery Through Advanced Programs
-          </h2>
-
-          <p className="text-gray-500 mt-4  mx-auto text-base md:text-lg">
-            Elevate your skills with in-depth, hands-on training led by industry
-            experts. Our advanced programs are designed to equip you with
-            specialized knowledge and real-world experience for career
-            excellence in high-demand fields.
-          </p>
-
           <div className="">
             <MasterySection value={course.mastery} />
           </div>
         </section>
       )}
 
-      {course.projects && (
+      {course.capstoneProjects && (
         <section className="py-16 text-center">
-          <div className="mb-12 px-4">
-            <h2 className="text-3xl md:text-5xl font-bold text-(--color-black-1) leading-tight">
-              Turn Knowledge into Skills with Hands-On Projects
-            </h2>
 
-            <p className="text-(--color-gray-2) mt-4 max-w-2xl mx-auto text-base md:text-lg">
-              Work on real-world challenges, build practical expertise, and gain
-              the confidence to succeed in your career.
-            </p>
-          </div>
+          <CapstoneProjectsSection projects={course.capstoneProjects}  />
+        </section>
+      )}
 
-          <ProjectsSection  />
+       {course.jobRoles && (
+        <section className="py-16 text-center">
+
+          <JobRolesSection roles={course.jobRoles}  />
         </section>
       )}
 

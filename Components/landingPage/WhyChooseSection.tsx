@@ -16,50 +16,50 @@ import { useRef } from "react";
 
 const features = [
   {
-    title: "Expert Mentorship",
-    desc: "Learn from industry professionals with real-world insights and guidance.",
+    title: "Strategic Industry Mentorship",
+    desc: "Guidance from experienced professionals focused on practical learning and career direction.",
     icon: UserCheck,
     color: "from-indigo-500 to-blue-500",
   },
   {
-    title: "Comprehensive Curriculum",
-    desc: "Master in-demand skills with structured, career-focused content.",
+    title: "Professionally Curated Learning Framework",
+    desc: "Structured learning designed to align with modern industry expectations and evolving skill demands.",
     icon: BookOpen,
     color: "from-cyan-500 to-teal-500",
   },
   {
-    title: "Flexible Learning",
-    desc: "Self-paced + live sessions tailored to your schedule.",
+    title: "Adaptive Learning Experience",
+    desc: "A flexible learning environment built to support individual pace, accessibility, and growth.",
     icon: Layers,
     color: "from-green-500 to-emerald-500",
   },
   {
-    title: "Hands-On Projects",
-    desc: "Build real-world projects and gain practical experience.",
+    title: "Experiential Execution Modules",
+    desc: "Practical exposure designed to strengthen real-world application and execution capability.",
     icon: Lightbulb,
     color: "from-orange-500 to-yellow-500",
   },
   {
-    title: "Personalized Guidance",
-    desc: "Get 1:1 support, feedback, and mentorship throughout.",
+    title: "Individualized Career Direction",
+    desc: "Personalized support focused on helping learners progress with clarity and confidence.",
     icon: HeartHandshake,
     color: "from-pink-500 to-rose-500",
   },
   {
-    title: "Career Growth",
-    desc: "Upskill and unlock new career opportunities with confidence.",
+    title: "Professional Advancement Pathways",
+    desc: "Career-focused development designed to accelerate long-term professional growth.",
     icon: TrendingUp,
     color: "from-purple-500 to-indigo-500",
   },
   {
-    title: "Premium Resources",
-    desc: "Access curated materials, videos, and interactive learning.",
+    title: "Elite Learning Assets",
+    desc: "Access to high-value resources crafted to enhance learning quality and professional readiness.",
     icon: Crown,
     color: "from-orange-600 to-red-500",
   },
   {
-    title: "Community Support",
-    desc: "Collaborate, network, and grow with a strong learner community.",
+    title: "Collaborative Growth Network",
+    desc: "A supportive ecosystem that encourages learning, connection, and collective professional development.",
     icon: Users,
     color: "from-fuchsia-500 to-pink-500",
   },
@@ -100,19 +100,23 @@ export default function WhyChooseSection() {
       {/* 🔥 HEADER (PARALLAX) */}
       <motion.div
         style={{ y: headingY }}
-        className="text-center  max-w-3xl mx-auto relative z-10"
+        className="text-center  max-w-6xl  mx-auto relative z-10"
       >
         <h2 className="text-3xl md:text-5xl font-bold text-gray-900">
-          Why Choose{" "}
+          Why Learners Trust{" "}
           <span className="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text uppercase">
-          cornixe
+            cornixe
           </span>
           ?
         </h2>
 
         <p className="text-gray-500 mt-4 text-lg">
-          We provide everything you need to succeed in your learning journey —
-          from mentorship to real-world experience.
+          CORNIXE delivers an integrated career-focused ecosystem combining
+          industry-led training, experiential internships, and strategic
+          placement assistance designed to cultivate real professional
+          capability. Through expert-driven guidance and practical exposure, we
+          help individuals progress with greater clarity, confidence, and
+          direction toward their evolving career aspirations.
         </p>
       </motion.div>
 

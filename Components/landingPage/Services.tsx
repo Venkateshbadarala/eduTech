@@ -6,27 +6,26 @@ import { Briefcase, User, BookOpen } from "lucide-react";
 const services = [
   {
     title: "Training",
-    description:
-      "Structured training by experienced mentors, covering basics to advanced tactics in multiple learning modes.",
+    description:"Professionally guided learning designed to bridge emerging talent with real industry expectations and execution standards",
     icon: <BookOpen size={28} className="text-(--color-black-6)" />,
   },
   {
     title: "Internship",
     description:
-      "Real-world projects, mentor guidance, and feedback to boost employability and practical skills.",
+      "Gain practical exposure through experience-driven internship opportunities aligned with real-time industry workflow. Designed to enhance execution skills, adaptability, and workplace confidence",
     icon: <Briefcase size={28} className="text-(--color-black-6)" />,
   },
   {
     title: "Placement Support",
     description:
-      "Aptitude training, personality growth, mock interviews, and HR prep for careers.",
+      "Comprehensive placement assistance focused on strengthening employability and career positioning. Helping individuals navigate opportunities with preparation and professional direction.",
     icon: <User size={28} className="text-(--color-black-6)" />,
   },
 ];
 
 export default function Services() {
   return (
-    <section className=" px-6 py-6 lg:py-0">
+    <section className=" px-6 py-4 lg:py-0">
       {/* 🔥 Heading */}
       <div className="max-w-7xl mx-auto mb-2">
         <h2 className="text-2xl font-bold flex items-center gap-3">

@@ -142,9 +142,9 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import {
-  Upload,
   Trash2,
   ImagePlus,
+  Link2,
 } from "lucide-react";
 
 type Tool = {
@@ -156,7 +156,7 @@ type Props = {
   onChange: (tools: Tool[]) => void;
 };
 
-// ✅ CREATE TOOL
+// ✅ CREATE EMPTY TOOL
 const createEmptyTool = (): Tool => ({
   image: "",
 });
@@ -166,10 +166,10 @@ export default function ToolsEditor({
   onChange,
 }: Props) {
 
-  // ✅ INITIAL STATE
+  // ✅ STATE
   const [tools, setTools] = useState<Tool[]>([]);
 
-  // ✅ LOAD ONLY ONCE
+  // ✅ INITIAL LOAD
   useEffect(() => {
     if (value && value.length > 0) {
       setTools(value);
@@ -182,39 +182,32 @@ export default function ToolsEditor({
     }
   }, []);
 
-  // ✅ IMAGE UPLOAD
-  const updateImage = (
+  // ✅ UPDATE URL
+  const updateImageUrl = (
     index: number,
-    file: File
+    url: string
   ) => {
-    const reader = new FileReader();
+    const updated = tools.map((tool, i) =>
+      i === index
+        ? {
+            ...tool,
+            image: url,
+          }
+        : tool
+    );
 
-    reader.onloadend = () => {
+    setTools(updated);
 
-      const updated = tools.map(
-        (tool, i) =>
-          i === index
-            ? {
-                ...tool,
-                image:
-                  reader.result as string,
-              }
-            : tool
-      );
-
-      setTools(updated);
-
-      // ✅ UPDATE PARENT
-      onChange(updated);
-    };
-
-    reader.readAsDataURL(file);
+    // ✅ UPDATE PARENT
+    onChange(updated);
   };
 
   // ✅ ADD TOOL
   const addTool = () => {
-    if (tools.length >= 6) {
-      toast.error("Max 6 tools allowed");
+    if (tools.length >= 9) {
+      toast.error(
+        "Maximum 9 tools allowed"
+      );
       return;
     }
 
@@ -225,7 +218,6 @@ export default function ToolsEditor({
 
     setTools(updated);
 
-    // ✅ UPDATE PARENT
     onChange(updated);
   };
 
@@ -246,7 +238,6 @@ export default function ToolsEditor({
 
     setTools(updated);
 
-    // ✅ UPDATE PARENT
     onChange(updated);
   };
 
@@ -254,20 +245,29 @@ export default function ToolsEditor({
     <div className="mt-12">
 
       {/* HEADER */}
-      <div className="flex justify-between items-center mb-5">
-        <h3 className="text-xl font-bold text-gray-800 flex items-center gap-2">
-          🧰 Tools Used
-        </h3>
+      <div className="flex justify-between items-center mb-6">
+        <div>
+          <h3 className="text-2xl font-bold text-gray-800">
+            🧰 Tools & Technologies
+          </h3>
+
+          <p className="text-sm text-gray-500 mt-1">
+            Add technology logos using image URLs
+          </p>
+        </div>
 
         <button
           type="button"
           onClick={addTool}
           className="
             flex items-center gap-2
-            bg-blue-600 text-white
-            px-4 py-2 rounded-lg
-            hover:bg-blue-700
-            transition
+            bg-gradient-to-r
+            from-blue-600 to-cyan-500
+            text-white
+            px-5 py-3 rounded-2xl
+            shadow-lg hover:shadow-xl
+            hover:scale-105
+            transition-all duration-300
           "
         >
           <ImagePlus size={18} />
@@ -276,19 +276,20 @@ export default function ToolsEditor({
       </div>
 
       {/* GRID */}
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
 
         {tools.map((tool, i) => (
           <div
             key={i}
             className="
-              group relative
-              rounded-2xl
-              border bg-white
-              shadow-sm
-              hover:shadow-lg
-              transition
-              overflow-hidden
+              relative overflow-hidden
+              bg-white/90 backdrop-blur-xl
+              border border-gray-100
+              rounded-3xl
+              shadow-md hover:shadow-2xl
+              transition-all duration-300
+              hover:-translate-y-1
+              group
             "
           >
 
@@ -299,14 +300,12 @@ export default function ToolsEditor({
                 removeTool(i)
               }
               className="
-                absolute top-2 right-2 z-20
-                bg-white/90
-                backdrop-blur
-                p-2 rounded-full
-                opacity-0
-                group-hover:opacity-100
+                absolute top-3 right-3 z-20
+                w-9 h-9 rounded-full
+                bg-white shadow-md
+                flex items-center justify-center
+                opacity-0 group-hover:opacity-100
                 transition
-                shadow
               "
             >
               <Trash2
@@ -315,13 +314,13 @@ export default function ToolsEditor({
               />
             </button>
 
-            {/* IMAGE */}
+            {/* PREVIEW */}
             <div
               className="
-                h-36
+                h-52
                 flex items-center justify-center
-                bg-gradient-to-br
-                from-gray-50 to-gray-100
+               
+                border-b
               "
             >
 
@@ -330,78 +329,126 @@ export default function ToolsEditor({
                   src={tool.image}
                   alt={`Tool ${i + 1}`}
                   className="
-                    h-20 object-contain
-                    transition
+                    max-h-28 max-w-[80%]
+                    object-contain
+                    transition duration-300
                     group-hover:scale-110
                   "
                 />
               ) : (
-                <div className="flex flex-col items-center text-gray-400">
-                  <Upload size={24} />
+                <div className="text-center text-gray-400">
+                  <div
+                    className="
+                      w-16 h-16 mx-auto mb-3
+                      rounded-2xl
+                      bg-white shadow-md
+                      flex items-center justify-center
+                    "
+                  >
+                    <ImagePlus
+                      size={30}
+                      className="text-blue-500"
+                    />
+                  </div>
 
-                  <span className="text-xs mt-1">
-                    Upload
-                  </span>
+                  <p className="font-medium">
+                    No Preview
+                  </p>
+
+                  <p className="text-xs mt-1">
+                    Paste image URL below
+                  </p>
                 </div>
               )}
             </div>
 
-            {/* UPLOAD OVERLAY */}
-            <label
-              className="
-                absolute inset-0
-                cursor-pointer
-                opacity-0
-                group-hover:opacity-100
-                bg-black/40
-                flex items-center justify-center
-                transition
-              "
-            >
-              <div
-                className="
-                  bg-white
-                  px-3 py-2
-                  rounded-lg
-                  text-sm font-medium
-                  shadow
-                "
-              >
-                Change Image
-              </div>
+            {/* URL INPUT */}
+            <div className="p-5">
+
+              <label className="text-sm font-semibold text-gray-700 flex items-center gap-2 mb-2">
+                <Link2 size={15} />
+                Image URL
+              </label>
 
               <input
-                type="file"
-                accept="image/*"
-                onChange={(e: any) => {
-                  if (
-                    e.target.files?.[0]
-                  ) {
-                    updateImage(
-                      i,
-                      e.target.files[0]
-                    );
-                  }
-                }}
-                className="hidden"
+                type="text"
+                value={tool.image}
+                onChange={(e) =>
+                  updateImageUrl(
+                    i,
+                    e.target.value
+                  )
+                }
+                placeholder="Paste image URL..."
+                className="
+                  w-full
+                  px-4 py-3
+                  rounded-2xl
+                  border border-gray-200
+                  bg-gray-50
+                  focus:outline-none
+                  focus:ring-2
+                  focus:ring-blue-500
+                  focus:border-transparent
+                  transition
+                  text-sm
+                "
               />
-            </label>
 
-            {/* FOOTER */}
-            <div className="p-3 text-center border-t">
-              <p className="text-xs text-gray-500">
-                Tool #{i + 1}
-              </p>
+              <div
+                className="
+                  mt-4
+                  flex items-center justify-between
+                "
+              >
+                <p className="text-xs text-gray-400">
+                  Tool #{i + 1}
+                </p>
+
+                <div
+                  className="
+                    px-3 py-1
+                    rounded-full
+                    bg-blue-50
+                    text-blue-600
+                    text-xs font-medium
+                  "
+                >
+                  Active
+                </div>
+              </div>
             </div>
+
+            {/* GLOW */}
+            <div
+              className="
+                absolute inset-0
+                opacity-0 group-hover:opacity-100
+                transition duration-500
+                pointer-events-none
+                bg-gradient-to-r
+                from-transparent
+                via-blue-100/20
+                to-transparent
+              "
+            />
           </div>
         ))}
       </div>
 
       {/* FOOTNOTE */}
-      <p className="text-xs text-gray-400 mt-3">
-        Minimum 3 tools required •
-        Maximum 6 allowed
-      </p>
+      <div
+        className="
+          mt-5
+          p-4 rounded-2xl
+          bg-blue-50
+          border border-blue-100
+        "
+      >
+        <p className="text-sm text-blue-700 font-medium">
+          ✅ Minimum 3 tools required • Maximum 9 tools allowed
+        </p>
+      </div>
     </div>
   );
 }

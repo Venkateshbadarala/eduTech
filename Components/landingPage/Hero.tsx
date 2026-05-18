@@ -87,40 +87,45 @@ export default function Home() {
       {/* 🔥 HERO */}
       <div className="py-16 flex items-center flex-col justify-center ">
         <div className="lg:max-w-[calc(100vw-100px)] xl:max-w-[calc(100vw-200px)] mx-auto grid lg:grid-cols-2 gap-6 items-center px-6 mt-5 grid-cols-1 justify-center">
-
           {/* LEFT */}
           <motion.div
             ref={heroContentRef}
             style={{ y: textY, opacity: textOpacity }}
           >
             <div className="mt-4">
-            <span className="bg-(--color-light) text-(--color-primary)  px-3 py-1 rounded-full text-sm font-bold">
-              HI, THERE
-            </span>
+              <span className="bg-(--color-light) text-(--color-primary)  px-3 py-1 rounded-full text-sm font-bold">
+                HI, THERE
+              </span>
 
-            <h1 className="font-bold  leading-tight text-black-1">
-              <div>
-                <p className="uppercase md:text-4xl text-3xl">Cornixe</p>
-                <p className="md:text-4xl text-2xl">Your Smart Learning Partner</p>
-              </div>
-              <p className="text-(--color-primary) text-2xl mt-2">
-                Learn Smarter. Grow Faster. Build Your Future.
+              <h1 className="font-bold  leading-tight text-black-1">
+                <div>
+                  <p className="uppercase md:text-4xl text-3xl">Cornixe</p>
+                  <p className="md:text-4xl text-2xl">
+                    {" "}
+                    Empowering Your Vision
+                  </p>
+                </div>
+                <p className="text-(--color-primary) text-xl mt-2">
+                  Equipping Visionaries for the Modern Professional Landscape
+                </p>
+              </h1>
+
+              <p className="text-gray-500 mt-4 ">
+                At Cornixe, we believe that every student has a unique
+                professional "Vision." Our role is to provide the empowerment to
+                achieve it. Guided by elite professional trainers, Cornixe
+                serves as the strategic backbone for the next generation of
+                industry giants. Through high-impact technical skilling,
+                internships, and institutional partnerships, we ensure our
+                learners are not just participants in the industry—they are the
+                ones leading it. Join the Evolution, Whether you are a student
+                looking to sharpen your edge or an institution aiming to elevate
+                your curriculum, Cornixe is your partner in progress. Let’s turn
+                your vision into your reality.
               </p>
-            </h1>
 
-            <p className="text-gray-500 mt-4 ">
-              Cornixe is more than just an educational platform — it’s your
-              gateway to real-world success. We bridge the gap between classroom
-              learning and industry demands, helping you turn knowledge into
-              practical skills that truly matter. From hands-on internships to
-              personalized career guidance and expert mentorship, we empower you
-              to confidently navigate the ever-evolving professional world. With
-              us, education isn’t just about learning more — it’s about growing
-              smarter, building confidence, and thriving in your career.
-            </p>
-
-            {/* BUTTON */}
-            {/* <div className="flex items-center gap-4 mt-6">
+              {/* BUTTON */}
+              {/* <div className="flex items-center gap-4 mt-6">
               <button className="bg-gradient-to-r from-(--color-primary) to-(--color-secondary) text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2 hover:scale-105 transition">
                 Get Started for Free
                 <span className="bg-white text-black rounded-full w-6 h-6 flex items-center justify-center">
@@ -132,7 +137,7 @@ export default function Home() {
                 ✉️ start@domain.com
               </span>
             </div> */}
-          </div>
+            </div>
           </motion.div>
 
           {/* RIGHT */}
@@ -166,7 +171,7 @@ export default function Home() {
         </div>
 
         {/* SERVICES */}
-        <div className="z-10 mt-5">
+        <div className="z-10 mt-2">
           <Services />
         </div>
       </div>
