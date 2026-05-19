@@ -39,7 +39,7 @@ export default function Home({
 
         <svg
           viewBox="0 0 1440 500"
-          className="w-full md:h-[900px] h-[600px]"
+          className="w-full md:h-[800px] h-[600px]"
           preserveAspectRatio="none"
         >
           <defs>
@@ -67,7 +67,7 @@ export default function Home({
       </div>
 
       {/* 🔥 MAIN CONTAINER */}
-      <div className="max-w-7xl mx-auto p-6">
+      <div className="max-w-7xl mx-auto p-6 pt-[36vh]">
 
         <div className="grid lg:grid-cols-2 gap-10 items-center ">
 
