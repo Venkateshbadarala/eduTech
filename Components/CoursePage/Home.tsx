@@ -69,7 +69,7 @@ export default function Home({
       {/* 🔥 MAIN CONTAINER */}
       <div className="max-w-7xl mx-auto p-6">
 
-        <div className="grid lg:grid-cols-2 gap-10 items-center md:pt-[36vh] pt-[30vh]">
+        <div className="grid lg:grid-cols-2 gap-10 items-center md:pt-[36vh] pt-[20vh]">
 
           {/* 🔥 LEFT SIDE (IMAGE CARD) */}
           <div className="relative rounded-xl overflow-hidden bg-black h-[25rem]">
