@@ -67,7 +67,7 @@ export default function Home({
       </div>
 
       {/* 🔥 MAIN CONTAINER */}
-      <div className="max-w-7xl mx-auto p-6 pt-[16rem]">
+      <div className="max-w-7xl mx-auto p-6 pt-[18rem]">
 
         <div className="grid lg:grid-cols-2 gap-10 items-center ">
 
