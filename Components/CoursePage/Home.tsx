@@ -39,7 +39,7 @@ export default function Home({
 
         <svg
           viewBox="0 0 1440 500"
-          className="w-full h-[500px]"
+          className="w-full md:h-[900px] h-[600px]"
           preserveAspectRatio="none"
         >
           <defs>
@@ -56,8 +56,8 @@ export default function Home({
         </svg>
 
         {/* TEXT */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 text-center text-white z-10 px-4 md:w-2xl xl:w-3xl w-sm ">
-          <h1 className="md:text-5xl font-bold leading-tight text-2xl">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 text-center text-white z-10 px-4 sm:w-2xl xl:w-3xl w-sm ">
+          <h1 className="md:text-5xl font-bold leading-tight text-3xl">
             {headline}
           </h1>
           <p className="mt-3 text-sm md:text-lg opacity-90  mx-auto">

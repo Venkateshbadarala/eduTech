@@ -83,18 +83,18 @@ export default function ElitePacks() {
 
         {/* HEADER */}
         <div className="text-center mb-16">
-          <p className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-light text-black text-sm font-semibold mb-5">
+          <p className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-light text-primary text-sm font-semibold mb-5">
             ✨ Exclusive Learning Bundles
           </p>
 
-          <h2 className="text-5xl md:text-6xl font-black text-gray-900 leading-tight">
+          <h2 className="text-3xl md:text-5xl font-bold text-black-1 leading-tight relative">
             Explore Our{" "}
             <span className="text-secondary ">
               Elite Packs
             </span>
           </h2>
 
-          <p className="max-w-4xl mx-auto text-gray-500 text-lg mt-6 leading-relaxed">
+          <p className="text-gray-500 mt-5 max-w-6xl mx-auto text-md md:text-lg leading-relaxed relative">
             Unlock premium learning experiences crafted for career growth,
             industry readiness, and future success.
           </p>

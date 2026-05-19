@@ -47,7 +47,6 @@ export default function PricingSection({
       <div className="mb-10 px-4">
         {" "}
         <h2 className="text-3xl md:text-5xl font-bold text-black-1 leading-tight relative ">
-          {" "}
           Unlock Premium Learning at a Limited Price{" "}
         </h2>{" "}
         <p className="text-gray-500 mt-5 max-w-6xl mx-auto text-md md:text-lg leading-relaxed relative">
@@ -59,14 +58,14 @@ export default function PricingSection({
       {/* CARDS */}
       <div className="flex flex-col md:flex-row items-center justify-center gap-10 py-10">
         {pricing?.map((plan, i) => (
-  <PriceCard
-    key={i}
-    data={plan}
-    allPlans={pricing} // ✅ ADD THIS
-    isActive={selectedPlan?.title === plan.title}
-    onSelect={() => setSelectedPlan(plan)}
-  />
-))}
+          <PriceCard
+            key={i}
+            data={plan}
+            allPlans={pricing} // ✅ ADD THIS
+            isActive={selectedPlan?.title === plan.title}
+            onSelect={() => setSelectedPlan(plan)}
+          />
+        ))}
       </div>
     </section>
   );

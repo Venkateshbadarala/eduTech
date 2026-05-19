@@ -33,7 +33,7 @@ export default function Companies() {
       {/* 🔥 Heading (Parallax Applied) */}
       <motion.div
         style={{ y: headingY, opacity: headingOpacity }}
-        className="text-center "
+        className="text-center px-4"
       >
         <h2 className="text-3xl md:text-5xl font-bold text-black-1 leading-tight relative z-10">
           Where our Learners{" "}
@@ -42,7 +42,7 @@ export default function Companies() {
           </span>
         </h2>
 
-        <p className="text-gray-500 mt-5 max-w-6xl mx-auto text-md md:text-lg leading-relaxed relative z-10">
+        <p className="text-gray-500 mt-5 max-w-6xl mx-auto text-md md:text-lg leading-relaxed relative">
           Our learners are advancing into dynamic professional environments where their expertise, adaptability, and
 industry-ready capabilities contribute to meaningful organizational growth and long-term career success.
 
