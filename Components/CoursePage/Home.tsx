@@ -35,7 +35,7 @@ export default function Home({
     <div className="relative  overflow-hidden">
 
       {/* 🔵 CURVE BACKGROUND */}
-      <div className="absolute top-0 left-0 w-full h-[50vh] z-0">
+      <div className="absolute top-0 left-0 w-full  z-0">
 
         <svg
           viewBox="0 0 1440 500"
@@ -56,8 +56,8 @@ export default function Home({
         </svg>
 
         {/* TEXT */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 text-center text-white z-10 px-4 sm:w-2xl xl:w-3xl w-sm ">
-          <h1 className="md:text-5xl font-bold leading-tight text-3xl">
+        <div className="absolute top-1/6 left-1/2 -translate-x-1/2 text-center text-white z-10 px-4 sm:w-full  w-sm ">
+          <h1 className="lg:text-5xl md:text-4xl font-bold leading-tight text-3xl">
             {headline}
           </h1>
           <p className="mt-3 text-sm md:text-lg opacity-90  mx-auto">
