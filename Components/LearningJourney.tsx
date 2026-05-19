@@ -69,7 +69,7 @@ export default function LearningJourney() {
         className="text-gray-500 mt-5 max-w-6xl mx-auto text-md md:text-lg leading-relaxed relative z-10"
       >
         True empowerment goes beyond earning a degree — it begins with vision.
-        At Cornixe, we combine industryfocused learning with globally recognized
+        At Cornixe, we combine industry focused learning with globally recognized
         certifications and real-world expertise, empowering future professionals
         to excel in leading global MNCs.
       </motion.p>

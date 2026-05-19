@@ -28,7 +28,7 @@ export default function Card({ item }: { item: SkillItem }) {
           alt={item.title}
           width={100}
           height={100}
-          className="object-contain"
+          className="object-contain mix-blend-multiply"
         />
       </div>
 

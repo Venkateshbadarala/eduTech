@@ -48,7 +48,7 @@ export default function Home() {
   return (
     <div
       ref={container}
-      className="relative w-full min-h-screen overflow-hidden from-light via-white to-primary-light  "
+      className="relative w-full  overflow-hidden from-light via-white to-primary-light  "
     >
       {/* 🔵 BACKGROUND GLOW */}
       <div className="absolute inset-0">

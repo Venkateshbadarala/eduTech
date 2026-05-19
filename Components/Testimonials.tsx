@@ -118,7 +118,7 @@ export default function Testimonials() {
       <motion.div style={{ y: headingY }} className="text-center">
         <h2 className="text-3xl sm:text-3xl md:text-5xl font-bold text-gray-900">
           Voices of Success <br />
-          <span className="text-primary">
+          <span className="text-secondary">
             Real Stories. Real Impact.
           </span>
         </h2>

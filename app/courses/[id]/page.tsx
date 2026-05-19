@@ -26,7 +26,7 @@ import JobRolesSection from "@/Components/CoursePage/JobRolesSection";
 const emptyCourse = {
   title: "",
   category: "",
-  subcategory:"",
+  subcategory: "",
   description: "",
   image: "",
   headline: "",
@@ -38,8 +38,8 @@ const emptyCourse = {
   stats: [],
   skills: [],
   modules: [],
-  capstoneProjects:[],
-  jobRoles:[],
+  capstoneProjects: [],
+  jobRoles: [],
   mastery: [],
   tools: [],
   pricing: [],
@@ -82,8 +82,8 @@ export default function Page() {
           tools: courseData.tools || [],
           mastery: courseData.mastery || [],
           pricing: courseData.pricing || [],
-          capstoneProjects:courseData.capstoneProjects  || [],
-  jobRoles:courseData.jobRoles || [],
+          capstoneProjects: courseData.capstoneProjects || [],
+          jobRoles: courseData.jobRoles || [],
           brochure: courseData.brochure || "",
         });
       } catch {
@@ -97,64 +97,59 @@ export default function Page() {
   }, [id]);
 
   // 🔥 LOADING STATE
- if (loading) {
-  return (
-    <div className="animate-pulse">
+  if (loading) {
+    return (
+      <div className="animate-pulse">
+        {/* 🔥 HERO SKELETON */}
+        <div className="h-[60vh] bg-white flex flex-col justify-center items-center gap-4">
+          <div className="h-10 w-1/3 bg-gray-300 rounded-lg" />
+          <div className="h-5 w-1/2 bg-gray-300 rounded" />
+          <div className="h-40 w-96 bg-gray-300 rounded-xl mt-6" />
+        </div>
 
-      {/* 🔥 HERO SKELETON */}
-      <div className="h-[60vh] bg-white flex flex-col justify-center items-center gap-4">
-        <div className="h-10 w-1/3 bg-gray-300 rounded-lg" />
-        <div className="h-5 w-1/2 bg-gray-300 rounded" />
-        <div className="h-40 w-96 bg-gray-300 rounded-xl mt-6" />
-      </div>
+        {/* 🔥 STATS SKELETON */}
+        <div className="max-w-7xl mx-auto px-6 py-16">
+          <div className="h-8 w-80 bg-gray-300 rounded mx-auto mb-10" />
 
-      {/* 🔥 STATS SKELETON */}
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="h-8 w-80 bg-gray-300 rounded mx-auto mb-10" />
+          <div className="grid md:grid-cols-3 gap-6">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="h-40 bg-gray-200 rounded-2xl shadow-sm" />
+            ))}
+          </div>
+        </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        {/* 🔥 SKILLS SKELETON */}
+        <div className="max-w-7xl mx-auto px-6 py-10">
+          <div className="h-8 w-72 bg-gray-300 rounded mx-auto mb-10" />
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="h-32 bg-gray-200 rounded-xl" />
+            ))}
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mt-6 w-2/3 mx-auto">
+            {[1, 2].map((i) => (
+              <div key={i} className="h-32 bg-gray-200 rounded-xl" />
+            ))}
+          </div>
+        </div>
+
+        {/* 🔥 MODULES SKELETON */}
+        <div className="max-w-6xl mx-auto px-6 py-10 space-y-4">
           {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="h-40 bg-gray-200 rounded-2xl shadow-sm"
-            />
+            <div key={i} className="h-20 bg-gray-200 rounded-xl" />
           ))}
         </div>
       </div>
-
-      {/* 🔥 SKILLS SKELETON */}
-      <div className="max-w-7xl mx-auto px-6 py-10">
-        <div className="h-8 w-72 bg-gray-300 rounded mx-auto mb-10" />
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="h-32 bg-gray-200 rounded-xl" />
-          ))}
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6 mt-6 w-2/3 mx-auto">
-          {[1, 2].map((i) => (
-            <div key={i} className="h-32 bg-gray-200 rounded-xl" />
-          ))}
-        </div>
-      </div>
-
-      {/* 🔥 MODULES SKELETON */}
-      <div className="max-w-6xl mx-auto px-6 py-10 space-y-4">
-        {[1, 2, 3].map((i) => (
-          <div key={i} className="h-20 bg-gray-200 rounded-xl" />
-        ))}
-      </div>
-
-    </div>
-  );
-}
+    );
+  }
 
   if (!course) {
     return <div className="p-10 text-center">Course not found</div>;
   }
   return (
-    <div className=" ">
+    <div >
       {/* 🔥 HERO */}
       <section className="text-center">
         <Home
@@ -183,10 +178,10 @@ export default function Page() {
 
           {/* Cards */}
           {course.stats && (
-  <section className="max-w-7xl mx-auto px-6">
-  <StatsCard value={course.stats} courseTitle={course.title} />
-</section>
-)}
+            <section className="max-w-7xl mx-auto px-6">
+              <StatsCard value={course.stats} courseTitle={course.title} />
+            </section>
+          )}
         </section>
       )}
 
@@ -252,15 +247,13 @@ export default function Page() {
 
       {course.capstoneProjects && (
         <section className="py-16 text-center">
-
-          <CapstoneProjectsSection projects={course.capstoneProjects}  />
+          <CapstoneProjectsSection projects={course.capstoneProjects} />
         </section>
       )}
 
-       {course.jobRoles && (
+      {course.jobRoles && (
         <section className="py-16 text-center">
-
-          <JobRolesSection roles={course.jobRoles}  />
+          <JobRolesSection roles={course.jobRoles} />
         </section>
       )}
 
@@ -270,14 +263,13 @@ export default function Page() {
           <PricingSection pricing={course.pricing} />
         </section>
       )}
-      <div className="px-10">
-       <LearningJourney />
-      <Companies />
-      <TeamSection />
-      <Testimonials />
-      <FAQSection/>
+      <div className="">
+        <LearningJourney />
+        <Companies />
+        <TeamSection />
+        <Testimonials />
+        <FAQSection />
       </div>
-      
     </div>
   );
 }

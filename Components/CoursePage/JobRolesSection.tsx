@@ -31,7 +31,7 @@ export default function JobRolesSection({
           <div
             className="
               inline-flex items-center gap-2
-              bg-blue-100 text-blue-700
+              bg-light text-primary
               px-5 py-2 rounded-full
               text-sm font-semibold
               mb-5
@@ -42,12 +42,7 @@ export default function JobRolesSection({
           </div>
 
           <h2
-            className="
-              text-4xl md:text-6xl
-              font-black
-              text-gray-900
-              leading-tight
-            "
+            className="text-3xl md:text-5xl font-bold text-black-1 leading-tight relative "
           >
             Explore Your
             <span className="text-secondary">
@@ -57,14 +52,7 @@ export default function JobRolesSection({
           </h2>
 
           <p
-            className="
-              text-gray-500
-              max-w-3xl
-              mx-auto
-              mt-6
-              text-lg
-              leading-relaxed
-            "
+            className="text-gray-500 mt-5 max-w-6xl mx-auto text-md md:text-lg leading-relaxed relative "
           >
             Unlock exciting career opportunities
             with industry-ready skills and become

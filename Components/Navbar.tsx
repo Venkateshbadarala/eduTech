@@ -16,14 +16,7 @@ import Logo from "@/public/logo.png";
 import { HamburgerIcon } from "@/constants/svgIcons";
 import AuthModal from "./AuthModal";
 
-import {
-  LogOutIcon,
-  User,
-  Home,
-  Info,
-  Briefcase,
-  User2,
-} from "lucide-react";
+import { LogOutIcon, User, Home, Info, Briefcase, User2 } from "lucide-react";
 
 interface NavbarProps {
   onOpenSidebar: () => void;
@@ -48,23 +41,19 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // 🔥 scroll hide (desktop navbar)
- useMotionValueEvent(scrollY, "change", (latest) => {
-  const prev = scrollY.getPrevious();
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const prev = scrollY.getPrevious();
 
-  // ✅ CLOSE PROFILE DROPDOWN ON SCROLL
-  setProfileOpen(false);
+    // ✅ CLOSE PROFILE DROPDOWN ON SCROLL
+    setProfileOpen(false);
 
-  // ✅ HIDE NAVBAR ON SCROLL DOWN
-  if (
-    prev !== undefined &&
-    latest > prev &&
-    latest > 50
-  ) {
-    setHidden(true);
-  } else {
-    setHidden(false);
-  }
-});
+    // ✅ HIDE NAVBAR ON SCROLL DOWN
+    if (prev !== undefined && latest > prev && latest > 50) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
 
   // 🔥 close dropdown
   useEffect(() => {
@@ -75,8 +64,7 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () =>
-      document.removeEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   // 🔥 Mobile nav with icons
@@ -88,7 +76,7 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
   ];
 
   const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
-const isAdmin = session?.user?.email === adminEmail;
+  const isAdmin = session?.user?.email === adminEmail;
 
   return (
     <>
@@ -116,51 +104,49 @@ const isAdmin = session?.user?.email === adminEmail;
 
           {/* NAV LINKS */}
           <div className="flex items-center gap-5">
-             <button
+            <button
               type="button"
               onClick={onOpenSidebar}
               className=" rounded-full md:hidden items-center gap-1 sm:flex "
             >
-              <HamburgerIcon /> 
+              <HamburgerIcon />
             </button>
             <div className="hidden md:flex gap-5 ">
-{baseNavItems.map((item) => {
-              const isActive = pathname === item.href;
+              {baseNavItems.map((item) => {
+                const isActive = pathname === item.href;
 
-              return (
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`transition text-[16px] ${
+                      isActive
+                        ? "text-blue-600 font-bold"
+                        : "text-gray-700 hover:text-blue-600"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+              {isAdmin && (
                 <Link
-                  key={item.href}
-                  href={item.href}
+                  href="/admin"
                   className={`transition text-[16px] ${
-                    isActive
+                    pathname === "/admin"
                       ? "text-blue-600 font-bold"
                       : "text-gray-700 hover:text-blue-600"
                   }`}
                 >
-                  {item.label}
+                  Dashboard
                 </Link>
-                
-              );
-            })}
-             {isAdmin && (
-    <Link
-      href="/admin"
-      className={`transition text-[16px] ${
-        pathname === "/admin"
-          ? "text-blue-600 font-bold"
-          : "text-gray-700 hover:text-blue-600"
-      }`}
-    >
-      Dashboard
-    </Link>
-  )}
+              )}
             </div>
-            
 
             {/* AUTH */}
             {!session ? (
               <button
-              type="button"
+                type="button"
                 onClick={() => setOpen(true)}
                 className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-5 py-2 rounded-full"
               >
@@ -222,9 +208,7 @@ const isAdmin = session?.user?.email === adminEmail;
             >
               <div
                 className={`w-9 h-9 flex items-center justify-center rounded-full transition ${
-                  isActive
-                    ? "bg-secondary text-white scale-110"
-                    : "text-gray-2"
+                  isActive ? "bg-secondary text-white scale-110" : "text-gray-2"
                 }`}
               >
                 {item.icon}
@@ -232,9 +216,7 @@ const isAdmin = session?.user?.email === adminEmail;
 
               <span
                 className={`mt-1 ${
-                  isActive
-                    ? "text-primary font-semibold"
-                    : "text-gray-2"
+                  isActive ? "text-primary font-semibold" : "text-gray-2"
                 }`}
               >
                 {item.label}

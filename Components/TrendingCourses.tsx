@@ -97,7 +97,7 @@ export default function TrendingCourses() {
         className="text-center "
       >
         <p className="text-sm tracking-widest text-white font-semibold bg-gradient-to-r from-primary to-secondary inline-block px-6 py-1 rounded-full shadow-lg">
-          TRENDING COURSES
+          TRENDING Programs
         </p>
 
         <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mt-6">
@@ -247,7 +247,7 @@ export default function TrendingCourses() {
           transition
         "
           >
-            View All Courses →
+            View All Programs →
           </button>
         </Link>
       </div>

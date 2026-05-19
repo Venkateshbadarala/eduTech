@@ -23,45 +23,42 @@ const socialIcons = [
 export default function Footer() {
   const [open, setOpen] = useState<string | null>("tech");
   const [formData, setFormData] = useState({
-  email: "",
-});
- const [courses, setCourses] = useState<any[]>([]);
+    email: "",
+  });
+  const [courses, setCourses] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
+  const fetchCourses = async () => {
+    try {
+      setLoading(true);
 
-   const fetchCourses = async () => {
-      try {
-        setLoading(true);
-  
-        const res = await fetch("/api/courses");
-  
-        if (!res.ok) {
-          const text = await res.text();
-          console.error("API ERROR:", text);
-          throw new Error("Failed");
-        }
-  
-        const data = await res.json();
-        console.log("respsne", data)
-  
-        setCourses(Array.isArray(data) ? data : data.courses || []);
-      } catch (err) {
-        console.error(err);
-        toast.error("Error fetching courses ❌");
-      } finally {
-        setLoading(false);
+      const res = await fetch("/api/courses");
+
+      if (!res.ok) {
+        const text = await res.text();
+        console.error("API ERROR:", text);
+        throw new Error("Failed");
       }
-    };
-  
-const techCourses = courses.filter(
-  (course: any) =>
-    course.category === "tech"
-);
 
-const nonTechCourses = courses.filter(
-  (course: any) =>
-    course.category === "non-tech"
-);
+      const data = await res.json();
+      console.log("respsne", data);
+
+      setCourses(Array.isArray(data) ? data : data.courses || []);
+    } catch (err) {
+      console.error(err);
+      toast.error("Error fetching courses ❌");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const techCourses = courses.filter(
+    (course: any) => course.category === "tech",
+  );
+
+  const nonTechCourses = courses.filter(
+    (course: any) => course.category === "non-tech",
+  );
 
   useEffect(() => {
     fetchCourses();
@@ -79,10 +76,8 @@ const nonTechCourses = courses.filter(
     };
   }, []);
 
-    const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement
-    >
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setFormData({
       ...formData,
@@ -90,94 +85,70 @@ const nonTechCourses = courses.filter(
     });
   };
 
-  const handleSubmit = async (
-  e: React.FormEvent
-) => {
-  e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  // ✅ VALIDATIONS
- 
+    // ✅ VALIDATIONS
 
-  if (!formData.email.trim()) {
-    toast.error("Email is required");
-    return;
-  }
+    if (!formData.email.trim()) {
+      toast.error("Email is required");
+      return;
+    }
 
-  // ✅ EMAIL VALIDATION
-  const emailRegex =
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // ✅ EMAIL VALIDATION
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!emailRegex.test(formData.email)) {
-    toast.error("Enter valid email");
-    return;
-  }
+    if (!emailRegex.test(formData.email)) {
+      toast.error("Enter valid email");
+      return;
+    }
 
-  
+    try {
+      setLoading(true);
 
- 
+      const res = await axios.post("/api/newsletter", formData);
 
-  try {
-    setLoading(true);
+      toast.success(res.data.message || "Application submitted 🚀");
 
-    const res = await axios.post(
-      "/api/newsletter",
-      formData
-    );
-
-    toast.success(
-      res.data.message ||
-        "Application submitted 🚀"
-    );
-
-    // ✅ RESET FORM
-    setFormData({
-      
-      email: "",
-     
-    });
-
-  
-
-  } catch (error: any) {
-    toast.error(
-      error.response?.data?.message ||
-        "Submission failed"
-    );
-  } finally {
-    setLoading(false);
-  }
-};
+      // ✅ RESET FORM
+      setFormData({
+        email: "",
+      });
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || "Submission failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <footer className="bg-(--color-black-1) text-(--color-white) px-4 sm:px-6 md:px-10 lg:px-16 py-12 md:py-16">
-      
       {/* 🔥 DESKTOP */}
       <div className="hidden md:grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
         {/* LEFT SIDE */}
-        <div className="max-w-xl space-y-6">
+        <div className=" space-y-6">
           {/* NEWSLETTER */}
           <div>
             <h3 className="text-xl font-semibold mb-4">Join Our Newsletter</h3>
-      <form onSubmit={handleSubmit}>
-  <div className="flex flex-col sm:flex-row gap-3 mb-4">
-
-    <input
-      type="email"
-      name="email"
-      value={formData.email}
-      onChange={handleChange}
-      placeholder="Enter your email"
-      className="
+            <form onSubmit={handleSubmit}>
+              <div className="flex flex-col sm:flex-row gap-3 mb-4">
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Enter your email"
+                  className="
         px-4 py-2 rounded-full
         outline-none text-black
         w-full border bg-white
       "
-    />
+                />
 
-    <button
-      type="submit"
-      disabled={loading}
-      className="
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="
         bg-secondary
         px-5 py-3 rounded-full
         text-white
@@ -185,13 +156,11 @@ const nonTechCourses = courses.filter(
         transition
         whitespace-nowrap
       "
-    >
-      {loading ? "Saving..." : "Subscribe"}
-    </button>
-
-  </div>
-</form>
-           
+                >
+                  {loading ? "Saving..." : "Subscribe"}
+                </button>
+              </div>
+            </form>
 
             <p className="text-sm text-(--color-gray-1)">
               Stay ahead with updates on new courses, offers, and career
@@ -282,53 +251,51 @@ const nonTechCourses = courses.filter(
           </div>
 
           {/* LINKS */}
-         <div>
-  <h3 className="font-semibold mb-4 text-lg">
-    Useful Links
-  </h3>
+          <div>
+            <h3 className="font-semibold mb-4 text-lg">Useful Links</h3>
 
-  <ul className="space-y-2 text-(--color-gray-1) text-sm">
-    {[
-      {
-        title: "About Us",
-        href: "/about",
-      },
+            <ul className="space-y-2 text-(--color-gray-1) text-sm">
+              {[
+                {
+                  title: "About Us",
+                  href: "/about",
+                },
 
-      {
-        title: "Privacy Policy",
-        href: "/privacypolicy",
-      },
+                {
+                  title: "Privacy Policy",
+                  href: "/privacypolicy",
+                },
 
-      {
-        title: "Terms & Conditions",
-        href: "/termsandconditions",
-      },
+                {
+                  title: "Terms & Conditions",
+                  href: "/termsandconditions",
+                },
 
-      {
-        title: "Careers",
-        href: "/careers",
-      },
+                {
+                  title: "Careers",
+                  href: "/careers",
+                },
 
-      {
-        title: "Ambassador",
-        href: "/ambassador",
-      },
-    ].map((item, i) => (
-      <li key={i}>
-        <Link
-          href={item.href}
-          scroll={true}
-          className="
+                {
+                  title: "Ambassador",
+                  href: "/ambassador",
+                },
+              ].map((item, i) => (
+                <li key={i}>
+                  <Link
+                    href={item.href}
+                    scroll={true}
+                    className="
             hover:text-(--color-primary)
             transition
           "
-        >
-          {item.title}
-        </Link>
-      </li>
-    ))}
-  </ul>
-</div>
+                  >
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -337,37 +304,34 @@ const nonTechCourses = courses.filter(
         {/* NEWSLETTER */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold mb-3">Newsletter</h3>
-<form onSubmit={handleSubmit}>
-  <div className="flex gap-2 mb-3">
-
-    <input
-      type="email"
-      name="email"
-      value={formData.email}
-      onChange={handleChange}
-      placeholder="Email"
-      className="
+          <form onSubmit={handleSubmit}>
+            <div className="flex gap-2 mb-3">
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email"
+                className="
         px-4 py-2 rounded-full
         outline-none text-black
         w-full border bg-white
       "
-    />
+              />
 
-    <button
-      type="submit"
-      disabled={loading}
-      className="
+              <button
+                type="submit"
+                disabled={loading}
+                className="
         bg-secondary
         px-4 rounded-full
         text-white
       "
-    >
-      {loading ? "..." : "Go"}
-    </button>
-
-  </div>
-</form>
-          
+              >
+                {loading ? "..." : "Go"}
+              </button>
+            </div>
+          </form>
 
           <div>
             <h4 className="text-lg font-semibold mb-3">Address</h4>

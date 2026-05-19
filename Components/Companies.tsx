@@ -28,21 +28,21 @@ export default function Companies() {
   return (
     <section
       ref={container}
-      className="relative py-16 px-6 md:px-16 overflow-hidden rounded-xl  "
+      className="relative py-16   overflow-hidden rounded-xl  "
     >
       {/* 🔥 Heading (Parallax Applied) */}
       <motion.div
         style={{ y: headingY, opacity: headingOpacity }}
         className="text-center "
       >
-        <h2 className="text-3xl md:text-5xl font-bold text-(--color-black-1) leading-tight">
+        <h2 className="text-3xl md:text-5xl font-bold text-black-1 leading-tight relative z-10">
           Where our Learners{" "}
-          <span className="bg-gradient-to-r from-(--color-primary) to-(--color-secondary) text-transparent bg-clip-text">
+          <span className="text-secondary bg-clip-text">
             Evolves their career
           </span>
         </h2>
 
-        <p className="text-(--color-gray-2) mt-5 max-w-2xl mx-auto text-md md:text-lg leading-relaxed">
+        <p className="text-gray-500 mt-5 max-w-6xl mx-auto text-md md:text-lg leading-relaxed relative z-10">
           Our learners are advancing into dynamic professional environments where their expertise, adaptability, and
 industry-ready capabilities contribute to meaningful organizational growth and long-term career success.
 
@@ -67,7 +67,7 @@ industry-ready capabilities contribute to meaningful organizational growth and l
               <Image
                 src={logo}
                 alt="company"
-                className="object-contain max-h-[50px] w-auto grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition"
+                className="object-contain max-h-[50px] w-auto   hover:grayscale-0 hover:opacity-100 transition"
               />
             </motion.div>
           ))}
@@ -92,7 +92,7 @@ industry-ready capabilities contribute to meaningful organizational growth and l
               <Image
                 src={logo}
                 alt="company"
-                className="object-contain max-h-[50px] w-auto grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition"
+                className="object-contain max-h-[50px] w-auto  hover:grayscale-0 hover:opacity-100 transition"
               />
             </motion.div>
           ))}

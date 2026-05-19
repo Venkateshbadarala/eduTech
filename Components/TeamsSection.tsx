@@ -35,19 +35,18 @@ export default function TeamSection() {
   };
 
   return (
-    <section ref={container} className="relative md:py-16 overflow-hidden py-4 ">
+    <section ref={container} className="relative py-16 overflow-hidden  ">
       {/* 🔥 HEADING */}
       <motion.div
         style={{ y: headingY }}
         className="text-center mb-10 px-4 relative z-10"
       >
-        <p className="text-blue-600 text-3xl md:text-3xl font-bold mb-2">
+        <p className="text-secondary text-3xl md:text-3xl font-bold mb-2">
           Meet the team
         </p>
 
-        <h2 className="text-xl sm:text-3xl md:text-5xl font-bold text-gray-800 leading-tight">
-          Meet our Dedicated Team of Educators
-          <br /> and Innovators
+        <h2 className="text-xl sm:text-3xl md:text-5xl font-bold text-black-1 leading-tight">
+          Meet our Dedicated Team of Educators and Innovators
         </h2>
       </motion.div>
 
@@ -69,7 +68,7 @@ export default function TeamSection() {
       </button>
 
       {/* 🔥 CARDS */}
-      <div className="px-10">
+      <div className="px-16">
  <motion.div
         style={{ y: cardsY }}
         ref={scrollRef}

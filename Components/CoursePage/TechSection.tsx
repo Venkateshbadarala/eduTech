@@ -17,7 +17,7 @@ export default function TechSection({
       {/* 🔥 BACKGROUND GLOW */}
       <div
         className="
-          absolute top-0 left-1/2
+          absolute top-0 
           -translate-x-1/2
           w-[700px] h-[700px]
           
