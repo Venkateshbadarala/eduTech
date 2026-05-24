@@ -57,7 +57,7 @@ export default function StatsFloatingCards() {
       color: "from-purple-500 to-indigo-500",
     },
     {
-      value: 92,
+      value: 98,
       suffix: "%",
       label: "Placement Rate",
       sub: "Career success",

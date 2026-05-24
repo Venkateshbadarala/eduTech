@@ -10,6 +10,7 @@ import {
   CircleX,
   Sparkles,
   ImagePlus,
+  IndianRupee,
 } from "lucide-react";
 
 import toast from "react-hot-toast";
@@ -18,6 +19,7 @@ import toast from "react-hot-toast";
 type JobRole = {
   name: string;
   image: string;
+  packageRange: string;
 };
 
 type Props = {
@@ -31,6 +33,7 @@ type Props = {
 const EMPTY_ROLE: JobRole = {
   name: "",
   image: "",
+  packageRange: "",
 };
 
 export default function JobRolesEditor({
@@ -109,20 +112,22 @@ export default function JobRolesEditor({
     <div className="mt-10">
 
       {/* HEADER */}
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-          <Briefcase className="text-blue-600" />
+      <div className="mb-8">
+        <h2 className="text-3xl font-black text-gray-900 flex items-center gap-3">
+          <div className="p-3 rounded-2xl bg-blue-100 text-blue-600">
+            <Briefcase size={24} />
+          </div>
+
           Job Roles Editor
         </h2>
 
-        <p className="text-gray-500 text-sm mt-1">
-          Add career opportunities
-          students can apply for
+        <p className="text-gray-500 text-sm mt-3 ml-1">
+          Add career opportunities students can apply for
         </p>
       </div>
 
       {/* GRID */}
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-7">
 
         {roles.map((role, index) => (
           <div
@@ -131,43 +136,44 @@ export default function JobRolesEditor({
               relative
               bg-white
               border border-gray-100
-              rounded-3xl
+              rounded-[30px]
               p-6
               shadow-sm
-              hover:shadow-xl
+              hover:shadow-2xl
               transition-all duration-300
               overflow-hidden
+              group
             "
           >
 
-            {/* BG EFFECT */}
+            {/* HOVER BG */}
             <div
               className="
                 absolute inset-0
-                opacity-0 hover:opacity-100
-                transition
+                opacity-0 group-hover:opacity-100
+                transition duration-500
                 bg-gradient-to-br
                 from-blue-50
-                via-transparent
+                via-white
                 to-indigo-50
               "
             />
 
-            {/* REMOVE */}
+            {/* REMOVE BUTTON */}
             <button
               type="button"
               onClick={() =>
                 removeRole(index)
               }
               className="
-                absolute top-4 right-4
+                absolute top-5 right-5
                 text-red-500
                 hover:scale-110
                 transition
-                z-10
+                z-20
               "
             >
-              <CircleX />
+              <CircleX size={22} />
             </button>
 
             {/* CONTENT */}
@@ -177,12 +183,12 @@ export default function JobRolesEditor({
               <div
                 className="
                   inline-flex items-center gap-2
-                  bg-blue-50
-                  text-blue-600
-                  px-3 py-1
+                  bg-blue-100
+                  text-blue-700
+                  px-4 py-1.5
                   rounded-full
-                  text-xs font-semibold
-                  mb-5
+                  text-xs font-bold
+                  mb-6
                 "
               >
                 <Sparkles size={14} />
@@ -190,7 +196,7 @@ export default function JobRolesEditor({
               </div>
 
               {/* ROLE NAME */}
-              <div className="mb-4">
+              <div className="mb-5">
                 <label className="text-sm font-semibold text-gray-700 mb-2 block">
                   Job Role Name
                 </label>
@@ -205,19 +211,51 @@ export default function JobRolesEditor({
                       e.target.value
                     )
                   }
-                  placeholder="Digital Marketing Executive"
+                  placeholder="Data Analyst"
                   className="
                     w-full border border-gray-200
-                    rounded-2xl p-3
+                    rounded-2xl p-3.5
+                    bg-white
                     focus:ring-2
                     focus:ring-blue-400
                     outline-none
+                    transition
+                  "
+                />
+              </div>
+
+              {/* PACKAGE */}
+              <div className="mb-5">
+                <label className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                  <IndianRupee size={16} />
+                  Package Range
+                </label>
+
+                <input
+                  type="text"
+                  value={role.packageRange}
+                  onChange={(e) =>
+                    updateField(
+                      index,
+                      "packageRange",
+                      e.target.value
+                    )
+                  }
+                  placeholder="₹4 LPA - ₹12 LPA"
+                  className="
+                    w-full border border-gray-200
+                    rounded-2xl p-3.5
+                    bg-white
+                    focus:ring-2
+                    focus:ring-blue-400
+                    outline-none
+                    transition
                   "
                 />
               </div>
 
               {/* IMAGE URL */}
-              <div className="mb-4">
+              <div className="mb-5">
                 <label className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
                   <ImagePlus size={16} />
                   Image URL
@@ -233,13 +271,15 @@ export default function JobRolesEditor({
                       e.target.value
                     )
                   }
-                  placeholder="https://example.com/image.png"
+                  placeholder="https://example.com/job-role-image.png"
                   className="
                     w-full border border-gray-200
-                    rounded-2xl p-3
+                    rounded-2xl p-3.5
+                    bg-white
                     focus:ring-2
                     focus:ring-blue-400
                     outline-none
+                    transition
                   "
                 />
               </div>
@@ -247,36 +287,50 @@ export default function JobRolesEditor({
               {/* IMAGE PREVIEW */}
               <div
                 className="
-                  border-2 border-dashed
-                  border-gray-200
-                  rounded-2xl
+                  relative
+                  border border-gray-200
+                  rounded-3xl
                   overflow-hidden
-                  bg-gray-50
-                  h-52
+                  bg-gradient-to-br
+                  from-gray-50
+                  to-gray-100
+                  h-56
                   flex items-center justify-center
+                  shadow-inner
                 "
               >
+
                 {role.image ? (
                   <img
                     src={role.image}
                     alt={role.name}
                     className="
                       w-full h-full
-                      object-contain    
+                      object-cover
+                      transition duration-300
+                      group-hover:scale-105
                     "
                   />
                 ) : (
                   <div className="text-center text-gray-400">
-                    <ImagePlus
-                      size={34}
-                      className="mx-auto mb-2"
-                    />
+                    <div
+                      className="
+                        w-16 h-16
+                        rounded-full
+                        bg-blue-100
+                        text-blue-500
+                        flex items-center justify-center
+                        mx-auto mb-4
+                      "
+                    >
+                      <ImagePlus size={28} />
+                    </div>
 
-                    <p className="font-medium">
+                    <p className="font-semibold text-gray-600">
                       Image Preview
                     </p>
 
-                    <p className="text-sm">
+                    <p className="text-sm mt-1">
                       Paste image URL
                     </p>
                   </div>
@@ -292,19 +346,19 @@ export default function JobRolesEditor({
         type="button"
         onClick={addRole}
         className="
-          mt-6
+          mt-8
           bg-gradient-to-r
           from-blue-600
           to-indigo-600
           hover:from-blue-700
           hover:to-indigo-700
           text-white
-          px-6 py-3
+          px-7 py-3.5
           rounded-2xl
           shadow-lg
-          hover:shadow-xl
-          transition
-          font-medium
+          hover:shadow-2xl
+          transition-all duration-300
+          font-semibold
         "
       >
         + Add Job Role

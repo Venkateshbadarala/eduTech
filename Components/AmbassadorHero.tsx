@@ -132,8 +132,8 @@ export default function AmbassadorHero() {
           animate={{ opacity: 1, y: 0 }}
           className="
             inline-flex items-center gap-3
-            border border-white/10
-            bg-white/10 backdrop-blur-xl
+              border border-white/10
+              bg-white/10 backdrop-blur-xl
             rounded-full
             px-6 py-3
             md:mb-10 mb-5

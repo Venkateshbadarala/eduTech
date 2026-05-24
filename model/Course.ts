@@ -92,12 +92,13 @@ const CourseSchema = new mongoose.Schema(
     ],
 
     // 🔹 JOB ROLES
-    jobRoles: [
-      {
-        name: String,
-        image: String,
-      },
-    ],
+  jobRoles: [
+  {
+    name: String,
+    image: String,
+    packageRange: String,
+  },
+],
 
     // 🔹 PRICING
     pricing: [

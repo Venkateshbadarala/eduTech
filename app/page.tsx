@@ -50,15 +50,16 @@ export default function Home() {
         </div>
       )}
       <Hero />
+      <Companies />
       <StatsFloatingCards />
       <TrendingCourses />
       <WhyChooseSection />
       <LearningJourney />
-      <Companies />
+      
       <ElitePacks/>
       <TeamSection />
       <Testimonials />
-      <FAQSection />
+      
     </>
   );
 }

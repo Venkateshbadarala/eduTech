@@ -48,7 +48,7 @@ export default function Home() {
   return (
     <div
       ref={container}
-      className="relative w-full  overflow-hidden from-light via-white to-primary-light  "
+      className="relative w-full  overflow-hidden   "
     >
       {/* 🔵 BACKGROUND GLOW */}
       <div className="absolute inset-0">
@@ -76,17 +76,17 @@ export default function Home() {
       />
 
       {/* 🔵 DOTTED CIRCLE */}
-      <motion.div
+      {/* <motion.div
         ref={dotCircleRef}
         style={{ y: bubbleY2 }}
         animate={{ rotate: 360 }}
         transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
         className="absolute top-32 left-10 w-28 h-28 border-2 border-dashed border-blue-300 rounded-full"
-      />
+      /> */}
 
       {/* 🔥 HERO */}
       <div className="py-16 flex items-center flex-col justify-center ">
-        <div className="lg:max-w-[calc(100vw-100px)] xl:max-w-[calc(100vw-200px)] mx-auto grid lg:grid-cols-2 gap-6 items-center px-6 mt-5 grid-cols-1 justify-center">
+        <div className="lg:max-w-[calc(100vw)] xl:max-w-[calc(100vw-200px)] mx-auto grid lg:grid-cols-2 gap-6 items-center px-6 mt-5 grid-cols-1 justify-center">
           {/* LEFT */}
           <motion.div
             ref={heroContentRef}
@@ -147,7 +147,7 @@ export default function Home() {
               alt="Hero Image"
               width={400}
               height={400}
-              className="mix-blend-multiply w-full relative z-10"
+              className="mix-blend-multiply w-full relative "
             />
 
             {/* 💎 GLASS SOCIAL */}

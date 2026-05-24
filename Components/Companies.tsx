@@ -10,8 +10,12 @@ import meta from "@/public/Companies/meta.png";
 import microsoft from "@/public/Companies/Microsoft.png";
 import oracle from "@/public/Companies/oracle.png";
 import unity from "@/public/Companies/Unity.png";
+import EY from "@/public/Companies/EY.png";
+import IBM from "@/public/Companies/IBM.png";
+import mindtree from "@/public/Companies/mindtree.jpg";
+import zoho from "@/public/Companies/zoho.png";
 
-const companies = [amazon, hcl, meta, microsoft, oracle, unity];
+const companies = [amazon, hcl, meta, microsoft, oracle, unity, EY, IBM, mindtree, zoho];
 
 export default function Companies() {
   const container = useRef<HTMLDivElement | null>(null);
@@ -23,7 +27,11 @@ export default function Companies() {
 
   // 🌊 PARALLAX ONLY FOR HEADING
   const headingY = useTransform(scrollYProgress, [0, 1], ["0%", "-40%"]);
-  const headingOpacity = useTransform(scrollYProgress, [0, 0.3, 1], [1, 1, 0.6]);
+  const headingOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 1],
+    [1, 1, 0.6],
+  );
 
   return (
     <section
@@ -43,9 +51,10 @@ export default function Companies() {
         </h2>
 
         <p className="text-gray-500 mt-5 max-w-6xl mx-auto text-md md:text-lg leading-relaxed relative">
-          Our learners are advancing into dynamic professional environments where their expertise, adaptability, and
-industry-ready capabilities contribute to meaningful organizational growth and long-term career success.
-
+          Our learners are advancing into dynamic professional environments
+          where their expertise, adaptability, and industry-ready capabilities
+          contribute to meaningful organizational growth and long-term career
+          success.
         </p>
       </motion.div>
 

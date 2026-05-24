@@ -79,14 +79,14 @@ export default function Home({
               width={300}
               height={200}
               alt="Course"
-              className="w-full h-full object-cover mix-blend-lighten opacity-90"
+              className="w-full h-full object-cover "
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-(--color-black-1) via-(--color-black-1)/50 to-(--color-secondary)/60" />
+            <div className="absolute inset-0 bg-gradient-to-br from-(--color-black-1)/10 to-(--color-secondary)/10" />
 
             {/* TEXT */}
-            <div className="absolute top-6 left-6 text-(--color-gray-1)">
+            <div className="absolute top-6 left-6 text-white">
               
 
               <h1 className="text-4xl md:text-5xl font-bold leading-tight">

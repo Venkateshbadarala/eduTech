@@ -14,11 +14,7 @@ const page = (props: Props) => {
     <div>
         <AboutSection/>
         <WhyChooseSection />
-              <LearningJourney />
-              <Companies />
-              <TeamSection />
-              <Testimonials />
-              <FAQSection />
+        
     </div>
   )
 }

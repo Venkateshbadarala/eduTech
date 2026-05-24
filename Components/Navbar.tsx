@@ -13,27 +13,147 @@ import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 
 import Logo from "@/public/logo.png";
-import { HamburgerIcon } from "@/constants/svgIcons";
+import { DownIcon, HamburgerIcon } from "@/constants/svgIcons";
 import AuthModal from "./AuthModal";
 
-import { LogOutIcon, User, Home, Info, Briefcase, User2 } from "lucide-react";
+import {
+  LogOutIcon,
+  User,
+  Home,
+  Info,
+  Briefcase,
+  User2,
+  Layers3,
+  Building2,
+} from "lucide-react";
 
 interface NavbarProps {
   onOpenSidebar: () => void;
 }
 
-const baseNavItems = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Careers", href: "/careers" },
-  { label: "Ambassador", href: "/ambassador" },
+// 🔥 DESKTOP NAV ITEMS WITH DROPDOWNS
+const navItems = [
+  {
+    label: "Home",
+    href: "/",
+  },
+
+  {
+    label: "About",
+    href: "/about",
+  },
+
+  {
+    label: "Career",
+    dropdown: [
+      {
+        label: "Instructor",
+        href: "/careers",
+      },
+
+      {
+        label: "Ambassador",
+        href: "/ambassador",
+      },
+    ],
+  },
+
+  {
+    label: "Cornixe X Zoho",
+    href: "/zoho",
+  },
+
+  {
+    label: "Elite Packs",
+    dropdown: [
+      {
+        label: "TECH STARTER PACK",
+        href: "/tech-starter-pack",
+      },
+
+      {
+        label: "MBA LITE PACK",
+        href: "/mba-lite-pack",
+      },
+
+      {
+        label: "MAKE YOUR OWN PACK",
+        href: "/custom-pack",
+      },
+      {
+        label: "GOLDEN PASS",
+        href: "/golden-pass",
+      },
+    ],
+  },
+];
+
+const mobileNavItems = [
+  {
+    label: "Home",
+    href: "/",
+    icon: <Home size={18} />,
+  },
+
+  {
+    label: "About",
+    href: "/about",
+    icon: <Info size={18} />,
+  },
+
+  {
+    label: "Career",
+    icon: <Briefcase size={18} />,
+    dropdown: [
+      {
+        label: "Instructor",
+        href: "/careers",
+      },
+
+      {
+        label: "Ambassador",
+        href: "/ambassador",
+      },
+    ],
+  },
+
+  {
+    label: "Zoho",
+    href: "/zoho",
+    icon: <Building2 size={18} />,
+  },
+
+  {
+    label: "Elite",
+    icon: <Layers3 size={18} />,
+    dropdown: [
+      {
+        label: "TECH STARTER PACK",
+        href: "/tech-starter-pack",
+      },
+
+      {
+        label: "MBA LITE PACK",
+        href: "/mba-lite-pack",
+      },
+
+      {
+        label: "MAKE YOUR OWN PACK",
+        href: "/custom-pack",
+      },
+      {
+        label: "GOLDEN PASS",
+        href: "/golden-pass",
+      },
+    ],
+  },
 ];
 
 const Navbar = ({ onOpenSidebar }: NavbarProps) => {
   const { scrollY } = useScroll();
   const pathname = usePathname();
   const { data: session } = useSession();
-
+  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
@@ -67,14 +187,6 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // 🔥 Mobile nav with icons
-  const mobileNav = [
-    { label: "Home", href: "/", icon: <Home size={18} /> },
-    { label: "About", href: "/about", icon: <Info size={18} /> },
-    { label: "Careers", href: "/careers", icon: <Briefcase size={18} /> },
-    { label: "Ambassador", href: "/ambassador", icon: <User2 size={18} /> },
-  ];
-
   const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
   const isAdmin = session?.user?.email === adminEmail;
 
@@ -107,36 +219,122 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
             <button
               type="button"
               onClick={onOpenSidebar}
-              className=" rounded-full md:hidden items-center gap-1 sm:flex "
+              className="
+    flex md:hidden
+    items-center gap-2
+    border border-primary
+    rounded-full
+    px-1.5 py-1.5
+    text-[14px] font-medium
+    hover:bg-primary
+    hover:text-white
+    transition-all duration-300
+  "
             >
               <HamburgerIcon />
-            </button>
-            <div className="hidden md:flex gap-5 ">
-              {baseNavItems.map((item) => {
-                const isActive = pathname === item.href;
 
+              <span>Programs</span>
+            </button>
+            <div className="hidden lg:flex items-center gap-6">
+              {navItems.map((item, index) => {
+                // ✅ DROPDOWN MENU
+                if (item.dropdown) {
+                  return (
+                    <div key={index} className="relative group">
+                      {/* MAIN BUTTON */}
+                      <button
+                        className="
+              flex items-center gap-1
+              text-[15px]
+              font-medium
+              text-gray-700
+              hover:text-blue-600
+              transition
+              
+            "
+                      >
+                        {item.label}
+
+                        <span className="text-xs mt-[2px]">
+                          <DownIcon />
+                        </span>
+                      </button>
+
+                      {/* DROPDOWN BOX */}
+                      <div
+                        className="
+              absolute top-full left-0
+              mt-3
+              min-w-[240px]
+              bg-white
+              border border-gray-100
+              rounded-2xl
+              shadow-2xl
+              opacity-0 invisible
+              group-hover:opacity-100
+              group-hover:visible
+              transition-all duration-300
+              overflow-hidden
+              z-50
+            "
+                      >
+                        {item.dropdown.map((drop, i) => (
+                          <Link
+                            key={i}
+                            href={drop.href}
+                            
+                            className="
+                    block px-5 py-4
+                    text-sm font-medium
+                    text-gray-700
+                    hover:bg-blue-50
+                    hover:text-blue-600
+                    transition
+                    border-b border-gray-100
+                    last:border-b-0
+                  "
+                          >
+                            {drop.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+
+                // ✅ NORMAL LINK
                 return (
                   <Link
                     key={item.href}
-                    href={item.href}
-                    className={`transition text-[16px] ${
-                      isActive
-                        ? "text-blue-600 font-bold"
-                        : "text-gray-700 hover:text-blue-600"
-                    }`}
+                    href={item.href!}
+                    
+                    className={`
+          text-[15px]
+          font-medium
+          transition-all duration-300
+          hover:text-blue-600
+          ${pathname === item.href ? "text-blue-600" : "text-gray-700"}
+        `}
                   >
                     {item.label}
                   </Link>
                 );
               })}
+
+              {/* ADMIN */}
               {isAdmin && (
                 <Link
                   href="/admin"
-                  className={`transition text-[16px] ${
-                    pathname === "/admin"
-                      ? "text-blue-600 font-bold"
-                      : "text-gray-700 hover:text-blue-600"
-                  }`}
+                  className={`
+        text-[15px]
+        font-medium
+        transition-all duration-300
+        ${
+          pathname === "/admin"
+            ? "text-blue-600"
+            : "text-gray-700 hover:text-blue-600"
+        }
+      `}
                 >
                   Dashboard
                 </Link>
@@ -196,34 +394,139 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
       </motion.nav>
 
       {/* ================= MOBILE FLOATING NAV ================= */}
-      <div className="fixed bottom-3 left-1/2 -translate-x-1/2 w-[65%] max-w-md bg-white/90 backdrop-blur-md shadow-xl rounded-2xl px-4 py-2 flex justify-between items-center z-50 md:hidden">
-        {mobileNav.map((item) => {
-          const isActive = pathname === item.href;
+      <div
+        className="
+    fixed bottom-4
+    left-1/2
+    -translate-x-1/2
+    w-[95%]
+    max-w-md
+    bg-white/95
+    backdrop-blur-xl
+    border border-gray-200
+    shadow-2xl
+    rounded-3xl
+    px-4 py-3
+    z-50
+    lg:hidden
+  "
+      >
+        <div className="flex justify-between items-center">
+          {mobileNavItems.map((item, index) => {
+            // 🔥 DROPDOWN ITEM
+            if (item.dropdown) {
+              return (
+                <div key={index} className="relative">
+                  {/* BUTTON */}
+                  <button
+                    onClick={() =>
+                      setOpenDropdown(openDropdown === index ? null : index)
+                    }
+                    className="
+              flex flex-col items-center
+              text-xs
+            "
+                  >
+                    <div
+                      className="
+                w-10 h-10 rounded-2xl
+                flex items-center justify-center
+                text-gray-500
+              "
+                    >
+                      {item.icon}
+                    </div>
 
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="flex flex-col items-center text-xs"
-            >
-              <div
-                className={`w-9 h-9 flex items-center justify-center rounded-full transition ${
-                  isActive ? "bg-secondary text-white scale-110" : "text-gray-2"
-                }`}
-              >
-                {item.icon}
-              </div>
+                    <span
+                      className="
+                mt-1 text-[11px]
+                flex items-center gap-1
+              "
+                    >
+                      {item.label}
 
-              <span
-                className={`mt-1 ${
-                  isActive ? "text-primary font-semibold" : "text-gray-2"
-                }`}
+                      <span
+                        className={`
+                  text-[9px]
+                  transition
+                  ${openDropdown === index ? "rotate-180" : ""}
+                `}
+                      >
+                        <DownIcon />
+                      </span>
+                    </span>
+                  </button>
+
+                  {/* DROPDOWN */}
+                  {openDropdown === index && (
+                    <div
+                      className="
+                absolute bottom-18 -left-9
+                -translate-x-1/2
+                w-48
+                bg-white
+                border border-gray-100
+                rounded-2xl
+                shadow-2xl
+                overflow-hidden
+                z-50
+                animate-in fade-in zoom-in-95
+              "
+                    >
+                      {item.dropdown.map((drop, i) => (
+                        <Link
+                          key={i}
+                          href={drop.href}
+                          
+                          className="
+                      block px-4 py-3
+                      text-sm
+                      hover:bg-blue-50
+                      hover:text-blue-600
+                      border-b border-gray-100
+                      last:border-b-0
+                    "
+                          onClick={() => setOpenDropdown(null)}
+                        >
+                          {drop.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
+            // 🔥 NORMAL ITEM
+            return (
+              <Link
+                key={index}
+                href={item.href!}
+                
+                className="
+          flex flex-col items-center
+          text-xs
+        "
               >
-                {item.label}
-              </span>
-            </Link>
-          );
-        })}
+                <div
+                  className={`
+            w-10 h-10 rounded-2xl
+            flex items-center justify-center
+            ${
+              pathname === item.href
+                ? "bg-blue-600 text-white"
+                : "text-gray-500"
+            }
+          `}
+                >
+                  {item.icon}
+                </div>
+
+                <span className="mt-1 text-[11px]">{item.label}</span>
+              </Link>
+            );
+          })}
+        </div>
       </div>
 
       {/* AUTH MODAL */}

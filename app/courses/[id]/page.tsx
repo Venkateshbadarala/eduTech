@@ -263,13 +263,7 @@ export default function Page() {
           <PricingSection pricing={course.pricing} />
         </section>
       )}
-      <div className="">
-        <LearningJourney />
-        <Companies />
-        <TeamSection />
-        <Testimonials />
-        <FAQSection />
-      </div>
+      
     </div>
   );
 }

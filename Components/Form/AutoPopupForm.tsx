@@ -16,9 +16,12 @@ export default function AutoPopupForm() {
   }, []);
 
   return (
-    <StudentQueryForm
+    <div className="blur-3xl">
+<StudentQueryForm
       isOpen={open}
       onClose={() => setOpen(false)}
     />
+    </div>
+    
   );
 }
