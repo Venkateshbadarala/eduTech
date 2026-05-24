@@ -23,6 +23,7 @@ const packs = [
       "Live Projects",
       "Career Guidance",
     ],
+    link: "/tech-starter-pack",
   },
 
   {
@@ -38,6 +39,7 @@ const packs = [
       "Case Studies",
       "Industry Mentorship",
     ],
+    link: "/mba-lite-pack",
   },
 
   {
@@ -53,6 +55,7 @@ const packs = [
       "Personal Mentor",
       "Custom Roadmap",
     ],
+    link: "/custom-pack",
   },
 
   {
@@ -68,6 +71,7 @@ const packs = [
       "Exclusive Workshops",
       "Priority Placement Help",
     ],
+    link: "/golden-pass",
   },
 ];
 
@@ -113,6 +117,7 @@ export default function ElitePacks() {
                 shadow-xl ${pack.glow}
                 hover:-translate-y-3
                 transition-all duration-500
+                cursor-pointer
               `}
             >
 
@@ -184,6 +189,7 @@ export default function ElitePacks() {
 
                 {/* BUTTON */}
                 <button
+                  onClick={() => window.location.href = pack.link}
                   className={`
                     mt-10 w-full py-3 rounded-2xl
                     text-white font-semibold
@@ -191,6 +197,7 @@ export default function ElitePacks() {
                     hover:shadow-2xl
                     transition-all duration-300
                     flex items-center justify-center gap-2
+                    cursor-pointer
                   `}
                 >
                   select Pack
