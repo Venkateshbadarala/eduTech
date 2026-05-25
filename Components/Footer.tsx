@@ -175,8 +175,8 @@ export default function Footer() {
             <div className="flex items-start gap-2 text-sm text-(--color-gray-1)">
               <MapPin size={16} className="mt-1" />
               <p>
-                5, 14th Main Road, 15th Cross, Sector 4, HSR Layout, Bangalore
-                South, Karnataka – 560102, India
+                Plot No.208,3rd Link Street, Nehru Nagar, Kottivakkam (OMR),
+                Chennai – 600 096
               </p>
             </div>
           </div>
@@ -339,8 +339,8 @@ export default function Footer() {
             <div className="flex items-start gap-2 text-sm text-(--color-gray-1)">
               <MapPin size={28} className="mt-1" />
               <p>
-                5, 14th Main Road, 15th Cross, Sector 4, HSR Layout, Bangalore
-                South, Karnataka – 560102, India
+                Plot No.208,3rd Link Street, Nehru Nagar, Kottivakkam (OMR),
+                Chennai – 600 096
               </p>
             </div>
           </div>

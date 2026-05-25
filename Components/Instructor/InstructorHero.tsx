@@ -85,9 +85,10 @@ export default function InstructorHero() {
               max-w-2xl
             "
           >
-            Empower thousands of learners through engaging online classes,
-            mentorship sessions, and practical learning experiences. Build your
-            authority, grow your audience, and make a real impact.
+          Inspire and transform aspiring learners through immersive learning
+experiences, expert mentorship, and industry-oriented education.
+Establish your professional influence, expand your learning
+community, and create a lasting impact in the future of education.
           </p>
 
           {/* 🔥 BUTTONS */}

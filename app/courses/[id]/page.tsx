@@ -22,6 +22,7 @@ import { Sparkles } from "lucide-react";
 import CapstoneProjectsSection from "@/Components/CoursePage/CapstoneProjectsSection";
 import JobRolesEditor from "@/Components/Admin/JobRolesEditor";
 import JobRolesSection from "@/Components/CoursePage/JobRolesSection";
+import CertificateShowcase from "@/Components/Program/CertificateShowcase";
 
 const emptyCourse = {
   title: "",
@@ -264,6 +265,9 @@ export default function Page() {
         </section>
       )}
       
+       <section className=" text-center px-6">
+        <CertificateShowcase/>
+        </section>
     </div>
   );
 }

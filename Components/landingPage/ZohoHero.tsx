@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import  zoho from "@/public/Companies/zoho.png";
-
+import Logo from "@/public/logo.png";
 import { PiCheckCircleFill } from "react-icons/pi";
+import { Link } from "lucide-react";
 
 export default function ZohoHero() {
   return (
@@ -60,12 +61,7 @@ export default function ZohoHero() {
             "
           >
 
-            <img
-              src={zoho.src}
-              alt="Zoho"
-             
-              className="object-contain h-12 w-12 md:h-32 md:w-32" 
-            />
+            
 
             
 
@@ -120,7 +116,21 @@ export default function ZohoHero() {
             real-world projects and practical
             implementation.
           </p>
-
+            <div className="mt-10 flex items-center justify-center gap-6">
+              <img
+              src={Logo.src}
+              alt="Zoho"
+             
+              className="object-contain h-28 w-28 md:h-62 md:w-62" 
+            />
+            <span><Link className="h-10 w-10 md:h-12 md:w-12"/></span>
+             <img
+              src={zoho.src}
+              alt="Zoho"
+             
+              className="object-contain h-28 w-28 md:h-62 md:w-62" 
+            />
+            </div>
           {/* STATS */}
           <div
             className="

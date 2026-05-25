@@ -105,7 +105,7 @@ export default function TrendingCourses() {
         </h2>
 
         <p className="text-gray-500 mt-4 max-w-xl mx-auto">
-          Hand-picked trending courses based on industry demand 🚀
+          Discover high-impact programs shaping the future workforce 🚀
         </p>
       </motion.div>
 

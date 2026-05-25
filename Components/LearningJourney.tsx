@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import Journey from "@/public/Journey1.png";
+import Journey from "@/public/journey3.png";
 
 export default function LearningJourney() {
   const container = useRef<HTMLDivElement | null>(null);
@@ -68,7 +68,7 @@ export default function LearningJourney() {
         viewport={{ once: true }}
         className="text-gray-500 mt-5 max-w-6xl mx-auto text-md md:text-lg leading-relaxed relative z-10"
       >
-        True empowerment goes beyond earning a degree — it begins with vision.
+        True empowerment goes beyond earning a degree - it begins with vision.
         At Cornixe, we combine industry focused learning with globally recognized
         certifications and real-world expertise, empowering future professionals
         to excel in leading global MNCs.
@@ -81,7 +81,7 @@ export default function LearningJourney() {
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="flex justify-center  relative z-10"
+        className="flex justify-center  relative z-10 mt-4"
       >
         <div className="relative">
           {/* Glow behind image */}
@@ -92,7 +92,7 @@ export default function LearningJourney() {
             alt="Learning Journey"
             width={1000}
             height={500}
-            className=" relative"
+            className=" relative mix-blend-multiply"
           />
         </div>
       </motion.div>

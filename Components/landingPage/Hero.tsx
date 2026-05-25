@@ -93,11 +93,11 @@ export default function Home() {
             style={{ y: textY, opacity: textOpacity }}
           >
             <div className="mt-4">
-              <span className="bg-(--color-light) text-(--color-primary)  px-3 py-1 rounded-full text-sm font-bold">
-                HI, THERE
+              <span className="bg-(--color-light) text-(--color-primary)  px-1.5   py-1 rounded-full text-sm font-bold ">
+                BUILD SKILLS FOR TOMORROW
               </span>
 
-              <h1 className="font-bold  leading-tight text-black-1">
+              <h1 className="font-bold  leading-tight text-black-1 mt-2">
                 <div>
                   <p className="uppercase md:text-4xl text-3xl">Cornixe</p>
                   <p className="md:text-4xl text-2xl">
@@ -112,12 +112,12 @@ export default function Home() {
 
               <p className="text-gray-500 mt-4 ">
                 At Cornixe, we believe that every student has a unique
-                professional "Vision." Our role is to provide the empowerment to
+                professional <span className="font-bold text-black">"Vision"</span>. Our role is to provide the empowerment to
                 achieve it. Guided by elite professional trainers, Cornixe
                 serves as the strategic backbone for the next generation of
                 industry giants. Through high-impact technical skilling,
                 internships, and institutional partnerships, we ensure our
-                learners are not just participants in the industry—they are the
+                learners are not just participants in the industry - they are the
                 ones leading it. Join the Evolution, Whether you are a student
                 looking to sharpen your edge or an institution aiming to elevate
                 your curriculum, Cornixe is your partner in progress. Let’s turn

@@ -58,7 +58,7 @@ export default function ZohoCertifiedPrograms() {
     <section
       className="
         relative overflow-hidden
-        px-6 md:py-10 py-2
+        px-6 md:py-16 py-8
       "
     >
 
@@ -122,7 +122,7 @@ export default function ZohoCertifiedPrograms() {
               src={zoho.src}
               alt="Zoho"
               className="
-                object-contain h-12 w-12 md:h-32 md:w-32
+                object-contain h-12 w-12 md:h-12 md:w-12
               "
             />
 

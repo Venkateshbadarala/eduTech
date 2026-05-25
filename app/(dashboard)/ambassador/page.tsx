@@ -14,7 +14,7 @@ const page = (props: Props) => {
         <CampusAmbassadorSection/>
         <AmbassadorBenefits/>
         <JourneySelectionSection/>
-        <FAQSection/>
+        
     </div>
   )
 }

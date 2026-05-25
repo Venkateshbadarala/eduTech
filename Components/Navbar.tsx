@@ -25,6 +25,8 @@ import {
   User2,
   Layers3,
   Building2,
+  ContactIcon,
+  BotMessageSquare,
 } from "lucide-react";
 
 interface NavbarProps {
@@ -37,33 +39,7 @@ const navItems = [
     label: "Home",
     href: "/",
   },
-
-  {
-    label: "About",
-    href: "/about",
-  },
-
-  {
-    label: "Career",
-    dropdown: [
-      {
-        label: "Instructor",
-        href: "/careers",
-      },
-
-      {
-        label: "Ambassador",
-        href: "/ambassador",
-      },
-    ],
-  },
-
-  {
-    label: "Cornixe X Zoho",
-    href: "/zoho",
-  },
-
-  {
+   {
     label: "Elite Packs",
     dropdown: [
       {
@@ -86,24 +62,16 @@ const navItems = [
       },
     ],
   },
-];
-
-const mobileNavItems = [
-  {
-    label: "Home",
-    href: "/",
-    icon: <Home size={18} />,
-  },
 
   {
-    label: "About",
-    href: "/about",
-    icon: <Info size={18} />,
+    label: "Cornixe X Zoho",
+    href: "/zoho",
   },
+
+
 
   {
     label: "Career",
-    icon: <Briefcase size={18} />,
     dropdown: [
       {
         label: "Instructor",
@@ -117,12 +85,20 @@ const mobileNavItems = [
     ],
   },
 
-  {
-    label: "Zoho",
-    href: "/zoho",
-    icon: <Building2 size={18} />,
+    {
+    label: "About",
+    href: "/about",
   },
 
+ 
+];
+
+const mobileNavItems = [
+  {
+    label: "Home",
+    href: "/",
+    icon: <Home size={18} />,
+  },
   {
     label: "Elite",
     icon: <Layers3 size={18} />,
@@ -147,6 +123,38 @@ const mobileNavItems = [
       },
     ],
   },
+
+   {
+    label: "Zoho",
+    href: "/zoho",
+    icon: <Building2 size={18} />,
+  },
+
+ 
+
+  {
+    label: "Career",
+    icon: <Briefcase size={18} />,
+    dropdown: [
+      {
+        label: "Instructor",
+        href: "/careers",
+      },
+
+      {
+        label: "Ambassador",
+        href: "/ambassador",
+      },
+    ],
+  },
+
+  {
+    label: "About",
+    href: "/about",
+    icon: <Info size={18} />,
+  },
+
+  
 ];
 
 const Navbar = ({ onOpenSidebar }: NavbarProps) => {
@@ -202,7 +210,7 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
           {/* LOGO */}
           <div className="flex items-center gap-6 ">
             <Link href="/" className="flex items-center gap-2">
-              <Image src={Logo} alt="Logo" width={50} height={50} />
+              <Image src={Logo} alt="Logo" width={60} height={60} />
             </Link>
 
             <button
@@ -389,6 +397,15 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
                 </AnimatePresence>
               </div>
             )}
+            <span>|</span>
+              <button
+            type="button"
+            className="bg-gradient-to-r from-primary to-secondary text-white px-2.5 py-2 rounded-full"
+          >  
+          <p className="hidden md:block">Contact Us</p>
+          <p className="md:hidden"><BotMessageSquare size={20}/></p>
+            
+          </button>
           </div>
         </div>
       </motion.nav>
@@ -399,7 +416,7 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
     fixed bottom-4
     left-1/2
     -translate-x-1/2
-    w-[95%]
+    w-[90%]
     max-w-md
     bg-white/95
     backdrop-blur-xl
@@ -461,7 +478,7 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
                   {openDropdown === index && (
                     <div
                       className="
-                absolute bottom-18 -left-9
+                absolute bottom-18 left-9
                 -translate-x-1/2
                 w-48
                 bg-white

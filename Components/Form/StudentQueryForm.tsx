@@ -224,9 +224,9 @@ const handleSubmit = async (
             </div>
 
             <h2 className="text-2xl md:text-4xl font-black text-(--color-black-1) mt-6 leading-tight">
-              Launch Your Career With{" "}
+              SHAPE YOUR CAREER WITH {" "}
               <span className="bg-gradient-to-r from-(--color-primary) to-(--color-secondary) text-transparent bg-clip-text">
-                Cornixe
+                CORNIXE
               </span>
             </h2>
 

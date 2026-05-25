@@ -118,9 +118,9 @@ export default function InstructorBenefits() {
               leading-relaxed
             "
           >
-            Share your knowledge, inspire learners worldwide, and
-            grow your career with a modern teaching platform designed
-            for passionate educators.
+           Transform your expertise into impactful learning experiences and
+connect with ambitious learners through an innovative and future
+focused education platform.
           </p>
         </motion.div>
 
