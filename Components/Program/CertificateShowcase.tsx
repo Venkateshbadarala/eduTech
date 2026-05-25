@@ -16,6 +16,7 @@ import trainingCertificate from "@/public/Training Sample Certificate-1.png";
 const certificates = [
   {
     title: "Internship Certificate",
+
     subtitle:
       "Industry internship completion certificate with verification and recognition.",
 
@@ -26,6 +27,7 @@ const certificates = [
 
   {
     title: "Training Certificate",
+
     subtitle:
       "Professional training completion certificate for skill enhancement programs.",
 
@@ -48,24 +50,16 @@ export default function CertificateShowcase() {
       className="
         relative overflow-hidden
         py-20 md:py-28
-        px-6 md:px-12 lg:px-20
       "
     >
-      {/* GRID */}
-      <div
-        className="
-          absolute inset-0 opacity-30
-          bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)]
-          bg-[size:80px_80px]
-        "
-      />
+     
 
       {/* BLURS */}
       <div className="absolute top-10 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl" />
 
       <div className="absolute bottom-10 right-10 w-72 h-72 bg-secondary/20 rounded-full blur-3xl" />
 
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* HEADER */}
         <motion.div
           initial={{
@@ -137,6 +131,7 @@ export default function CertificateShowcase() {
             </span>
           </h2>
 
+          {/* DESCRIPTION */}
           <p
             className="
               mt-6
@@ -189,31 +184,17 @@ export default function CertificateShowcase() {
           className="
             mt-20
             grid lg:grid-cols-2
-            gap-10
+            gap-10 
           "
         >
           {certificates.map(
             (certificate, index) => (
               <motion.div
                 key={index}
-                initial={{
-                  opacity: 0,
-                  y: 40,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  duration: 0.7,
-                  delay: index * 0.2,
-                }}
                 whileHover={{
-                  y: -10,
-                }}
+                    y: -8,
+                    scale: 1.02,
+                  }}
                 className="
                   group
                   relative overflow-hidden
@@ -224,7 +205,8 @@ export default function CertificateShowcase() {
                   bg-white/10
                   backdrop-blur-2xl
 
-                  shadow-[0_20px_80px_rgba(0,0,0,0.12)]
+                  shadow-[0_10px_40px_rgba(59,130,246,0.08)]
+
 
                   transition-all duration-500
                 "
@@ -250,7 +232,7 @@ export default function CertificateShowcase() {
                     absolute top-0 left-[-100%]
                     w-full h-full
 
-                    bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.12),transparent)]
+                    bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.15),transparent)]
 
                     group-hover:left-[100%]
 
@@ -283,19 +265,19 @@ export default function CertificateShowcase() {
                   {/* FLOAT BADGE */}
                   <div
                     className="
-                      absolute top-10 left-10
-
+                      absolute md:top-10 md:left-10
+                   top-4 left-4
                       flex items-center gap-2
 
                       px-4 py-2
                       rounded-full
 
-                      bg-white/90
+                      bg-white/80
                       backdrop-blur-xl
 
                       text-black-1
-                      text-sm font-semibold
-
+                      md:text-sm font-semibold
+                       text-xs                 
                       shadow-lg
                     "
                   >
@@ -364,6 +346,7 @@ export default function CertificateShowcase() {
                       mt-8
                       flex items-center justify-between
                       gap-4
+                      flex-wrap
                     "
                   >
                     <div
@@ -372,6 +355,8 @@ export default function CertificateShowcase() {
                         rounded-2xl
 
                         bg-primary/10
+                        border border-primary/10
+
                         text-primary
 
                         text-sm font-semibold
@@ -386,6 +371,8 @@ export default function CertificateShowcase() {
                         rounded-2xl
 
                         bg-secondary/10
+                        border border-secondary/10
+
                         text-secondary
 
                         text-sm font-semibold
