@@ -143,7 +143,7 @@ export default function CertificateShowcase() {
               max-w-3xl mx-auto
               text-lg md:text-xl
               leading-relaxed
-              text-gray-1
+              text-gray-2
             "
           >
             Earn beautifully designed certificates
@@ -330,7 +330,7 @@ export default function CertificateShowcase() {
                         className="
                           mt-4
                           leading-relaxed
-                          text-gray-1
+                          text-gray-2
                         "
                       >
                         {certificate.subtitle}

@@ -397,13 +397,13 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
                 </AnimatePresence>
               </div>
             )}
-            <span>|</span>
+            <span className="hidden md:block">|</span>
               <button
             type="button"
-            className="bg-gradient-to-r from-primary to-secondary text-white px-2.5 py-2 rounded-full"
+            className="bg-gradient-to-r from-primary to-secondary text-white px-2.5 py-2 rounded-full hidden md:block"
           >  
-          <p className="hidden md:block">Contact Us</p>
-          <p className="md:hidden"><BotMessageSquare size={20}/></p>
+          <p className="">Contact Us</p>
+          
             
           </button>
           </div>
