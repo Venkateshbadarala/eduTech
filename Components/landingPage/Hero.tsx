@@ -1,24 +1,45 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Course from "@/public/Course.png";
+import Course from "@/public/hero6.png";
+import Course1 from "@/public/Course.png";
 import { motion, useScroll, useTransform } from "framer-motion";
-import {
-  FacebookIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  TwitterIcon,
-} from "@/constants/svgIcons";
-import Link from "next/link";
-import Services from "./Services";
+import { Users, Briefcase, TrendingUp, Video } from "lucide-react";
+import { BarChart3, BookOpen, Trophy } from "lucide-react";
 
-const socialIcons = [
-  { icon: <InstagramIcon />, name: "Instagram", link: "#" },
-  { icon: <FacebookIcon />, name: "Facebook", link: "#" },
-  { icon: <TwitterIcon />, name: "Twitter", link: "#" },
-  { icon: <LinkedInIcon />, name: "LinkedIn", link: "#" },
-];
+type Stat = {
+  value: number;
+  suffix?: string;
+  label: string;
+  sub?: string;
+  icon: React.ReactNode;
+  color: string;
+};
+function CountUp({ value }: { value: number }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const duration = 1200;
+    const increment = value / (duration / 16);
+
+    const timer = setInterval(() => {
+      start += increment;
+
+      if (start >= value) {
+        setCount(value);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+
+    return () => clearInterval(timer);
+  }, [value]);
+
+  return <>{count}</>;
+}
 
 export default function Home() {
   // ✅ FIXED TYPES
@@ -37,25 +58,72 @@ export default function Home() {
   });
 
   const bubbleY1 = useTransform(scrollYProgress, [0, 1], ["0%", "120%"]);
-  const bubbleY2 = useTransform(scrollYProgress, [0, 1], ["0%", "180%"]);
+
   const bubbleY3 = useTransform(scrollYProgress, [0, 1], ["0%", "80%"]);
 
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-40%"]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0]);
+  const floatingCards = [
+    {
+      icon: <BookOpen size={22} />,
+      title: "Live Classes",
+      subtitle: "Learn from industry experts",
+    },
 
-  const waveY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
+    {
+      icon: <BarChart3 size={22} />,
+      title: "Practical Learning",
+      subtitle: "Real-world projects & case studies",
+    },
+
+    {
+      icon: <Trophy size={22} />,
+      title: "Career Growth",
+      subtitle: "Internships & placement opportunities",
+    },
+  ];
+
+
+    const stats: Stat[] = [
+      {
+        value: 15,
+        suffix: "K+",
+        label: "Students",
+        sub: "Learning with us",
+        icon: <Users size={20} />,
+        color: "from-blue-500 to-cyan-500",
+      },
+      {
+        value: 250,
+        suffix: "+",
+        label: "Employees",
+        sub: "Industry mentors",
+        icon: <Briefcase size={20} />,
+        color: "from-purple-500 to-indigo-500",
+      },
+      {
+        value: 98,
+        suffix: "%",
+        label: "Placement Rate",
+        sub: "Career success",
+        icon: <TrendingUp size={20} />,
+        color: "from-green-500 to-emerald-500",
+      },
+      {
+        value: 48,
+        suffix: " Hrs",
+        label: "Live Classes",
+        sub: "Interactive sessions",
+        icon: <Video size={20} />,
+        color: "from-orange-500 to-yellow-500",
+      },
+    ];
+
+ 
 
   return (
     <div
       ref={container}
-      className="relative w-full  overflow-hidden   "
+      className="relative w-full py-16 lg:py-0  overflow-hidden  bg-white "
     >
-      {/* 🔵 BACKGROUND GLOW */}
-      <div className="absolute inset-0">
-        <div className="absolute w-[600px] h-[600px] bg-primary-light/20 blur-3xl rounded-full top-[-100px] left-[-100px]" />
-        <div className="absolute w-[500px] h-[500px] bg-primary-light/30 blur-3xl rounded-full top-[200px] right-[-100px]" />
-      </div>
-
       {/* 🫧 BUBBLES */}
       <motion.div
         ref={bubble1Ref}
@@ -63,35 +131,11 @@ export default function Home() {
         className="absolute top-60 left-90 w-32 h-32 bg-primary-light/20 rounded-full "
       />
 
-      <motion.div
-        ref={bubble2Ref}
-        style={{ y: bubbleY2 }}
-        className="absolute bottom-45  right-1/3 w-40 h-40 bg-light rounded-full "
-      />
-
-      <motion.div
-        ref={bubble3Ref}
-        style={{ y: bubbleY3 }}
-        className="absolute bottom-60 left-20 w-18 h-18 bg-light rounded-full "
-      />
-
-      {/* 🔵 DOTTED CIRCLE */}
-      {/* <motion.div
-        ref={dotCircleRef}
-        style={{ y: bubbleY2 }}
-        animate={{ rotate: 360 }}
-        transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-        className="absolute top-32 left-10 w-28 h-28 border-2 border-dashed border-blue-300 rounded-full"
-      /> */}
-
       {/* 🔥 HERO */}
-      <div className="py-16 flex items-center flex-col justify-center ">
-        <div className="lg:max-w-[calc(100vw)] xl:max-w-[calc(100vw-200px)] mx-auto grid lg:grid-cols-2 gap-6 items-center px-6 mt-5 grid-cols-1 justify-center">
+      <div className=" flex items-center flex-col justify-center ">
+        <div className="lg:max-w-[calc(100vw)] xl:max-w-[calc(100vw-100px)] mx-auto grid lg:grid-cols-2  items-center px-6 mt-5  grid-cols-1 justify-center lg:h-[100vh] ">
           {/* LEFT */}
-          <motion.div
-            ref={heroContentRef}
-            style={{ y: textY, opacity: textOpacity }}
-          >
+          <motion.div ref={heroContentRef}>
             <div className="mt-4">
               <span className="bg-(--color-light) text-(--color-primary)  px-1.5   py-1 rounded-full text-sm font-bold ">
                 BUILD SKILLS FOR TOMORROW
@@ -112,100 +156,184 @@ export default function Home() {
 
               <p className="text-gray-500 mt-4 ">
                 At Cornixe, we believe that every student has a unique
-                professional <span className="font-bold text-black">"Vision"</span>. Our role is to provide the empowerment to
-                achieve it. Guided by elite professional trainers, Cornixe
-                serves as the strategic backbone for the next generation of
-                industry giants. Through high-impact technical skilling,
-                internships, and institutional partnerships, we ensure our
-                learners are not just participants in the industry - they are the
-                ones leading it. Join the Evolution, Whether you are a student
-                looking to sharpen your edge or an institution aiming to elevate
-                your curriculum, Cornixe is your partner in progress. Let’s turn
-                your vision into your reality.
+                professional{" "}
+                <span className="font-bold text-black">"Vision"</span>. Our role
+                is to provide the empowerment to achieve it. Guided by elite
+                professional trainers, Cornixe serves as the strategic backbone
+                for the next generation of industry giants. Through high-impact
+                technical skilling, internships, and institutional partnerships,
+                we ensure our learners are not just participants in the industry
+                - they are the ones leading it. Join the Evolution, Whether you
+                are a student looking to sharpen your edge or an institution
+                aiming to elevate your curriculum, Cornixe is your partner in
+                progress. Let’s turn your vision into your reality.
               </p>
 
               {/* BUTTON */}
-              {/* <div className="flex items-center gap-4 mt-6">
-              <button className="bg-gradient-to-r from-(--color-primary) to-(--color-secondary) text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2 hover:scale-105 transition">
-                Get Started for Free
-                <span className="bg-white text-black rounded-full w-6 h-6 flex items-center justify-center">
-                  →
-                </span>
-              </button>
+              <div className="flex items-center gap-4 mt-6">
+                <button className="bg-gradient-to-r from-(--color-primary) to-(--color-secondary) text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2 hover:scale-105 transition">
+                  Explore Programs
+                  <span className=" text-white rounded-full w-6 h-6 flex items-center justify-center">
+                    →
+                  </span>
+                </button>
+              </div>
+              <div className="hidden lg:flex mt-6">
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 40,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.8,
+              }}
+              className=" bg-white/90
+        backdrop-blur-xl
 
-              <span className="text-gray-600 flex items-center gap-2">
-                ✉️ start@domain.com
-              </span>
-            </div> */}
+        rounded-[28px]
+        border border-white
+
+        shadow-[0_10px_40px_rgba(0,0,0,0.08)]
+
+        px-4 py-4
+
+        flex items-center gap-8
+        flex-wrap
+
+        z-20
+                      
+
+       
+      "
+            >
+              {stats.map((item, index) => (
+        <div
+          key={index}
+          className="flex items-center gap-4"
+        >
+          {/* ICON */}
+          <div
+            className="
+              w-12 h-12
+              rounded-xl
+
+              bg-primary
+
+              flex items-center justify-center
+
+              text-white
+            "
+          >
+            {item.icon}
+          </div>
+
+          {/* CONTENT */}
+          <div>
+             <div className="text-2xl font-bold text-gray-900">
+              <CountUp value={item.value} />
+              {item.suffix}
+            </div>
+
+            <p className="text-sm text-gray-2 mt-1">
+              {item.label}
+            </p>
+          </div>
+        </div>
+      ))}
+            </motion.div>
+          </div>
             </div>
           </motion.div>
 
           {/* RIGHT */}
-          <div className="relative flex justify-center lg:w-[38rem] xl:w-[42rem] sm:w-full ">
+          <div className="lg:absolute relative flex justify-center  lg:h-[100vh] lg:w-[58vw] w-full h-full right-0">
             <Image
               src={Course}
               alt="Hero Image"
-              width={400}
-              height={400}
-              className="mix-blend-multiply w-full relative "
+              width={1000}
+              height={1000}
+              className="w-full relative mix-blend-multiply hidden lg:block"
+            />
+             <Image
+              src={Course1}
+              alt="Hero Image"
+              width={1000}
+              height={1000}
+              className="w-full relative mix-blend-multiply lg:hidden block"
             />
 
-            {/* 💎 GLASS SOCIAL */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.05, y: -6 }}
-              className="absolute -bottom-2 left-8 bg-white/60 backdrop-blur-xl border border-white/30 shadow-xl px-5 py-3 rounded-2xl flex gap-4"
-            >
-              {socialIcons.map((item, index) => (
-                <motion.div key={index} whileHover={{ scale: 1.2 }}>
-                  <Link href={item.link} target="_blank">
-                    <div className="text-xl hover:text-blue-600 transition">
-                      {item.icon}
-                    </div>
-                  </Link>
+            <div className="absolute top-[18%] right-2 md:right-2 flex flex-col gap-4 z-20 hidden lg:flex">
+              {floatingCards.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{
+                    opacity: 0,
+                    x: 40 + index * 20,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    x: 0,
+                  }}
+                  transition={{
+                    duration: 0.5 + index * 0.2,
+                  }}
+                  whileHover={{
+                    y: -4,
+                    scale: 1.02,
+                  }}
+                  className="
+            bg-white/90
+            backdrop-blur-xl
+
+            rounded-2xl
+            border border-white
+
+            shadow-[0_10px_40px_rgba(0,0,0,0.08)]
+
+            px-2.5 py-2
+
+            flex items-center gap-4
+
+            min-w-[240px]
+          "
+                >
+                  {/* ICON */}
+                  <div
+                    className="
+              w-12 h-12
+              rounded-full
+
+              bg-primary
+
+              flex items-center justify-center
+
+              text-white
+
+              shadow-sm
+            "
+                  >
+                    {item.icon}
+                  </div>
+
+                  {/* TEXT */}
+                  <div>
+                    <h3 className="font-bold text-black-1 text-sm">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-xs text-gray-2 mt-1">{item.subtitle}</p>
+                  </div>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
-        </div>
-
-        {/* SERVICES */}
-        <div className="z-10 mt-2">
-          <Services />
+          
         </div>
       </div>
-
-      {/* 🌊 WAVES */}
-      <motion.div
-        ref={wavesRef}
-        style={{ y: waveY }}
-        className="absolute bottom-0 left-0 w-full overflow-hidden"
-      >
-        <svg viewBox="0 0 1440 320" className="w-full absolute bottom-0 ">
-          <path
-            fill="#93c5fd"
-            fillOpacity="0.2"
-            d="M0,224 C240,300 480,100 720,160 C960,220 1200,280 1440,200 L1440,320 L0,320 Z"
-          />
-        </svg>
-
-        <svg viewBox="0 0 1440 320" className="w-full absolute bottom-0">
-          <path
-            fill="#93c5fd"
-            fillOpacity="0.2"
-            d="M0,256 C300,180 600,300 900,220 C1200,140 1440,200 1440,200 L1440,320 L0,320 Z"
-          />
-        </svg>
-
-        <svg viewBox="0 0 1440 320" className="w-full relative">
-          <path
-            fill="#93c5fd"
-            fillOpacity="0.3"
-            d="M0,280 C360,200 1080,300 1440,240 L1440,320 L0,320 Z"
-          />
-        </svg>
-      </motion.div>
     </div>
   );
 }

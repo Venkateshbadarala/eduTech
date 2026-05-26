@@ -1,173 +1,610 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import CountUp from "react-countup";
 import { motion } from "framer-motion";
+import CountUp from "react-countup";
 
-import Logo from "@/public/AboutImage.png";
-import image from "@/public/AboutImage1.png";
+import {
+  PiUsersThreeBold,
+  PiChalkboardTeacherBold,
+  PiBriefcaseBold,
+  PiTrophyBold,
+  PiBookOpenBold,
+  PiRocketLaunchBold,
+  PiSuitcaseBold,
+} from "react-icons/pi";
 
-export default function AboutSection() {
+import TeamImage from "@/public/about1.png";
+import MentorImage from "@/public/about2.png";
+
+const stats = [
+  {
+    icon: <PiUsersThreeBold size={30} />,
+    count: 15000,
+    suffix: "+",
+    label: "Students Enrolled",
+  },
+
+  {
+    icon: <PiChalkboardTeacherBold size={30} />,
+    count: 250,
+    suffix: "+",
+    label: "Expert Mentors",
+  },
+
+  {
+    icon: <PiBriefcaseBold size={30} />,
+    count: 100,
+    suffix: "+",
+    label: "Industry Partners",
+  },
+
+  {
+    icon: <PiTrophyBold size={30} />,
+    count: 50000,
+    suffix: "+",
+    label: "Successful Learners",
+  },
+];
+
+const commitments = [
+  {
+    icon: <PiBookOpenBold size={22} />,
+    title: "Quality Courses",
+    desc: "Industry-aligned curriculum with practical real-world applications.",
+  },
+
+  {
+    icon: <PiChalkboardTeacherBold size={22} />,
+    title: "Expert Mentorship",
+    desc: "Learn directly from professionals with years of industry experience.",
+  },
+
+  {
+    icon: <PiRocketLaunchBold size={22} />,
+    title: "Practical Learning",
+    desc: "Hands-on projects designed to strengthen skills and portfolios.",
+  },
+
+  {
+    icon: <PiSuitcaseBold size={22} />,
+    title: "Career Support",
+    desc: "Internships, placements, and personalized career guidance.",
+  },
+];
+
+export default function AboutCornixe() {
   return (
-    <section className="py-25 md:py-20 px-4 md:px-10 lg:px-16  overflow-hidden">
-      <div className="grid lg:grid-cols-2 gap-10 items-center">
+    <section className="w-full bg-white px-6 py-26 md:py-26 overflow-hidden relative">
+      {/* BLUR EFFECTS */}
+      <div className="absolute top-0 left-0 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
 
-        {/* ================= LEFT SIDE ================= */}
-        <motion.div
-          initial={{ opacity: 0, x: -60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-        >
-          {/* SMALL TAG */}
-          <p className="text-primary font-semibold mb-3 tracking-wide uppercase">
-            Where It All Began
-          </p>
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-secondary/10 rounded-full blur-3xl" />
 
-          {/* HEADING */}
-          <h2 className="text-3xl md:text-4xl xl:text-4xl font-bold text-gray-900 leading-tight">
-            Empowering the <span className="text-secondary">Next Generation</span>
-            <br />
-            of Global Innovators
-          </h2>
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* TOP SECTION */}
+        <div className="grid lg:grid-cols-2 gap-14 items-center">
+          {/* LEFT */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -50,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
+            viewport={{
+              once: true,
+            }}
+          >
+            <p
+              className="
+                text-sm
+                uppercase
+                font-bold
+                tracking-[0.25em]
+                text-primary
+              "
+            >
+              Where It All Began
+            </p>
 
-          {/* IMAGE */}
-          <div className="mt-8 rounded-3xl overflow-hidden shadow-lg bg-white">
-            <Image
-              src={Logo}
-              alt="Learning"
-              width={700}
-              height={500}
-              className="w-full h-[250px] sm:h-[320px] md:h-[380px] object-cover"
-            />
-          </div>
+            <h2
+              className="
+                mt-5
+                text-3xl md:text-6xl
+                font-black
+                leading-tight
+                text-black-1
+              "
+            >
+              Empowering the{" "}
 
-          {/* DESCRIPTION */}
-          <p className="text-gray-600 mt-6 leading-relaxed text-sm md:text-base">
-            At Cornixe, we believe learning should go beyond theory.
-            Our platform bridges education with real-world application
-            through immersive projects, expert mentorship, and
-            career-focused guidance. We empower learners to build
-            practical skills, gain confidence, and unlock opportunities
-            that shape a brighter future.
-          </p>
-        </motion.div>
+              <span
+                className="
+                  bg-gradient-to-r
+                  from-primary
+                  to-secondary
+                  text-transparent bg-clip-text
+                "
+              >
+                Next Generation
+              </span>{" "}
 
-        {/* ================= RIGHT SIDE ================= */}
-        <motion.div
-          initial={{ opacity: 0, x: 60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="space-y-6"
-        >
+              of Global Innovators
+            </h2>
 
-          {/* IMAGE COLLAGE */}
-          <div className="relative bg-white rounded-3xl p-5 md:p-6 shadow-lg overflow-hidden">
-            <div className="grid grid-cols-2 gap-4">
+            <p
+              className="
+                mt-7
+                text-lg
+                leading-relaxed
+                text-gray-2
+                max-w-2xl
+              "
+            >
+              At Cornixe, we bridge the gap
+              between education and industry
+              through immersive training,
+              mentorship, internships, and
+              real-world learning experiences.
+              We empower learners with the
+              confidence, clarity, and skills
+              needed to thrive in the evolving
+              professional world.
+            </p>
 
-        
+            {/* SIGNATURE */}
+            <div className="mt-10">
+              <h4
+                className="
+                  text-3xl
+                  italic
+                  font-semibold
+                  text-black-1
+                "
+              >
+                Cornixe Team
+              </h4>
 
-              {/* LARGE IMAGE */}
-              <div className="col-span-2 overflow-hidden rounded-2xl">
-                <Image
-                  src={image}
-                  alt="education"
-                  width={700}
-                  height={400}
-                  className="w-full h-[250px] sm:h-[320px] md:h-[380px]  object-cover hover:scale-105 transition duration-500"
-                />
-              </div>
+              <div
+                className="
+                  mt-3
+                  w-28 h-1
+                  rounded-full
+                  bg-gradient-to-r
+                  from-primary
+                  to-secondary
+                "
+              />
+            </div>
+          </motion.div>
+
+          {/* RIGHT IMAGE */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 50,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
+            viewport={{
+              once: true,
+            }}
+            className="relative"
+          >
+            <div
+              className="
+                overflow-hidden
+                rounded-[36px]
+
+                border border-black/5
+                bg-light
+
+                shadow-[0_20px_80px_rgba(0,0,0,0.08)]
+              "
+            >
+              <Image
+                src={TeamImage}
+                alt="Cornixe Team"
+                className="
+                  w-full h-auto
+                  object-cover
+                  transition-transform duration-700
+                  hover:scale-105
+                "
+              />
             </div>
 
-            {/* DECORATIVE CIRCLE */}
-            <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary rounded-full blur-3xl opacity-50" />
-          </div>
+            {/* FLOAT CARD */}
+            <motion.div
+              animate={{
+                y: [0, -8, 0],
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 4,
+              }}
+              className="
+                absolute -bottom-6 left-8
 
-          {/* ================= STATS ================= */}
-          <div className="grid grid-cols-2 gap-4">
+                rounded-3xl
+                bg-white
 
-            <StatCard
-              value={25000}
-              suffix="+"
-              label="Students Enrolled"
+                px-6 py-5
+
+                shadow-[0_20px_60px_rgba(0,0,0,0.12)]
+              "
+            >
+              <h3
+                className="
+                  text-3xl
+                  font-black
+                  text-primary
+                "
+              >
+                100%
+              </h3>
+
+              <p className="text-gray-2 mt-1">
+                Career Focused Learning
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* STATS */}
+        <div
+          className="
+            mt-14
+
+            grid grid-cols-2 lg:grid-cols-4
+
+            gap-6
+          "
+        >
+          {stats.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{
+                opacity: 0,
+                y: 40,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: index * 0.1,
+                duration: 0.5,
+              }}
+              viewport={{
+                once: true,
+              }}
+              whileHover={{
+                y: -8,
+                scale: 1.03,
+              }}
+              className="
+                group
+                relative overflow-hidden
+
+                rounded-[30px]
+
+                bg-white
+                border border-black/5
+
+                md:p-8 p-4
+
+                shadow-[0_15px_60px_rgba(0,0,0,0.06)]
+
+                transition-all duration-500
+              "
+            >
+              {/* HOVER BG */}
+              <div
+                className="
+                  absolute inset-0
+                  opacity-0
+                  group-hover:opacity-100
+                  transition duration-500
+
+                  bg-gradient-to-br
+                  from-primary/5
+                  to-secondary/5
+                "
+              />
+
+              <div className="relative z-10">
+                {/* ICON */}
+                <div
+                  className="
+                    w-16 h-16
+                    rounded-2xl
+
+                    bg-primary
+
+                    flex items-center justify-center
+
+                    text-white
+                  "
+                >
+                  {item.icon}
+                </div>
+
+                {/* COUNT */}
+                <h3
+                  className="
+                    mt-6
+                    text-2xl md:text-3xl
+                    font-black
+                    text-black-1
+                  "
+                >
+                  <CountUp
+                    end={item.count}
+                    duration={3}
+                    separator=","
+                  />
+
+                  {item.suffix}
+                </h3>
+
+                {/* LABEL */}
+                <p
+                  className="
+                    mt-3
+                    text-gray-2
+                    leading-relaxed
+                  "
+                >
+                  {item.label}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* BOTTOM SECTION */}
+        <div className="mt-20 grid lg:grid-cols-2 gap-14 items-center">
+          {/* IMAGE */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -50,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
+            viewport={{
+              once: true,
+            }}
+            className="
+              overflow-hidden
+              rounded-[36px]
+
+              border border-black/5
+              bg-light
+
+              shadow-[0_20px_80px_rgba(0,0,0,0.08)]
+            "
+          >
+            <Image
+              src={MentorImage}
+              alt="Mentorship"
+              className="
+                w-full h-auto
+                object-cover
+                transition-transform duration-700
+                hover:scale-105
+              "
             />
+          </motion.div>
 
-            <StatCard
-              value={4.8}
-              suffix="/5"
-              label="Satisfaction Rate"
-            />
+          {/* CONTENT */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 50,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
+            viewport={{
+              once: true,
+            }}
+          >
+            <p
+              className="
+                text-sm
+                uppercase
+                font-bold
+                tracking-[0.25em]
+                text-primary
+              "
+            >
+              Our Commitment
+            </p>
 
-            <StatCard
-              value={50000}
-              suffix="+"
-              label="Project Completion"
-            />
+            <h2
+              className="
+                mt-5
+                text-3xl md:text-5xl
+                font-black
+                leading-tight
+                text-black-1
+              "
+            >
+              Real Skills. Real Projects.{" "}
 
-            <StatCard
-              value={5}
-              suffix="/5"
-              label="Faculty Rating"
-            />
+              <span
+                className="
+                  bg-gradient-to-r
+                  from-primary
+                  to-secondary
+                  text-transparent bg-clip-text
+                "
+              >
+                Real Opportunities.
+              </span>
+            </h2>
 
-          </div>
-        </motion.div>
+            <p
+              className="
+                mt-7
+                text-lg
+                leading-relaxed
+                text-gray-2
+              "
+            >
+              Our approach combines practical
+              learning, expert mentorship,
+              internships, and placement support
+              to ensure learners become truly
+              industry-ready with confidence and
+              real-world experience.
+            </p>
+
+            {/* FEATURES */}
+            <div className="mt-10 grid sm:grid-cols-2 gap-6">
+              {commitments.map((item, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{
+                    y: -5,
+                  }}
+                  className="
+                    flex gap-4
+
+                    rounded-2xl
+                    bg-white
+
+                    p-5
+
+                    shadow-[0_10px_40px_rgba(0,0,0,0.05)]
+                  "
+                >
+                  <div
+                    className="
+                      w-14 h-14
+                      rounded-2xl
+
+                      bg-primary
+
+                      flex items-center justify-center
+
+                      text-white
+                      shrink-0
+                    "
+                  >
+                    {item.icon}
+                  </div>
+
+                  <div>
+                    <h4
+                      className="
+                        font-bold
+                        text-black-1
+                      "
+                    >
+                      {item.title}
+                    </h4>
+
+                    <p
+                      className="
+                        mt-2
+                        text-sm
+                        leading-relaxed
+                        text-gray-2
+                      "
+                    >
+                      {item.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+           
+          </motion.div>
+          
+        </div>
+         {/* CTA */}
+            <motion.div
+              whileHover={{
+                scale: 1.02,
+              }}
+              className="
+                mt-12
+
+                rounded-[30px]
+
+                bg-gradient-to-r
+                from-primary
+                to-secondary
+
+                p-8
+
+                text-white
+
+                shadow-[0_20px_80px_rgba(0,0,0,0.12)]
+              "
+            >
+              <h3
+                className="
+                  text-2xl
+                  font-black
+                "
+              >
+                We Don’t Just Teach,
+                We Transform.
+              </h3>
+
+              <p className="mt-4 text-white/90 leading-relaxed">
+                Cornixe is a community of
+                dreamers, innovators, and
+                achievers building future-ready
+                careers with confidence and
+                practical expertise.
+              </p>
+
+              <button
+                className="
+                  mt-7
+
+                  px-7 py-4
+                  rounded-full
+
+                  bg-white
+                  text-primary
+
+                  font-bold
+
+                  hover:scale-105
+                  transition-all duration-300
+                "
+              >
+                Join The Cornixe Evolution →
+              </button>
+            </motion.div>
       </div>
     </section>
-  );
-}
-
-/* ================= STAT CARD ================= */
-
-function StatCard({
-  value,
-  suffix,
-  label,
-}: {
-  value: number;
-  suffix: string;
-  label: string;
-}) {
-  const [startCount, setStartCount] = useState(false);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      onViewportEnter={() => setStartCount(true)}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
-      whileHover={{
-        y: -5,
-        scale: 1.02,
-      }}
-      className="
-        bg-white
-        rounded-2xl
-        p-5 md:p-6
-        shadow-md hover:shadow-xl
-        transition duration-300
-      "
-    >
-      {/* COUNT */}
-      <h3 className="text-2xl md:text-4xl font-bold text-primary">
-        {startCount && (
-          <CountUp
-            end={value}
-            duration={2.5}
-            separator=","
-            decimals={value % 1 !== 0 ? 1 : 0}
-          />
-        )}
-        {suffix}
-      </h3>
-
-      {/* LABEL */}
-      <p className="text-gray-2 text-md md:text-lg font-medium mt-2">
-        {label}
-      </p>
-    </motion.div>
   );
 }

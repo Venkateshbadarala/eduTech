@@ -110,7 +110,7 @@ export default function WhyChooseSection() {
           ?
         </h2>
 
-        <p className="text-gray-500 mt-4 text-lg">
+        <p className="text-gray-500 mt-5 max-w-6xl mx-auto text-md md:text-lg leading-relaxed relative">
           CORNIXE delivers an integrated career-focused ecosystem combining
           industry-led training, experiential internships, and strategic
           placement assistance designed to cultivate real professional

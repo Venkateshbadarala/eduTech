@@ -16,6 +16,7 @@ import StatsFloatingCards from "@/Components/StatsFloatingCards";
 import FAQSection from "@/Components/FAQSection";
 import AutoPopupForm from "@/Components/Form/AutoPopupForm";
 import ElitePacks from "@/Components/Program/ElitePacks";
+import Services from "@/Components/landingPage/Services";
 
 
 export default function Home() {
@@ -51,7 +52,11 @@ export default function Home() {
       )}
       <Hero />
       <Companies />
-      <StatsFloatingCards />
+      <div className="lg:hidden block">
+          <StatsFloatingCards />
+      </div>
+      <Services/>
+      
       <TrendingCourses />
       <WhyChooseSection />
       <LearningJourney />

@@ -101,10 +101,10 @@ export default function TrendingCourses() {
         </p>
 
         <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mt-6">
-          Explore our <span className="text-blue-600">Top Programs</span>
+          Explore our <span className="text-secondary">Top Programs</span>
         </h2>
 
-        <p className="text-gray-500 mt-4 max-w-xl mx-auto">
+        <p className="text-gray-500 mt-5 max-w-6xl mx-auto text-md md:text-lg leading-relaxed relative">
           Discover high-impact programs shaping the future workforce 🚀
         </p>
       </motion.div>
