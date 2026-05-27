@@ -78,6 +78,24 @@ export default function Home() {
     };
   }, []);
 
+  const [isXL, setIsXL] = useState(false);
+
+useEffect(() => {
+  const handleResize = () => {
+    setIsXL(window.innerWidth >= 1280);
+  };
+
+  handleResize();
+
+  window.addEventListener("resize", handleResize);
+
+  return () =>
+    window.removeEventListener(
+      "resize",
+      handleResize
+    );
+}, []);
+
   const floatingCards = [
     {
       icon: <BookOpen size={22} />,
@@ -259,10 +277,8 @@ export default function Home() {
 
          <div className="absolute top-[18%] right-2 flex-col gap-5 z-20 hidden lg:flex">
   {floatingCards.map((item, index) => {
-    const isActive =
-      activeCard === index ||
-      (typeof window !== "undefined" &&
-        window.innerWidth >= 1280);
+     const isActive =
+      activeCard === index || isXL;
 
     return (
       <motion.div
@@ -279,17 +295,17 @@ export default function Home() {
           duration: 0.5 + index * 0.15,
         }}
         onMouseEnter={() => {
-          if (window.innerWidth < 1280) {
+          if (!isXL) {
             setActiveCard(index);
           }
         }}
         onMouseLeave={() => {
-          if (window.innerWidth < 1280) {
+          if (!isXL) {
             setActiveCard(null);
           }
         }}
         onClick={() => {
-          if (window.innerWidth < 1280) {
+          if (!isXL) {
             setActiveCard(
               activeCard === index ? null : index
             );
@@ -303,7 +319,7 @@ export default function Home() {
         <motion.div
           animate={{
             width:
-              window.innerWidth >= 1280
+              isXL
                 ? 320
                 : isActive
                 ? 320
@@ -351,9 +367,7 @@ export default function Home() {
     overflow-hidden
 
     ${
-      isActive ||
-      (typeof window !== "undefined" &&
-        window.innerWidth >= 1280)
+      isActive || isXL
         ? "pr-4"
         : "pr-0"
     }
