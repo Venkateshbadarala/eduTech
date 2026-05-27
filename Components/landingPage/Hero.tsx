@@ -174,12 +174,12 @@ useEffect(() => {
                     Empowering Your Vision
                   </p>
                 </div>
-                <p className="text-(--color-primary) text-lg lg:text-lg xl:text-2xl mt-2">
+                <p className="text-(--color-primary) text-lg lg:text-lg xl:text-xl mt-2">
                   Equipping Visionaries for the Modern Professional Landscape
                 </p>
               </h1>
 
-              <p className="text-gray-500 mt-2 xl:text-lg leading-relaxed ">
+              <p className="text-gray-500 mt-2 xl:text-md leading-relaxed ">
                 At Cornixe, we believe that every student has a unique
                 professional{" "}
                 <span className="font-bold text-black">"Vision"</span>. Our role
