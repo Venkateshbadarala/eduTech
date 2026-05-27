@@ -148,20 +148,20 @@ export default function Home() {
                 BUILD SKILLS FOR TOMORROW
               </span>
 
-              <h1 className="font-bold  leading-tight text-black-1 mt-2">
+              <h1 className="font-bold  leading-tight text-black-1 mt-2 xl:mt-4">
                 <div>
-                  <p className="uppercase md:text-4xl text-3xl">Cornixe</p>
-                  <p className="md:text-4xl text-2xl">
+                  <p className="uppercase md:text-4xl text-3xl xl:text-5xl">Cornixe</p>
+                  <p className="md:text-4xl text-2xl xl:text-5xl">
                     {" "}
                     Empowering Your Vision
                   </p>
                 </div>
-                <p className="text-(--color-primary) lg:text-lg xl:text-xl mt-2">
+                <p className="text-(--color-primary) text-lg lg:text-lg xl:text-2xl mt-2">
                   Equipping Visionaries for the Modern Professional Landscape
                 </p>
               </h1>
 
-              <p className="text-gray-500 mt-2 ">
+              <p className="text-gray-500 mt-2 xl:text-lg leading-relaxed ">
                 At Cornixe, we believe that every student has a unique
                 professional{" "}
                 <span className="font-bold text-black">"Vision"</span>. Our role

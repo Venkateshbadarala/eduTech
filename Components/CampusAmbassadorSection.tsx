@@ -172,7 +172,7 @@ export default function CampusAmbassadorSection() {
               }}
               className="
                 mt-10
-                text-gray-1
+                text-gray-2
                 text-lg md:text-xl
                 leading-[2rem]
                 max-w-2xl
@@ -367,7 +367,7 @@ export default function CampusAmbassadorSection() {
                 shadow-[0_15px_50px_rgba(0,0,0,0.12)]
               "
             >
-              <p className="text-sm text-gray-1">
+              <p className="text-sm text-gray-2">
                 Campus Leaders
               </p>
 
@@ -405,7 +405,7 @@ export default function CampusAmbassadorSection() {
                 shadow-[0_15px_50px_rgba(0,0,0,0.12)]
               "
             >
-              <p className="text-sm text-gray-1">
+              <p className="text-sm text-gray-2">
                 Student Reach
               </p>
 
@@ -524,7 +524,7 @@ export default function CampusAmbassadorSection() {
                           mt-3
                           text-sm
                           leading-relaxed
-                          text-gray-1
+                          text-gray-2
                         "
                       >
                         {item.desc}

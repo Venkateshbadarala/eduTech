@@ -46,7 +46,7 @@ export default function Companies() {
     >
       {/* 🔥 Heading (Parallax Applied) */}
       <motion.div
-        style={{ y: headingY, opacity: headingOpacity }}
+        
         className="text-center px-4"
       >
         <h2 className="text-3xl md:text-5xl font-bold text-black-1 leading-tight relative z-10">
