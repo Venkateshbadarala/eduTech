@@ -42,7 +42,7 @@ export default function Companies() {
   return (
     <section
       ref={container}
-      className="relative py-16   overflow-hidden rounded-xl  "
+      className="relative pb-16   overflow-hidden rounded-xl  "
     >
       {/* 🔥 Heading (Parallax Applied) */}
       <motion.div

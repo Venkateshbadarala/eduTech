@@ -4,7 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Course from "@/public/hero6.png";
 import Course1 from "@/public/Course.png";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { Users, Briefcase, TrendingUp, Video } from "lucide-react";
 import { BarChart3, BookOpen, Trophy } from "lucide-react";
 
@@ -59,7 +64,19 @@ export default function Home() {
 
   const bubbleY1 = useTransform(scrollYProgress, [0, 1], ["0%", "120%"]);
 
-  const bubbleY3 = useTransform(scrollYProgress, [0, 1], ["0%", "80%"]);
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setActiveCard(null);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const floatingCards = [
     {
@@ -81,43 +98,33 @@ export default function Home() {
     },
   ];
 
-
-    const stats: Stat[] = [
-      {
-        value: 15,
-        suffix: "K+",
-        label: "Students",
-        sub: "Learning with us",
-        icon: <Users size={20} />,
-        color: "from-blue-500 to-cyan-500",
-      },
-      {
-        value: 250,
-        suffix: "+",
-        label: "Employees",
-        sub: "Industry mentors",
-        icon: <Briefcase size={20} />,
-        color: "from-purple-500 to-indigo-500",
-      },
-      {
-        value: 98,
-        suffix: "%",
-        label: "Placement Rate",
-        sub: "Career success",
-        icon: <TrendingUp size={20} />,
-        color: "from-green-500 to-emerald-500",
-      },
-      {
-        value: 48,
-        suffix: " Hrs",
-        label: "Live Classes",
-        sub: "Interactive sessions",
-        icon: <Video size={20} />,
-        color: "from-orange-500 to-yellow-500",
-      },
-    ];
-
- 
+  const stats: Stat[] = [
+    {
+      value: 15,
+      suffix: "K+",
+      label: "Students",
+      sub: "Learning with us",
+      icon: <Users size={20} />,
+      color: "from-blue-500 to-cyan-500",
+    },
+    {
+      value: 250,
+      suffix: "+",
+      label: "Employees",
+      sub: "Industry mentors",
+      icon: <Briefcase size={20} />,
+      color: "from-purple-500 to-indigo-500",
+    },
+    {
+      value: 98,
+      suffix: "%",
+      label: "Placement Rate",
+      sub: "Career success",
+      icon: <TrendingUp size={20} />,
+      color: "from-green-500 to-emerald-500",
+    },
+   
+  ];
 
   return (
     <div
@@ -149,12 +156,12 @@ export default function Home() {
                     Empowering Your Vision
                   </p>
                 </div>
-                <p className="text-(--color-primary) text-xl mt-2">
+                <p className="text-(--color-primary) lg:text-lg xl:text-xl mt-2">
                   Equipping Visionaries for the Modern Professional Landscape
                 </p>
               </h1>
 
-              <p className="text-gray-500 mt-4 ">
+              <p className="text-gray-500 mt-2 ">
                 At Cornixe, we believe that every student has a unique
                 professional{" "}
                 <span className="font-bold text-black">"Vision"</span>. Our role
@@ -170,7 +177,7 @@ export default function Home() {
               </p>
 
               {/* BUTTON */}
-              <div className="flex items-center gap-4 mt-6">
+              <div className="flex items-center gap-4 xl:mt-6 lg:mt-2 mt-6">
                 <button className="bg-gradient-to-r from-(--color-primary) to-(--color-secondary) text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2 hover:scale-105 transition">
                   Explore Programs
                   <span className=" text-white rounded-full w-6 h-6 flex items-center justify-center">
@@ -178,20 +185,9 @@ export default function Home() {
                   </span>
                 </button>
               </div>
-              <div className="hidden lg:flex mt-6">
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 40,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.8,
-              }}
-              className=" bg-white/90
+              <div className="hidden lg:flex xl:mt-6 lg:mt-3 mt-6">
+                <motion.div
+                  className=" bg-white/90
         backdrop-blur-xl
 
         rounded-[28px]
@@ -201,7 +197,7 @@ export default function Home() {
 
         px-4 py-4
 
-        flex items-center gap-8
+        flex items-center gap-5 xl:gap-10
         flex-wrap
 
         z-20
@@ -209,15 +205,12 @@ export default function Home() {
 
        
       "
-            >
-              {stats.map((item, index) => (
-        <div
-          key={index}
-          className="flex items-center gap-4"
-        >
-          {/* ICON */}
-          <div
-            className="
+                >
+                  {stats.map((item, index) => (
+                    <div key={index} className="flex items-center gap-4">
+                      {/* ICON */}
+                      <div
+                        className="
               w-12 h-12
               rounded-xl
 
@@ -227,25 +220,23 @@ export default function Home() {
 
               text-white
             "
-          >
-            {item.icon}
-          </div>
+                      >
+                        {item.icon}
+                      </div>
 
-          {/* CONTENT */}
-          <div>
-             <div className="text-2xl font-bold text-gray-900">
-              <CountUp value={item.value} />
-              {item.suffix}
-            </div>
+                      {/* CONTENT */}
+                      <div>
+                        <div className="text-2xl font-bold text-gray-900">
+                          <CountUp value={item.value} />
+                          {item.suffix}
+                        </div>
 
-            <p className="text-sm text-gray-2 mt-1">
-              {item.label}
-            </p>
-          </div>
-        </div>
-      ))}
-            </motion.div>
-          </div>
+                        <p className="text-sm text-gray-2 mt-1">{item.label}</p>
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
             </div>
           </motion.div>
 
@@ -258,7 +249,7 @@ export default function Home() {
               height={1000}
               className="w-full relative mix-blend-multiply hidden lg:block"
             />
-             <Image
+            <Image
               src={Course1}
               alt="Hero Image"
               width={1000}
@@ -266,72 +257,167 @@ export default function Home() {
               className="w-full relative mix-blend-multiply lg:hidden block"
             />
 
-            <div className="absolute top-[18%] right-2 md:right-2 flex flex-col gap-4 z-20 hidden lg:flex">
-              {floatingCards.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{
-                    opacity: 0,
-                    x: 40 + index * 20,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    x: 0,
-                  }}
-                  transition={{
-                    duration: 0.5 + index * 0.2,
-                  }}
-                  whileHover={{
-                    y: -4,
-                    scale: 1.02,
-                  }}
-                  className="
-            bg-white/90
+         <div className="absolute top-[18%] right-2 flex-col gap-5 z-20 hidden lg:flex">
+  {floatingCards.map((item, index) => {
+    const isActive =
+      activeCard === index ||
+      (typeof window !== "undefined" &&
+        window.innerWidth >= 1280);
+
+    return (
+      <motion.div
+        key={index}
+        initial={{
+          opacity: 0,
+          x: 40 + index * 20,
+        }}
+        animate={{
+          opacity: 1,
+          x: 0,
+        }}
+        transition={{
+          duration: 0.5 + index * 0.15,
+        }}
+        onMouseEnter={() => {
+          if (window.innerWidth < 1280) {
+            setActiveCard(index);
+          }
+        }}
+        onMouseLeave={() => {
+          if (window.innerWidth < 1280) {
+            setActiveCard(null);
+          }
+        }}
+        onClick={() => {
+          if (window.innerWidth < 1280) {
+            setActiveCard(
+              activeCard === index ? null : index
+            );
+          }
+        }}
+        whileHover={{
+          y: -4,
+        }}
+        className="flex justify-end cursor-pointer"
+      >
+        <motion.div
+          animate={{
+            width:
+              window.innerWidth >= 1280
+                ? 320
+                : isActive
+                ? 320
+                : 68,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 180,
+            damping: 20,
+          }}
+          className="
+            h-16
+
+            bg-white/95
             backdrop-blur-xl
 
-            rounded-2xl
+            rounded-[24px]
             border border-white
 
-            shadow-[0_10px_40px_rgba(0,0,0,0.08)]
+            shadow-[0_12px_35px_rgba(0,0,0,0.08)]
 
-            px-2.5 py-2
+            flex items-center
+            justify-between
 
-            flex items-center gap-4
+            overflow-hidden
 
-            min-w-[240px]
+            px-2
           "
-                >
-                  {/* ICON */}
-                  <div
-                    className="
-              w-12 h-12
-              rounded-full
+        >
+          {/* CONTENT */}
+          <motion.div
+            animate={{
+              opacity: isActive ? 1 : 0,
+              x: isActive ? 0 : 20,
+            }}
+            transition={{
+              duration: 0.25,
+            }}
+           className={`
+    flex flex-col justify-center
+    flex-1
 
+    text-right
+
+    overflow-hidden
+
+    ${
+      isActive ||
+      (typeof window !== "undefined" &&
+        window.innerWidth >= 1280)
+        ? "pr-4"
+        : "pr-0"
+    }
+  `}
+            
+          >
+            <h3
+              className="
+                text-md
+                font-bold
+                leading-none
+                text-black-1
+
+                whitespace-nowrap
+              "
+            >
+              {item.title}
+            </h3>
+
+            <p
+              className="
+                text-[13px]
+                text-gray-2
+                mt-1
+
+                whitespace-nowrap
+                overflow-hidden
+                text-ellipsis
+              "
+            >
+              {item.subtitle}
+            </p>
+          </motion.div>
+
+          {/* ICON */}
+          <motion.div
+            animate={{
+              scale: isActive ? 1.05 : 1,
+            }}
+            transition={{
+              duration: 0.2,
+            }}
+            className="
+              
+             h-11 w-11
+
+              rounded-full
               bg-primary
 
               flex items-center justify-center
 
               text-white
 
-              shadow-sm
+              shadow-[0_6px_20px_rgba(59,130,246,0.35)]
             "
-                  >
-                    {item.icon}
-                  </div>
-
-                  {/* TEXT */}
-                  <div>
-                    <h3 className="font-bold text-black-1 text-sm">
-                      {item.title}
-                    </h3>
-
-                    <p className="text-xs text-gray-2 mt-1">{item.subtitle}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+          >
+            {item.icon}
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    );
+  })}
+</div>
           </div>
-          
         </div>
       </div>
     </div>

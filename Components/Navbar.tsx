@@ -201,16 +201,39 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
   return (
     <>
       {/* ================= DESKTOP NAVBAR ================= */}
-      <motion.nav
-        animate={hidden ? { y: "-120%", opacity: 0 } : { y: 0, opacity: 1 }}
-        transition={{ duration: 0.4 }}
-        className=" fixed top-2 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-6xl"
-      >
-        <div className="flex items-center justify-between bg-white rounded-2xl px-6 py-2 shadow-xl">
+     <motion.nav
+  animate={
+    hidden
+      ? { y: "-120%", opacity: 0 }
+      : { y: 0, opacity: 1 }
+  }
+  transition={{ duration: 0.4 }}
+  className={`
+    fixed top-2 left-1/2 -translate-x-1/2
+    z-50
+
+   w-[98%]
+
+    max-w-[1400px]
+
+    rounded-2xl
+
+    transition-all duration-300
+
+    ${
+      hidden
+        ? ""
+        : scrollY.get() > 20
+        ? "bg-white shadow-xl border border-gray-1"
+        : "bg-white/80 backdrop-blur-xl"
+    }
+  `}
+>
+        <div className="flex items-center justify-between  rounded-2xl px-6 py-1 ">
           {/* LOGO */}
           <div className="flex items-center gap-6 ">
-            <Link href="/" className="flex items-center gap-2">
-              <Image src={Logo} alt="Logo" width={60} height={60} />
+            <Link href="/" className="flex items-center gap-2 h-16 w-16">
+              <Image src={Logo} alt="Logo" width={1000} height={1000} />
             </Link>
 
             <button
