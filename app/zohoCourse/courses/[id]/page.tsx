@@ -22,6 +22,7 @@ import CapstoneProjectsSection from "@/Components/CoursePage/CapstoneProjectsSec
 import JobRolesEditor from "@/Components/Admin/JobRolesEditor";
 import JobRolesSection from "@/Components/CoursePage/JobRolesSection";
 import CertificateShowcase from "@/Components/Program/CertificateShowcase";
+import ZohoShowcase from "@/Components/landingPage/ZohoShowcase";
 
 const emptyCourse = {
   title: "",
@@ -265,7 +266,7 @@ export default function Page() {
       )}
       
        <section className=" text-center px-6">
-        <CertificateShowcase/>
+        <ZohoShowcase/>
         </section>
     </div>
   );

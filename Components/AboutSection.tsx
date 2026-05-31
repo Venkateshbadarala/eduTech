@@ -18,7 +18,7 @@ import TeamImage from "@/public/about1.png";
 import MentorImage from "@/public/about2.png";
 import GaneshImage from "@/public/Team/Ganesh.png";
 import KumaresanImage from"@/public/Team/Kumaresan.png";
-import HemanthImage from "@/public/team/Hemanth.png";
+import HemanthImage from "@/public/Team/Hemanth.png";
 
 const leadershipTeam = [
   {

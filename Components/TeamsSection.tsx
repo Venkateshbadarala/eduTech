@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { LinkedInIcon } from "@/constants/svgIcons";
-import Ganesh from "@/public/team/Ganesh.png";
+import Ganesh from "@/public/Team/Ganesh.png";
 import Ansh from '@/public/Team/Ansh.png'
 import Arib from '@/public/Team/Arib.png'
 import Kumaresan from '@/public/Team/Kumaresan.png'
