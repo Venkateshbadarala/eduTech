@@ -61,7 +61,6 @@ const courses = [
   "Data Science",
   "Machine Learning",
   "Web Development",
-  "UI/UX Design",
   "IoT & Robotics",
   "Cloud Computing",
   "Embedded System",
@@ -94,7 +93,7 @@ export default function TechStarterPack() {
       className="
         relative overflow-hidden
         py-24 px-6
-        bg-(--color-light)
+        
       "
     >
       {/* GRID */}
@@ -129,7 +128,8 @@ export default function TechStarterPack() {
             relative overflow-hidden
             rounded-[40px]
             border border-white/10
-            bg-white/10
+            bg-white
+            shadow-[0_15px_60px_rgba(0,0,0,0.15)]
             backdrop-blur-2xl
             
             p-10 md:p-16
@@ -139,10 +139,7 @@ export default function TechStarterPack() {
           <div
             className="
               absolute inset-0
-              bg-gradient-to-r
-              from-(--color-primary)/10
-              via-transparent
-              to-(--color-secondary)/10
+             bg-white
               rounded-[40px]
             "
           />
@@ -187,15 +184,17 @@ export default function TechStarterPack() {
                 max-w-md
                 rounded-3xl
                 border border-white/10
-                bg-white/10
+                bg-[#201547]
+                  shadow-[0_15px_60px_rgba(0,0,0,0.15)]
+                
                 backdrop-blur-xl
-                shadow-[0_15px_60px_rgba(0,0,0,0.15)]
+                
                 p-6
               "
             >
-              <p className="text-(--color-gray-2)">
+              <p className="text-white/80">
                 Unlock a{" "}
-                <span className="font-bold text-(--color-primary)">
+                <span className="font-bold text-lg text-white">
                   Tech Starter Pack
                 </span>{" "}
                 worth ₹1,20,000
@@ -206,7 +205,7 @@ export default function TechStarterPack() {
                   mt-3
                   text-5xl
                   font-black
-                  text-(--color-secondary)
+                  text-white
                 "
               >
                 ₹9,999
@@ -275,7 +274,7 @@ export default function TechStarterPack() {
                 relative
                 rounded-3xl
                 border border-white/10
-                bg-white/10
+                bg-white
                 backdrop-blur-xl
                 shadow-[0_15px_60px_rgba(0,0,0,0.15)]
                 p-8 text-center
@@ -380,7 +379,7 @@ export default function TechStarterPack() {
                   className="
                     rounded-3xl
                     border border-white/10
-                    bg-white/10
+                    bg-white
                     backdrop-blur-xl
                     shadow-[0_15px_60px_rgba(0,0,0,0.15)]
                     p-8
@@ -559,7 +558,7 @@ export default function TechStarterPack() {
             relative overflow-hidden
             rounded-[30px]
             border border-white/10
-            bg-white/10
+            bg-white
             backdrop-blur-2xl
             p-7
             transition-all duration-500
@@ -659,7 +658,7 @@ export default function TechStarterPack() {
                         className="
                          px-4 py-2
                          rounded-xl
-                         bg-black/20
+                         bg-light
                          text-sm font-semibold
                          text-(--color-black-1)
                          backdrop-blur-xl

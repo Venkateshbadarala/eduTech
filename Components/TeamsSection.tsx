@@ -5,9 +5,132 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-
-import { trainers as team } from "@/constants/Trainers";
 import { LinkedInIcon } from "@/constants/svgIcons";
+import Ganesh from "@/public/team/Ganesh.png";
+import Ansh from '@/public/Team/Ansh.png'
+import Arib from '@/public/Team/Arib.png'
+import Kumaresan from '@/public/Team/Kumaresan.png'
+import hemanth from '@/public/Team/Hemanth.png'
+import Farhath from '@/public/Team/Farhath.png'
+import subhasis from '@/public/Team/subhasis.png'
+import titturaja from '@/public/Team/titturaja.png'
+import uttam from '@/public/Team/uttam.png'
+import vaishnavu from '@/public/Team/Vaishnavu.png'
+import Vinay from '@/public/Team/Vinay.png'
+
+
+const team = [
+  {
+    image: Ganesh,
+
+    name: "Ganesh E",
+
+    role: "Founder & CEO",
+
+    linkedin:
+      "https://www.linkedin.com/",
+  },
+  {
+    image: Kumaresan,
+
+    name: "Kumaresan D",
+
+    role: "COO",
+
+    linkedin:
+      "https://www.linkedin.com/",
+  },
+   {
+    image: hemanth,
+
+    name: "Hemanth Kumar",
+
+    role: "CSO",
+
+    linkedin:
+      "https://www.linkedin.com/",
+  },
+   {
+    image: Ansh,
+
+    name: "Ansh",
+
+    role: "COO",
+
+    linkedin:
+      "https://www.linkedin.com/",
+  },
+   {
+    image: Arib,
+
+    name: "Arib",
+
+    role: "COO",
+
+    linkedin:
+      "https://www.linkedin.com/",
+  },
+   {
+    image: subhasis,
+
+    name: "Subhasis",
+
+    role: "COO",
+
+    linkedin:
+      "https://www.linkedin.com/",
+  },
+   {
+    image: Farhath,
+
+    name: "Farhath",
+
+    role: "COO",
+
+    linkedin:
+      "https://www.linkedin.com/",
+  },
+   {
+    image: titturaja,
+
+    name: "Tittu Raja",
+
+    role: "COO",
+
+    linkedin:
+      "https://www.linkedin.com/",
+  },
+  {
+    image: uttam,
+
+    name: "Uttam",
+
+    role: "COO",
+
+    linkedin:
+      "https://www.linkedin.com/",
+  },
+  {
+    image: vaishnavu,
+
+    name: "Vaishnavu",
+
+    role: "COO",
+
+    linkedin:
+      "https://www.linkedin.com/",
+  },
+  {
+    image: Vinay,
+
+    name: "Vinay",
+
+    role: "COO",
+
+    linkedin:
+      "https://www.linkedin.com/",
+  },
+];
 
 export default function TeamSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -106,7 +229,7 @@ export default function TeamSection() {
             "
           >
             {/* IMAGE */}
-            <Image
+         <Image
               src={member.image}
               alt={member.name}
               fill

@@ -175,19 +175,14 @@
 //   );
 // }
 
-
 "use client";
 
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import {
-  Plus,
-  Trash2,
-  Star,
-  CircleX,
-} from "lucide-react";
+import { Plus, Trash2, Star, CircleX } from "lucide-react";
 
 type Plan = {
+  name: string;
   badge: string;
   title: string;
   subtitle: string;
@@ -204,6 +199,7 @@ type Props = {
 
 // ✅ CREATE EMPTY PLAN
 const createPlan = (): Plan => ({
+  name: "",
   badge: "",
   title: "",
   subtitle: "",
@@ -213,36 +209,39 @@ const createPlan = (): Plan => ({
   highlight: false,
 });
 
-export default function PricingEditor({
-  value,
-  onChange,
-}: Props) {
-
+export default function PricingEditor({ value, onChange }: Props) {
   // ✅ INITIAL STATE
   const [plans, setPlans] = useState<Plan[]>([]);
 
   // ✅ LOAD INITIAL VALUE ONLY ONCE
   useEffect(() => {
     if (value && value.length > 0) {
-      setPlans(value);
+      setPlans(
+        value.map((plan) => ({
+          name: plan.name || "",
+          badge: plan.badge || "",
+          title: plan.title || "",
+          subtitle: plan.subtitle || "",
+          features: plan.features || [""],
+          price: plan.price || "",
+          note: plan.note || "(18% GST extra)",
+          highlight: plan.highlight || false,
+        })),
+      );
     } else {
       setPlans([createPlan()]);
     }
-  }, []);
+  }, [value]);
 
   // ✅ UPDATE PLAN FIELD
-  const updatePlan = (
-    index: number,
-    key: keyof Plan,
-    value: any
-  ) => {
+  const updatePlan = (index: number, key: keyof Plan, value: any) => {
     const updated = plans.map((plan, i) =>
       i === index
         ? {
             ...plan,
             [key]: value,
           }
-        : plan
+        : plan,
     );
 
     setPlans(updated);
@@ -258,10 +257,7 @@ export default function PricingEditor({
       return;
     }
 
-    const updated = [
-      ...plans,
-      createPlan(),
-    ];
+    const updated = [...plans, createPlan()];
 
     setPlans(updated);
 
@@ -272,15 +268,11 @@ export default function PricingEditor({
   // ✅ REMOVE PLAN
   const removePlan = (index: number) => {
     if (plans.length <= 1) {
-      toast.error(
-        "At least one pricing plan required"
-      );
+      toast.error("At least one pricing plan required");
       return;
     }
 
-    const updated = plans.filter(
-      (_, i) => i !== index
-    );
+    const updated = plans.filter((_, i) => i !== index);
 
     setPlans(updated);
 
@@ -289,9 +281,7 @@ export default function PricingEditor({
   };
 
   // ✅ ADD FEATURE
-  const addFeature = (
-    planIndex: number
-  ) => {
+  const addFeature = (planIndex: number) => {
     const updated = [...plans];
 
     updated[planIndex].features.push("");
@@ -303,28 +293,17 @@ export default function PricingEditor({
   };
 
   // ✅ REMOVE FEATURE
-  const removeFeature = (
-    planIndex: number,
-    featureIndex: number
-  ) => {
+  const removeFeature = (planIndex: number, featureIndex: number) => {
     const updated = [...plans];
 
-    if (
-      updated[planIndex].features
-        .length <= 1
-    ) {
-      toast.error(
-        "At least one feature required"
-      );
+    if (updated[planIndex].features.length <= 1) {
+      toast.error("At least one feature required");
       return;
     }
 
-    updated[planIndex].features =
-      updated[
-        planIndex
-      ].features.filter(
-        (_, i) => i !== featureIndex
-      );
+    updated[planIndex].features = updated[planIndex].features.filter(
+      (_, i) => i !== featureIndex,
+    );
 
     setPlans(updated);
 
@@ -336,13 +315,11 @@ export default function PricingEditor({
   const updateFeature = (
     planIndex: number,
     featureIndex: number,
-    value: string
+    value: string,
   ) => {
     const updated = [...plans];
 
-    updated[planIndex].features[
-      featureIndex
-    ] = value;
+    updated[planIndex].features[featureIndex] = value;
 
     setPlans(updated);
 
@@ -351,15 +328,11 @@ export default function PricingEditor({
   };
 
   // ✅ HIGHLIGHT PLAN
-  const setHighlight = (
-    index: number
-  ) => {
-    const updated = plans.map(
-      (plan, i) => ({
-        ...plan,
-        highlight: i === index,
-      })
-    );
+  const setHighlight = (index: number) => {
+    const updated = plans.map((plan, i) => ({
+      ...plan,
+      highlight: i === index,
+    }));
 
     setPlans(updated);
 
@@ -369,12 +342,9 @@ export default function PricingEditor({
 
   return (
     <div className="mt-10">
-
       {/* HEADER */}
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-2xl font-bold text-gray-800">
-          Pricing Plans
-        </h3>
+        <h3 className="text-2xl font-bold text-gray-800">Pricing Plans</h3>
 
         <button
           type="button"
@@ -413,13 +383,10 @@ export default function PricingEditor({
               }
             `}
           >
-
             {/* REMOVE BUTTON */}
             <button
               type="button"
-              onClick={() =>
-                removePlan(i)
-              }
+              onClick={() => removePlan(i)}
               className="
                 absolute top-1 right-1
                 w-6 h-6 rounded-full
@@ -429,22 +396,29 @@ export default function PricingEditor({
                 transition
               "
             >
-              <CircleX
-                size={16}
-                className="text-red-500"
-              />
+              <CircleX size={16} className="text-red-500" />
             </button>
+
+            {/* Name */}
+            <input
+              type="text"
+              value={plan.name || ""}
+              onChange={(e) => updatePlan(i, "name", e.target.value)}
+              placeholder="Plan Name (Normal/Zoho)"
+              className="
+    w-full
+    border
+    rounded-xl
+    p-3
+    mb-3
+    font-semibold
+  "
+            />
 
             {/* BADGE */}
             <input
               value={plan.badge}
-              onChange={(e) =>
-                updatePlan(
-                  i,
-                  "badge",
-                  e.target.value
-                )
-              }
+              onChange={(e) => updatePlan(i, "badge", e.target.value)}
               placeholder="Badge"
               className="
                 w-full border rounded-xl
@@ -456,13 +430,7 @@ export default function PricingEditor({
             {/* TITLE */}
             <input
               value={plan.title}
-              onChange={(e) =>
-                updatePlan(
-                  i,
-                  "title",
-                  e.target.value
-                )
-              }
+              onChange={(e) => updatePlan(i, "title", e.target.value)}
               placeholder="Plan Title"
               className="
                 w-full border rounded-xl
@@ -474,13 +442,7 @@ export default function PricingEditor({
             {/* SUBTITLE */}
             <input
               value={plan.subtitle}
-              onChange={(e) =>
-                updatePlan(
-                  i,
-                  "subtitle",
-                  e.target.value
-                )
-              }
+              onChange={(e) => updatePlan(i, "subtitle", e.target.value)}
               placeholder="Subtitle"
               className="
                 w-full border rounded-xl
@@ -491,13 +453,7 @@ export default function PricingEditor({
             {/* PRICE */}
             <input
               value={plan.price}
-              onChange={(e) =>
-                updatePlan(
-                  i,
-                  "price",
-                  e.target.value
-                )
-              }
+              onChange={(e) => updatePlan(i, "price", e.target.value)}
               placeholder="₹49,999"
               className="
                 w-full border rounded-xl
@@ -509,13 +465,7 @@ export default function PricingEditor({
             {/* NOTE */}
             <input
               value={plan.note}
-              onChange={(e) =>
-                updatePlan(
-                  i,
-                  "note",
-                  e.target.value
-                )
-              }
+              onChange={(e) => updatePlan(i, "note", e.target.value)}
               placeholder="Note"
               className="
                 w-full border rounded-xl
@@ -526,15 +476,11 @@ export default function PricingEditor({
             {/* FEATURES */}
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <h4 className="font-semibold text-gray-700">
-                  Features
-                </h4>
+                <h4 className="font-semibold text-gray-700">Features</h4>
 
                 <button
                   type="button"
-                  onClick={() =>
-                    addFeature(i)
-                  }
+                  onClick={() => addFeature(i)}
                   className="
                     text-blue-600 text-sm
                     font-medium
@@ -544,63 +490,41 @@ export default function PricingEditor({
                 </button>
               </div>
 
-              {plan.features.map(
-                (
-                  feature,
-                  featureIndex
-                ) => (
-                  <div
-                    key={featureIndex}
-                    className="flex gap-2"
-                  >
-                    <input
-                      value={feature}
-                      onChange={(e) =>
-                        updateFeature(
-                          i,
-                          featureIndex,
-                          e.target.value
-                        )
-                      }
-                      placeholder="Feature"
-                      className="
+              {plan.features.map((feature, featureIndex) => (
+                <div key={featureIndex} className="flex gap-2">
+                  <input
+                    value={feature}
+                    onChange={(e) =>
+                      updateFeature(i, featureIndex, e.target.value)
+                    }
+                    placeholder="Feature"
+                    className="
                         flex-1 border
                         rounded-xl p-3
                         text-sm
                       "
-                    />
+                  />
 
-                    <button
-                      type="button"
-                      onClick={() =>
-                        removeFeature(
-                          i,
-                          featureIndex
-                        )
-                      }
-                      className="
+                  <button
+                    type="button"
+                    onClick={() => removeFeature(i, featureIndex)}
+                    className="
                         w-10 h-10
                         rounded-xl
                         bg-red-50
                         flex items-center justify-center
                       "
-                    >
-                      <Trash2
-                        size={15}
-                        className="text-red-500"
-                      />
-                    </button>
-                  </div>
-                )
-              )}
+                  >
+                    <Trash2 size={15} className="text-red-500" />
+                  </button>
+                </div>
+              ))}
             </div>
 
             {/* HIGHLIGHT */}
             <button
               type="button"
-              onClick={() =>
-                setHighlight(i)
-              }
+              onClick={() => setHighlight(i)}
               className={`
                 mt-5 w-full h-12
                 rounded-xl
@@ -616,9 +540,7 @@ export default function PricingEditor({
             >
               <Star size={16} />
 
-              {plan.highlight
-                ? "Highlighted"
-                : "Set Highlight"}
+              {plan.highlight ? "Highlighted" : "Set Highlight"}
             </button>
           </div>
         ))}

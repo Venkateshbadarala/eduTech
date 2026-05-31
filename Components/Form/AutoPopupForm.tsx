@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -7,21 +8,20 @@ export default function AutoPopupForm() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    // ✅ OPEN AFTER 10 SECONDS
+    // Open popup after 20 seconds
     const timer = setTimeout(() => {
       setOpen(true);
-    }, 10 * 1000);
+    }, 20000);
 
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="blur-3xl">
-<StudentQueryForm
-      isOpen={open}
-      onClose={() => setOpen(false)}
-    />
-    </div>
-    
+    <>
+      <StudentQueryForm
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      />
+    </>
   );
 }

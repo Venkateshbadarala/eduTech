@@ -103,6 +103,7 @@ const CourseSchema = new mongoose.Schema(
     // 🔹 PRICING
     pricing: [
       {
+        name : String,
         badge: String,
         title: String,
         subtitle: String,

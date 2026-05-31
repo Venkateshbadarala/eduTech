@@ -70,19 +70,23 @@ export default function Page() {
         const course = data.course || data;
         console.log("API RESPONSE:", data);
         // ✅ normalize data
-        setForm({
-          ...emptyCourse,
-          ...course,
-          stats: course.stats || [],
-          skills: course.skills || [],
-          modules: course.modules || [],
-          tools: course.tools || [],
-          mastery: course.mastery || [],
-          pricing: course.pricing || [],
-          capstoneProjects:course.capstoneProjects || [],
-          JobRolesEditor:course.jobRoles || [],
-          brochure: course?.brochure?.file ? course.brochure : { file: "" },
-        });
+       setForm({
+  ...emptyCourse,
+  ...course,
+  stats: course.stats || [],
+  skills: course.skills || [],
+  modules: course.modules || [],
+  tools: course.tools || [],
+  mastery: course.mastery || [],
+  pricing: course.pricing || [],
+  capstoneProjects:
+    course.capstoneProjects || [],
+  jobRoles:
+    course.jobRoles || [],
+  brochure: course?.brochure?.file
+    ? course.brochure
+    : { file: "" },
+});
 
         setPreview(course.image || "");
       } catch {
@@ -96,9 +100,24 @@ export default function Page() {
   }, [id]);
 
   // 🔹 HANDLE CHANGE
-  const handleChange = (key: string, value: any) => {
-    setForm((prev: any) => ({ ...prev, [key]: value }));
-  };
+const handleChange = (
+  key: string,
+  value: any
+) => {
+  setForm((prev: any) => {
+    if (
+      JSON.stringify(prev[key]) ===
+      JSON.stringify(value)
+    ) {
+      return prev;
+    }
+
+    return {
+      ...prev,
+      [key]: value,
+    };
+  });
+};
 
   // 🔹 IMAGE
   const handleImage = (e: any) => {
@@ -375,12 +394,12 @@ export default function Page() {
           handleChange("capstoneProjects", v)
         }
       />
-      <JobRolesEditor
-      value={form.JobRolesEditor}
-       onChange={(v) =>
-          handleChange("JobRolesEditor", v)
-        }
-      />
+     <JobRolesEditor
+  value={form.jobRoles}
+  onChange={(v) =>
+    handleChange("jobRoles", v)
+  }
+/>
 
       {/* ACTION BUTTON */}
       <div className="flex justify-end">

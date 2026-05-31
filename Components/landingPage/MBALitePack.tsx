@@ -140,7 +140,7 @@ export default function MBALitePack() {
       className="
         relative overflow-hidden
         py-24 px-6
-        bg-(--color-light)
+        
       "
     >
 
@@ -166,7 +166,8 @@ export default function MBALitePack() {
             relative overflow-hidden
             rounded-[40px]
             border border-white/10
-            bg-white/10
+            bg-white
+            shadow-[0_15px_60px_rgba(0,0,0,0.15)]
             backdrop-blur-2xl
             p-10 md:p-16
           "
@@ -228,17 +229,18 @@ export default function MBALitePack() {
                 mt-10 mx-auto
                 max-w-md
                 rounded-3xl
-                bg-white/10
+                bg-[#201547]
+                  shadow-[0_15px_60px_rgba(0,0,0,0.15)]
                 border border-white/10
                 backdrop-blur-xl
                 p-6
               "
             >
 
-              <p className="text-(--color-gray-2)">
+              <p className="text-white/80">
                 Unlock an{" "}
 
-                <span className="font-bold text-(--color-primary)">
+                <span className="font-bold text-lg text-white">
                   MBA Lite Bundle
                 </span>{" "}
 
@@ -247,13 +249,10 @@ export default function MBALitePack() {
 
               <h2
                 className="
-                  mt-3
-                  text-5xl
-                  font-black
-                  bg-gradient-to-r
-                  from-(--color-primary)
-                  to-(--color-secondary)
-                  text-transparent bg-clip-text
+                  mt-2
+                      text-4xl font-black
+                      text-white
+                       bg-clip-text
                 "
               >
                 ₹7,999
@@ -324,10 +323,11 @@ export default function MBALitePack() {
                 relative overflow-hidden
                 rounded-3xl
                 border border-white/10
-                bg-white/10
+                bg-white
                 backdrop-blur-xl
                 p-8
                 text-center
+                shadow-[0_15px_60px_rgba(0,0,0,0.15)]
               "
             >
 
@@ -509,7 +509,7 @@ export default function MBALitePack() {
                     from-(--color-primary)
                     to-(--color-secondary)
                     border-4 border-white
-                    shadow-xl
+                    shadow-[0_15px_60px_rgba(0,0,0,0.15)]
                   "
                 />
 
@@ -517,9 +517,10 @@ export default function MBALitePack() {
                   className="
                     rounded-3xl
                     border border-white/10
-                    bg-white/10
+                    bg-white
                     backdrop-blur-2xl
                     p-8
+                    shadow-[0_15px_60px_rgba(0,0,0,0.15)]
                   "
                 >
 
@@ -642,7 +643,7 @@ export default function MBALitePack() {
                 className="
                   relative overflow-hidden
                   rounded-3xl
-                  bg-white/10
+                  bg-white
                   border border-white/10
                   backdrop-blur-xl
                   p-7
@@ -780,7 +781,6 @@ export default function MBALitePack() {
               text-white
               bg-gradient-to-r
               from-(--color-primary)
-             
               to-(--color-secondary)
               hover:scale-105
               transition-all duration-300

@@ -56,7 +56,7 @@ export default function GoldBenefits() {
       className="
         relative overflow-hidden
         py-8 px-6
-        bg-(--color-light)
+       
       "
     >
 

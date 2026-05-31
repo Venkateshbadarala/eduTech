@@ -411,7 +411,7 @@ export default function ZohoCertifiedPrograms() {
                       </div>
 
                       <Link
-                        href={`/courses/${course._id}`}
+                        href={`/zohoCourse/courses/${course._id}`}
                       >
                         <button
                           className="

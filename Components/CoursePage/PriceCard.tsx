@@ -28,13 +28,25 @@ export default function PriceCard({
   allPlans: PricingData[];
 }) {
 
-  // ✅ ALL FEATURES
-  const allFeatures = Array.from(
-    new Set(
-      (allPlans || []).flatMap(
-        (plan) => plan.features || []
-      )
-    )
+const professionalPlan = allPlans?.find(
+  (plan) =>
+    plan.title?.toLowerCase() ===
+    "professional"
+);
+
+const professionalFeatures =
+  professionalPlan?.features || [];
+
+const includedFeatures =
+  professionalFeatures.filter(
+    (feature) =>
+      data.features?.includes(feature)
+  );
+
+const excludedFeatures =
+  professionalFeatures.filter(
+    (feature) =>
+      !data.features?.includes(feature)
   );
 
   return (
@@ -51,16 +63,14 @@ export default function PriceCard({
         }
       `}
     >
-
-      {/* CARD */}
       <div
         className={`
           relative overflow-hidden
           rounded-[32px]
           border
-          transition-all duration-300
           h-full
-          backdrop-blur-xl
+          flex flex-col
+          transition-all duration-300
           ${
             data.highlight
               ? `
@@ -77,11 +87,8 @@ export default function PriceCard({
           }
         `}
       >
-
-        {/* TOP */}
+        {/* Header */}
         <div className="p-8 pb-6">
-
-          {/* BADGE */}
           {data.badge && (
             <div
               className={`
@@ -100,10 +107,9 @@ export default function PriceCard({
             </div>
           )}
 
-          {/* TITLE */}
           <h2
             className={`
-              text-3xl font-black tracking-tight
+              text-3xl font-black
               ${
                 data.highlight
                   ? "text-white"
@@ -114,10 +120,9 @@ export default function PriceCard({
             {data.title}
           </h2>
 
-          {/* SUBTITLE */}
           <p
             className={`
-              mt-3 text-sm leading-relaxed
+              mt-3 text-sm
               ${
                 data.highlight
                   ? "text-slate-300"
@@ -128,13 +133,10 @@ export default function PriceCard({
             {data.subtitle}
           </p>
 
-          {/* PRICE */}
-          
-          <div className="mt-8 ">
-
+          <div className="mt-8">
             <h3
               className={`
-                text-5xl font-black tracking-tight
+                text-5xl font-black
                 ${
                   data.highlight
                     ? "text-white"
@@ -146,124 +148,126 @@ export default function PriceCard({
             </h3>
           </div>
 
-          {/* NOTE */}
           {data.note && (
-            <p
-              className={`
-                mt-2 text-sm font-medium
-                ${
-                  data.highlight
-                    ? "text-primary"
-                    : "text-primary"
-                }
-              `}
-            >
+            <p className="mt-2 text-sm font-medium text-primary">
               {data.note}
             </p>
           )}
         </div>
 
-        {/* FEATURES */}
+        {/* Features */}
         <div
-          className={`
-            px-8 py-7 border-t
-            ${
-              data.highlight
-                ? "border-white/10"
-                : "border-gray-1"
-            }
-          `}
+  className={`
+    px-8 py-7 border-t
+    flex flex-col flex-1
+    ${
+      data.highlight
+        ? "border-white/10"
+        : "border-gray-100"
+    }
+  `}
+>
+  <div className="space-y-4 flex-1">
+
+    {/* Available Features */}
+    {includedFeatures.map(
+      (feature, index) => (
+        <div
+          key={index}
+          className="flex items-start gap-3"
         >
-
-          <div className="space-y-4 min-h-[320px]">
-
-            {allFeatures.map(
-              (feature, i) => {
-
-                const included =
-                  data.features?.includes(
-                    feature
-                  );
-
-                return (
-                  <div
-                    key={i}
-                    className="flex items-start gap-3"
-                  >
-
-                    {/* ICON */}
-                    <div
-                      className={`
-                        mt-0.5 flex-shrink-0
-                        w-5 h-5 rounded-full
-                        flex items-center justify-center
-                        ${
-                          included
-                            ? data.highlight
-                              ? "bg-blue-500/20 text-blue-300"
-                              : "bg-blue-100 text-blue-600"
-                            : data.highlight
-                            ? "bg-white/10 text-slate-500"
-                            : "bg-gray-100 text-gray-400"
-                        }
-                      `}
-                    >
-                      {included ? (
-                        <Check size={13} />
-                      ) : (
-                        <X size={12} />
-                      )}
-                    </div>
-
-                    {/* FEATURE */}
-                    <p
-                      className={`
-                        text-sm leading-relaxed
-                        ${
-                          included
-                            ? data.highlight
-                              ? "text-slate-200"
-                              : "text-black-1"
-                            : data.highlight
-                            ? "text-slate-500 line-through"
-                            : "text-gray-400 line-through"
-                        }
-                      `}
-                    >
-                      {feature}
-                    </p>
-                  </div>
-                );
-              }
-            )}
-          </div>
-
-          {/* BUTTON */}
-          <button
+          <div
             className={`
-              mt-8 w-full py-4 rounded-2xl
-              font-semibold text-sm
-              transition-all duration-300
+              mt-0.5
+              w-5 h-5
+              rounded-full
+              flex items-center justify-center
               ${
                 data.highlight
-                  ? `
-                    bg-blue-500
-                    hover:bg-primary
-                    text-white
-                  `
-                  : `
-                    bg-gray-900
-                    hover:bg-black
-                    text-white
-                  `
+                  ? "bg-blue-500/20 text-blue-300"
+                  : "bg-green-100 text-green-600"
               }
             `}
           >
-            {data.highlight
-              ? "Get Started"
-              : "Choose Plan"}
-          </button>
+            <Check size={13} />
+          </div>
+
+          <p
+            className={`
+              text-sm leading-relaxed
+              ${
+                data.highlight
+                  ? "text-slate-200"
+                  : "text-gray-700"
+              }
+            `}
+          >
+            {feature}
+          </p>
         </div>
+      )
+    )}
+
+    {/* Missing Features */}
+    {!data.highlight &&
+      excludedFeatures.map(
+        (feature, index) => (
+          <div
+            key={`missing-${index}`}
+            className="flex items-start gap-3"
+          >
+            <div
+              className="
+                mt-0.5
+                w-5 h-5
+                rounded-full
+                flex items-center justify-center
+                bg-red-100
+                text-red-500
+              "
+            >
+              <X size={13} />
+            </div>
+
+            <p
+              className="
+                text-sm
+                text-gray-400
+                line-through
+              "
+            >
+              {feature}
+            </p>
+          </div>
+        )
+      )}
+  </div>
+
+  <button
+    className={`
+      mt-auto w-full py-4 rounded-2xl
+      font-semibold text-sm
+      transition-all duration-300
+      ${
+        data.highlight
+          ? `
+            bg-blue-500
+            hover:bg-blue-600
+            text-white
+          `
+          : `
+            bg-gray-900
+            hover:bg-black
+            text-white
+          `
+      }
+    `}
+  >
+    {data.highlight
+      ? "Get Started"
+      : "Choose Plan"}
+  </button>
+</div>
       </div>
     </div>
   );

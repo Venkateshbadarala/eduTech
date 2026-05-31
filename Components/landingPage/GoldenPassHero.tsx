@@ -40,21 +40,13 @@ export default function GoldenPassHero() {
     <section
       className="
         relative overflow-hidden
-        py-12 md:py-20
+        py-12 md:py-24
         px-5 md:px-8
-        bg-(--color-light)
+        
       "
     >
 
-      {/* 🔥 GRID */}
-      <div
-        className="
-          absolute inset-0 opacity-30
-          bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)]
-          bg-[size:80px_80px]
-        "
-      />
-
+    
       {/* 🔥 BLURS */}
       <div
         className="
@@ -176,7 +168,7 @@ export default function GoldenPassHero() {
                 className="
                   inline-flex items-center gap-3
                   border border-white/10
-                  bg-white/10 backdrop-blur-xl
+                  bg-white/20 backdrop-blur-xl
                   rounded-full
                   px-5 py-3
                 "
@@ -203,11 +195,11 @@ export default function GoldenPassHero() {
               </div>
 
               {/* 🔥 TITLE */}
-              <div className="mt-6">
+              <div className="mt-4">
 
                 <h1
                   className="
-                    text-5xl md:text-7xl
+                    text-4xl md:text-5xl
                     font-black
                     leading-[1]
                     tracking-tight
@@ -215,8 +207,8 @@ export default function GoldenPassHero() {
                   "
                 >
                   Learn Without
-                  <br />
-
+                 
+{" "}
                   <span
                     className="
                       bg-gradient-to-r
@@ -226,14 +218,14 @@ export default function GoldenPassHero() {
                       text-transparent bg-clip-text
                     "
                   >
-                    Any Limits
+                     Any Limits
                   </span>
                 </h1>
 
                 {/* 🔥 SUBTITLE */}
                 <p
                   className="
-                    mt-4
+                    mt-3
                     max-w-2xl
                     text-base md:text-lg
                     leading-relaxed
@@ -251,7 +243,7 @@ export default function GoldenPassHero() {
               {/* 🔥 PLANS */}
               <div
                 className="
-                  mt-8
+                  mt-5
                   grid md:grid-cols-3
                   gap-5
                 "
@@ -330,7 +322,7 @@ export default function GoldenPassHero() {
               {/* 🔥 INFO */}
               <div
                 className="
-                  mt-5
+                  mt-3
                   border-t border-white/10
                   pt-4
                 "
@@ -359,7 +351,7 @@ export default function GoldenPassHero() {
 
                 <p
                   className="
-                    mt-4
+                    mt-3
                     max-w-2xl
                     leading-relaxed
                     text-(--color-gray-2)
@@ -376,7 +368,7 @@ export default function GoldenPassHero() {
               {/* 🔥 BUTTONS */}
               <div
                 className="
-                  mt-12
+                  mt-8
                   flex flex-wrap items-center
                   gap-5
                 "
@@ -388,6 +380,7 @@ export default function GoldenPassHero() {
                     flex items-center gap-3
                     border border-white/10
                     bg-white/10
+                    shadow-[0_15px_60px_rgba(0,0,0,0.15)]
                     backdrop-blur-xl
                     hover:bg-white/20
                     text-(--color-black-1)

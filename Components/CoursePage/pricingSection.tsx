@@ -39,6 +39,18 @@ export default function PricingSection({
     const rzp = new (window as any).Razorpay(options);
     rzp.open();
   };
+const sortedPricing = [...pricing].sort((a, b) => {
+  const order: Record<string, number> = {
+    "Recorded": 1,
+    "Professional": 2,
+    "Mentor Led": 3,
+  };
+
+  return (
+    (order[a.title] || 999) -
+    (order[b.title] || 999)
+  );
+});
 
   return (
     <section className="py-10 px-6 text-center">
@@ -56,17 +68,17 @@ export default function PricingSection({
         </p>{" "}
       </div>
       {/* CARDS */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-10 py-10">
-        {pricing?.map((plan, i) => (
-          <PriceCard
-            key={i}
-            data={plan}
-            allPlans={pricing} // ✅ ADD THIS
-            isActive={selectedPlan?.title === plan.title}
-            onSelect={() => setSelectedPlan(plan)}
-          />
-        ))}
-      </div>
+      <div className="flex flex-wrap justify-center gap-10 py-10">
+  {sortedPricing.map((plan, i) => (
+    <PriceCard
+      key={i}
+      allPlans={pricing}
+      data={plan}
+      isActive={selectedPlan?.title === plan.title}
+      onSelect={() => setSelectedPlan(plan)}
+    />
+  ))}
+</div>
     </section>
   );
 }

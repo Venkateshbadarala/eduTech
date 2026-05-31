@@ -74,7 +74,7 @@ export default function GoldenCareers() {
       className="
         relative overflow-hidden
         py-24 px-6
-        bg-(--color-light)
+        
       "
     >
 
@@ -114,7 +114,9 @@ export default function GoldenCareers() {
             className="
               inline-flex items-center gap-3
               border border-white/10
-              bg-white/10 backdrop-blur-xl
+              bg-white
+              shadow-[0_15px_60px_rgba(0,0,0,0.15)]
+              backdrop-blur-xl
               rounded-full
               px-6 py-3
             "
@@ -255,7 +257,7 @@ export default function GoldenCareers() {
                     relative overflow-hidden
                     rounded-3xl
                     border border-white/10
-                    bg-white/10
+                    bg-white
                     backdrop-blur-2xl
                     p-8
                     shadow-[0_15px_50px_rgba(0,0,0,0.08)]
@@ -371,11 +373,14 @@ export default function GoldenCareers() {
               className="
                 px-4 py-2
                 rounded-full
-                bg-white/10
+                bg-gradient-to-r
+                      from-(--color-primary)
+                      to-(--color-secondary)
+                shadow-[0_15px_60px_rgba(0,0,0,0.15)]
                 border border-white/10
                 backdrop-blur-xl
                 text-sm
-                text-(--color-black-1)
+                text-white
               "
             >
               Mentor Led
@@ -385,11 +390,14 @@ export default function GoldenCareers() {
               className="
                 px-4 py-2
                 rounded-full
-                bg-white/10
+                bg-gradient-to-r
+                      from-(--color-primary)
+                      to-(--color-secondary)
+                shadow-[0_15px_60px_rgba(0,0,0,0.15)]
                 border border-white/10
                 backdrop-blur-xl
                 text-sm
-                text-(--color-black-1)
+                text-white
               "
             >
               Lifetime Access
@@ -417,7 +425,7 @@ export default function GoldenCareers() {
                   relative overflow-hidden
                   rounded-3xl
                   border border-white/10
-                  bg-white/10
+                  bg-white
                   backdrop-blur-2xl
                   p-6
                   text-left

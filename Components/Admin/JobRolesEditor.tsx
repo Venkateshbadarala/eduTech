@@ -41,72 +41,57 @@ export default function JobRolesEditor({
   onChange,
 }: Props) {
 
-  // ✅ SAFE INIT
-  const [roles, setRoles] =
-    useState<JobRole[]>(
-      value?.length
-        ? value.map((item) => ({
-            ...EMPTY_ROLE,
-            ...item,
-          }))
-        : [EMPTY_ROLE]
-    );
-
-  // 🔁 SYNC TO PARENT
-  useEffect(() => {
-    onChange(roles);
-  }, [roles]);
+const [roles, setRoles] =
+  useState<JobRole[]>(
+    value?.length
+      ? value.map((role) => ({
+          name: role.name || "",
+          image: role.image || "",
+          packageRange:
+            role.packageRange || "",
+        }))
+      : [EMPTY_ROLE]
+  );
 
   // ✅ UPDATE FIELD
-  const updateField = (
-    index: number,
-    key: keyof JobRole,
-    val: string
-  ) => {
-    const updated = [...roles];
+const updateField = (
+  index: number,
+  key: keyof JobRole,
+  val: string
+) => {
+  const updated = [...roles];
 
-    updated[index] = {
-      ...updated[index],
-      [key]: val,
-    };
-
-    setRoles(updated);
+  updated[index] = {
+    ...updated[index],
+    [key]: val,
   };
+
+  setRoles(updated);
+  onChange(updated);
+};
 
   // ✅ ADD ROLE
-  const addRole = () => {
-    if (roles.length >= 12) {
-      toast.error(
-        "Maximum 12 job roles allowed"
-      );
-      return;
-    }
+const addRole = () => {
+  const updated = [
+    ...roles,
+    { ...EMPTY_ROLE },
+  ];
 
-    setRoles([
-      ...roles,
-      {
-        ...EMPTY_ROLE,
-      },
-    ]);
-  };
-
+  setRoles(updated);
+  onChange(updated);
+};
   // ✅ REMOVE ROLE
-  const removeRole = (
-    index: number
-  ) => {
-    if (roles.length === 1) {
-      toast.error(
-        "At least 1 role required"
-      );
-      return;
-    }
-
-    setRoles(
-      roles.filter(
-        (_, i) => i !== index
-      )
+const removeRole = (
+  index: number
+) => {
+  const updated =
+    roles.filter(
+      (_, i) => i !== index
     );
-  };
+
+  setRoles(updated);
+  onChange(updated);
+};
 
   return (
     <div className="mt-10">

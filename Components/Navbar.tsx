@@ -11,7 +11,7 @@ import {
 } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
-
+import { SiZoho } from "react-icons/si";
 import Logo from "@/public/logo.png";
 import { DownIcon, HamburgerIcon } from "@/constants/svgIcons";
 import AuthModal from "./AuthModal";
@@ -28,6 +28,7 @@ import {
   ContactIcon,
   BotMessageSquare,
 } from "lucide-react";
+import InpatPortal from "./landingPage/InpatPortal";
 
 interface NavbarProps {
   onOpenSidebar: () => void;
@@ -39,7 +40,7 @@ const navItems = [
     label: "Home",
     href: "/",
   },
-   {
+  {
     label: "Elite Packs",
     dropdown: [
       {
@@ -64,11 +65,9 @@ const navItems = [
   },
 
   {
-    label: "Cornixe X Zoho",
-    href: "/zoho",
+    label: "Cornixe X ZOHO",
+    href: "/zohopartner",
   },
-
-
 
   {
     label: "Career",
@@ -85,12 +84,10 @@ const navItems = [
     ],
   },
 
-    {
+  {
     label: "About",
     href: "/about",
   },
-
- 
 ];
 
 const mobileNavItems = [
@@ -124,13 +121,11 @@ const mobileNavItems = [
     ],
   },
 
-   {
-    label: "Zoho",
-    href: "/zoho",
+  {
+    label: "ZOHO",
+    href: "/zohopartner",
     icon: <Building2 size={18} />,
   },
-
- 
 
   {
     label: "Career",
@@ -153,8 +148,6 @@ const mobileNavItems = [
     href: "/about",
     icon: <Info size={18} />,
   },
-
-  
 ];
 
 const Navbar = ({ onOpenSidebar }: NavbarProps) => {
@@ -165,7 +158,7 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-
+ const [openPortal, setOpenPortal] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // 🔥 scroll hide (desktop navbar)
@@ -201,14 +194,10 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
   return (
     <>
       {/* ================= DESKTOP NAVBAR ================= */}
-     <motion.nav
-  animate={
-    hidden
-      ? { y: "-120%", opacity: 0 }
-      : { y: 0, opacity: 1 }
-  }
-  transition={{ duration: 0.4 }}
-  className={`
+      <motion.nav
+        animate={hidden ? { y: "-120%", opacity: 0 } : { y: 0, opacity: 1 }}
+        transition={{ duration: 0.4 }}
+        className={`
     fixed top-2 left-1/2 -translate-x-1/2
     z-50
 
@@ -224,11 +213,11 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
       hidden
         ? ""
         : scrollY.get() > 20
-        ? "bg-white shadow-xl border border-gray-1"
-        : "bg-white/80 backdrop-blur-xl"
+          ? "bg-white shadow-xl border border-gray-1"
+          : "bg-white/80 backdrop-blur-xl"
     }
   `}
->
+      >
         <div className="flex items-center justify-between  rounded-2xl px-6 py-1 ">
           {/* LOGO */}
           <div className="flex items-center gap-6 ">
@@ -313,7 +302,6 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
                           <Link
                             key={i}
                             href={drop.href}
-                            
                             className="
                     block px-5 py-4
                     text-sm font-medium
@@ -338,7 +326,6 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
                   <Link
                     key={item.href}
                     href={item.href!}
-                    
                     className={`
           text-[15px]
           font-medium
@@ -351,6 +338,19 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
                   </Link>
                 );
               })}
+
+              <button
+                              type="button"
+                              onClick={() => setOpenPortal(true)}
+                              className="
+                              cursor pointer
+                              "
+                            >
+                              Zoho
+              
+                             
+                            </button>
+                            
 
               {/* ADMIN */}
               {isAdmin && (
@@ -421,14 +421,12 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
               </div>
             )}
             <span className="hidden md:block">|</span>
-              <button
-            type="button"
-            className="bg-gradient-to-r from-primary to-secondary text-white px-2.5 py-2 rounded-full hidden md:block"
-          >  
-          <p className="">Contact Us</p>
-          
-            
-          </button>
+            <button
+              type="button"
+              className="bg-gradient-to-r from-primary to-secondary text-white px-2.5 py-2 rounded-full hidden md:block"
+            >
+              <p className="">Contact Us</p>
+            </button>
           </div>
         </div>
       </motion.nav>
@@ -517,7 +515,6 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
                         <Link
                           key={i}
                           href={drop.href}
-                          
                           className="
                       block px-4 py-3
                       text-sm
@@ -542,7 +539,6 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
               <Link
                 key={index}
                 href={item.href!}
-                
                 className="
           flex flex-col items-center
           text-xs
@@ -566,11 +562,42 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
               </Link>
             );
           })}
+             <button
+  type="button"
+  onClick={() => setOpenPortal(true)}
+  className="
+    flex flex-col items-center
+    text-xs
+  "
+>
+  <div
+    className={`
+      w-10 h-10 rounded-2xl
+      flex items-center justify-center
+      transition-all
+      ${
+        openPortal
+          ? "bg-blue-600 text-white"
+          : "text-gray-500"
+      }
+    `}
+  >
+    <SiZoho size={20} />
+  </div>
+
+  <span className=" text-[11px]">
+    Zoho
+  </span>
+</button>
         </div>
       </div>
 
       {/* AUTH MODAL */}
       <AuthModal isOpen={open} onClose={() => setOpen(false)} />
+        <InpatPortal
+                                    isOpen={openPortal}
+                                    onClose={() => setOpenPortal(false)}
+                                  />
     </>
   );
 };

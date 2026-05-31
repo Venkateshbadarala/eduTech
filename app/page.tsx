@@ -13,18 +13,18 @@ import TeamSection from "@/Components/TeamsSection";
 import TrendingCourses from "@/Components/TrendingCourses";
 import WhyChooseSection from "@/Components/landingPage/WhyChooseSection";
 import StatsFloatingCards from "@/Components/StatsFloatingCards";
-import FAQSection from "@/Components/FAQSection";
 import AutoPopupForm from "@/Components/Form/AutoPopupForm";
 import ElitePacks from "@/Components/Program/ElitePacks";
 import Services from "@/Components/landingPage/Services";
-
+import InpatPortal from "@/Components/landingPage/InpatPortal";
+import RegisterNowSection from "@/Components/landingPage/RegisterNowButton";
 
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
+const [openPortal, setOpenPortal] = useState(false);
   return (
     <>
-    <AutoPopupForm />
+     <AutoPopupForm/>
       <Navbar onOpenSidebar={() => setSidebarOpen(true)} />
 
       {sidebarOpen && (
@@ -51,20 +51,20 @@ export default function Home() {
         </div>
       )}
       <Hero />
+      <RegisterNowSection/>
       <Companies />
       <div className="lg:hidden block">
-          <StatsFloatingCards />
+        <StatsFloatingCards />
       </div>
-      <Services/>
-      
+      <Services />
+
       <TrendingCourses />
       <WhyChooseSection />
       <LearningJourney />
-      
-      <ElitePacks/>
+
+      <ElitePacks />
       <TeamSection />
       <Testimonials />
-      
     </>
   );
 }

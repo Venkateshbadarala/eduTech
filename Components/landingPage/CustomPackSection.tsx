@@ -18,7 +18,7 @@ const tabs = [
 
 const categories = [
   {
-    title: "Computer Science",
+    title: "Technology and Data",
 
     courses: [
       "Web Development",
@@ -106,7 +106,7 @@ export default function CustomPackSection() {
       className="
         relative overflow-hidden
         py-24 px-6
-        bg-(--color-light)
+        
       "
     >
 
@@ -143,7 +143,8 @@ export default function CustomPackSection() {
             relative overflow-hidden
             rounded-[40px]
             border border-white/10
-            bg-white/10
+            bg-white
+            shadow-[0_15px_60px_rgba(0,0,0,0.15)]
             backdrop-blur-2xl
             p-8 md:p-12
           "
@@ -217,28 +218,17 @@ export default function CustomPackSection() {
 
                 <div className="relative z-10 text-center">
 
-                  <p
-                    className="
-                      text-white/80
-                      text-sm md:text-base
-                    "
-                  >
-                    Unlock any{" "}
-                    <span className="font-bold text-white">
-                      4 Individual Courses
-                    </span>
-                  </p>
+                  <p className="text-white/80">
+                Unlock a{" "}
+                <span className="font-bold text-lg  text-white">
+                  4 Individual Courses 
+                </span>{" "}
+                worth ₹35,000
+              </p>
 
-                  <p
-                    className="
-                      mt-1
-                      text-sm
-                      line-through
-                      text-white/40
-                    "
-                  >
-                    ₹35,000
-                  </p>
+                  
+
+                 
 
                   <h3
                     className="
@@ -417,7 +407,7 @@ export default function CustomPackSection() {
     ? categories.filter(
         (category) =>
           category.title ===
-          "Computer Science"
+          "Technology and Data"
       )
     : categories
   ).map((category, categoryIndex) => (

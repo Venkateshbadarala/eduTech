@@ -148,7 +148,7 @@ export default function Services() {
               once: true,
             }}
             className="
-             text-gray-500 mt-5 max-w-6xl mx-auto text-md md:text-lg leading-relaxed relative
+             text-gray-2 mt-5 max-w-6xl mx-auto text-md md:text-lg leading-relaxed relative
             "
           >
             Delivering industry-focused

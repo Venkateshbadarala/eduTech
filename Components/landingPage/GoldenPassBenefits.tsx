@@ -111,7 +111,7 @@ export default function GoldenPassBenefits() {
       className="
         relative overflow-hidden
         py-24 px-6
-        bg-(--color-light)
+        
       "
     >
 
@@ -200,7 +200,8 @@ export default function GoldenPassBenefits() {
                 relative overflow-hidden
                 rounded-3xl
                 border border-white/10
-                bg-white/10
+                bg-white
+                shadow-[0_15px_60px_rgba(0,0,0,0.15)]
                 backdrop-blur-2xl
                 p-8
                 text-center
@@ -213,9 +214,8 @@ export default function GoldenPassBenefits() {
               <div
                 className="
                   absolute inset-0
-                  bg-gradient-to-br
-                  from-(--color-primary)/10
-                  to-(--color-secondary)/10
+                  bg-white
+                  shadow-[0_15px_60px_rgba(0,0,0,0.15)]
                 "
               />
 
@@ -332,9 +332,8 @@ export default function GoldenPassBenefits() {
                 <div
                   className="
                     absolute inset-0
-                    bg-gradient-to-r
-                    from-(--color-primary)/10
-                    to-(--color-secondary)/10
+                    bg-white
+                    shadow-[0_15px_60px_rgba(0,0,0,0.15)]
                   "
                 />
 

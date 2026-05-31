@@ -16,6 +16,35 @@ import {
 
 import TeamImage from "@/public/about1.png";
 import MentorImage from "@/public/about2.png";
+import GaneshImage from "@/public/Team/Ganesh.png";
+import KumaresanImage from"@/public/Team/Kumaresan.png";
+import HemanthImage from "@/public/team/Hemanth.png";
+
+const leadershipTeam = [
+  {
+    name: "Ganesh E",
+    role: "CEO",
+    image: GaneshImage,
+    description:
+      "Ganesh, CEO of CORNIXE, is passionate about creating impactful learning experiences that inspire growth, excellence, and future-ready skills.",
+  },
+
+  {
+    name: "Kumaresan D",
+    role: "Founder & COO",
+    image: KumaresanImage,
+    description:
+      "Kumaresan, Founder & COO of CORNIXE, transforms vision into impact through operational leadership, strategic execution, and a commitment to educational excellence.",
+  },
+
+  {
+    name: "Hemanth Kumar",
+    role: "CSO",
+    image: HemanthImage,
+    description:
+      "Hemanth Kumar, CSO of CORNIXE, drives long-term growth by aligning innovation, strategy, and market opportunities.",
+  },
+];
 
 const stats = [
   {
@@ -75,7 +104,7 @@ const commitments = [
 
 export default function AboutCornixe() {
   return (
-    <section className="w-full bg-white px-6 py-26 md:py-26 overflow-hidden relative">
+    <section className="w-full  px-6 py-26 md:py-26 overflow-hidden relative">
       {/* BLUR EFFECTS */}
       <div className="absolute top-0 left-0 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
 
@@ -605,6 +634,100 @@ export default function AboutCornixe() {
               </button>
             </motion.div>
       </div>
+      {/* LEADERSHIP TEAM */}
+<div className="mt-24 px-6">
+  <div className="text-center mb-16">
+    <p className="text-sm uppercase font-bold tracking-[0.25em] text-primary">
+      Leadership Team
+    </p>
+
+    <h2 className="mt-4 text-3xl md:text-5xl font-black text-black-1">
+      Meet The Minds Behind
+      <span className="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+        {" "}
+        CORNIXE
+      </span>
+    </h2>
+
+    <p className="mt-6 text-lg text-gray-2 max-w-3xl mx-auto">
+      Visionary leaders committed to empowering learners and shaping future-ready careers.
+    </p>
+  </div>
+
+  <div className="space-y-24">
+    {leadershipTeam.map((member, index) => (
+      <motion.div
+        key={member.name}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="grid lg:grid-cols-2 gap-12 items-center"
+      >
+        {/* IMAGE */}
+        <div
+          className={`relative ${
+            index % 2 !== 0 ? "lg:order-2" : ""
+          }`}
+        >
+          <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-[40px] blur-xl" />
+
+          <div className="relative overflow-hidden rounded-[36px] shadow-[0_20px_80px_rgba(0,0,0,0.12)]">
+            <Image
+              src={member.image}
+              alt={member.name}
+              className="
+                w-full
+                h-full
+                object-fit
+                transition-transform
+                duration-700
+                hover:scale-105
+              "
+            />
+          </div>
+        </div>
+
+        {/* CONTENT */}
+        <div
+          className={`${
+            index % 2 !== 0 ? "lg:order-1" : ""
+          }`}
+        >
+          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm">
+            {member.role}
+          </span>
+
+          <h3 className="mt-5 text-4xl font-black text-black-1">
+            {member.name}
+          </h3>
+
+          <div className="w-24 h-1 rounded-full bg-gradient-to-r from-primary to-secondary mt-4" />
+
+          <p className="mt-6 text-lg leading-relaxed text-gray-2">
+            {member.description}
+          </p>
+
+          <div className="mt-8 flex gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-primary text-white flex items-center justify-center font-bold text-lg">
+              {member.name.charAt(0)}
+            </div>
+
+            <div>
+              <h4 className="font-bold text-black-1">
+                {member.name}
+              </h4>
+
+              <p className="text-gray-500">
+                {member.role}
+              </p>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    ))}
+  </div>
+</div>
     </section>
   );
 }

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Course from "@/public/hero6.png";
-import Course1 from "@/public/Course.png";
+import Course1 from "@/public/Course1.png";
 import {
   AnimatePresence,
   motion,
@@ -147,7 +147,7 @@ useEffect(() => {
   return (
     <div
       ref={container}
-      className="relative w-full py-16 lg:py-0  overflow-hidden  bg-white "
+      className="relative w-full py-16 lg:py-0  overflow-hidden   "
     >
       {/* 🫧 BUBBLES */}
       <motion.div
@@ -158,7 +158,16 @@ useEffect(() => {
 
       {/* 🔥 HERO */}
       <div className=" flex items-center flex-col justify-center ">
-        <div className="lg:max-w-[calc(100vw)] xl:max-w-[calc(100vw-100px)] mx-auto grid lg:grid-cols-2  items-center px-6 mt-5  grid-cols-1 justify-center lg:h-[100vh] ">
+        <div className="lg:max-w-[calc(100vw)] xl:max-w-[calc(100vw-100px)] mx-auto lg:grid lg:grid-cols-2  items-center px-6 mt-5   justify-center lg:h-[100vh]   ">
+          <div className=" relative  justify-center  w-full h-full lg:hidden block">
+             <Image
+              src={Course1}
+              alt="Hero Image"
+              width={1000}
+              height={1000}
+              className="w-full relative mix-blend-multiply h-full  "
+            />
+          </div>
           {/* LEFT */}
           <motion.div ref={heroContentRef}>
             <div className="mt-4">
@@ -179,7 +188,7 @@ useEffect(() => {
                 </p>
               </h1>
 
-              <p className="text-gray-500 mt-2 xl:text-md leading-relaxed ">
+              <p className="text-gray-2 mt-2 xl:text-md leading-relaxed ">
                 At Cornixe, we believe that every student has a unique
                 professional{" "}
                 <span className="font-bold text-black">"Vision"</span>. Our role
@@ -267,13 +276,7 @@ useEffect(() => {
               height={1000}
               className="w-full relative mix-blend-multiply hidden lg:block"
             />
-            <Image
-              src={Course1}
-              alt="Hero Image"
-              width={1000}
-              height={1000}
-              className="w-full relative mix-blend-multiply lg:hidden block"
-            />
+           
 
          <div className="absolute top-[18%] right-2 flex-col gap-5 z-20 hidden lg:flex">
   {floatingCards.map((item, index) => {
