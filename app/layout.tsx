@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={figtree.variable} suppressHydrationWarning>
       <body className="font-sans bg-gradient-to-r from-primary/20 via-white to-primary/10">
-        <Toaster position="top-center" />
+       <Toaster position="top-center"/>
         <LayoutClient>{children}</LayoutClient>
       </body>
     </html>

@@ -20,36 +20,36 @@ import Vinay from '@/public/Team/Vinay.png'
 
 
 const team = [
-  {
-    image: Ganesh,
+  // {
+  //   image: Ganesh,
 
-    name: "Ganesh E",
+  //   name: "Ganesh E",
 
-    role: "Founder & CEO",
+  //   role: "Founder & CEO",
 
-    linkedin:
-      "https://www.linkedin.com/",
-  },
-  {
-    image: Kumaresan,
+  //   linkedin:
+  //     "https://www.linkedin.com/",
+  // },
+  // {
+  //   image: Kumaresan,
 
-    name: "Kumaresan D",
+  //   name: "Kumaresan D",
 
-    role: "COO",
+  //   role: "COO",
 
-    linkedin:
-      "https://www.linkedin.com/",
-  },
-   {
-    image: hemanth,
+  //   linkedin:
+  //     "https://www.linkedin.com/",
+  // },
+  //  {
+  //   image: hemanth,
 
-    name: "Hemanth Kumar",
+  //   name: "Hemanth Kumar",
 
-    role: "CSO",
+  //   role: "CSO",
 
-    linkedin:
-      "https://www.linkedin.com/",
-  },
+  //   linkedin:
+  //     "https://www.linkedin.com/",
+  // },
    {
     image: Ansh,
 

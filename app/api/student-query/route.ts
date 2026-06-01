@@ -31,12 +31,14 @@ export async function POST(req: Request) {
     // 🔥 GOOGLE AUTH
     const auth = new google.auth.GoogleAuth({
       credentials: {
-        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        client_email:
+          process.env.GOOGLE_CLIENT_EMAIL,
 
-        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(
-          /\\n/g,
-          "\n"
-        ),
+        private_key:
+          process.env.GOOGLE_PRIVATE_KEY?.replace(
+            /\\n/g,
+            "\n"
+          ),
       },
 
       scopes: [
@@ -50,13 +52,55 @@ export async function POST(req: Request) {
       auth,
     });
 
-    // 🔥 SAVE TO SHEETS
+    const spreadsheetId =
+      process.env.GOOGLE_SHEET_ID;
+
+    const sheetName =
+      "StudentsQueries";
+
+    // 🔥 CHECK HEADER
+    const headerResponse =
+      await sheets.spreadsheets.values.get({
+        spreadsheetId,
+        range: `${sheetName}!A1:G1`,
+      });
+
+    const existingHeaders =
+      headerResponse.data.values;
+
+    // 🔥 CREATE HEADERS IF EMPTY
+    if (
+      !existingHeaders ||
+      existingHeaders.length === 0
+    ) {
+      await sheets.spreadsheets.values.update({
+        spreadsheetId,
+        range: `${sheetName}!A1:G1`,
+        valueInputOption: "RAW",
+        requestBody: {
+          values: [
+            [
+              "Full Name",
+              "Email",
+              "Phone Number",
+              "Course",
+              "College",
+              "Language",
+              "Created At",
+            ],
+          ],
+        },
+      });
+    }
+
+    // 🔥 APPEND DATA
     await sheets.spreadsheets.values.append({
-      spreadsheetId: process.env.GOOGLE_SHEET_ID,
+      spreadsheetId,
 
-      range: "StudentsQueries!A:F",
+      range: `${sheetName}!A:G`,
 
-      valueInputOption: "USER_ENTERED",
+      valueInputOption:
+        "USER_ENTERED",
 
       requestBody: {
         values: [
@@ -65,7 +109,7 @@ export async function POST(req: Request) {
 
             body.email,
 
-            // ✅ STORE PHONE AS TEXT
+            // Store as text
             `'${body.phone}`,
 
             body.course,
@@ -73,6 +117,14 @@ export async function POST(req: Request) {
             body.college,
 
             body.language,
+
+            new Date().toLocaleString(
+              "en-IN",
+              {
+                timeZone:
+                  "Asia/Kolkata",
+              }
+            ),
           ],
         ],
       },
@@ -81,16 +133,21 @@ export async function POST(req: Request) {
     // 🔥 SUCCESS
     return NextResponse.json({
       success: true,
-      message: "Data saved successfully 🚀",
+      message:
+        "Data saved successfully 🚀",
     });
-
   } catch (error: any) {
-    console.log("GOOGLE SHEETS ERROR:", error);
+    console.error(
+      "GOOGLE SHEETS ERROR:",
+      error
+    );
 
     return NextResponse.json(
       {
         success: false,
-        message: "Failed to save data",
+        message:
+          error?.message ||
+          "Failed to save data",
       },
       { status: 500 }
     );

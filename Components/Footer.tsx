@@ -187,7 +187,7 @@ export default function Footer() {
 
             <div className="space-y-2 text-sm text-(--color-gray-1)">
               <div className="flex items-center gap-2">
-                <Mail size={16} /> support@cornixe.com
+                <Mail size={16} /> Cornixepvtlimited@gmail.com
               </div>
 
               <div className="flex items-center gap-2">
@@ -351,7 +351,7 @@ export default function Footer() {
 
             <div className="space-y-2 text-sm text-(--color-gray-1)">
               <div className="flex items-center gap-2">
-                <Mail size={16} /> support@mindenious.com
+                <Mail size={16} /> Cornixepvtlimited@gmail.com
               </div>
 
               <div className="flex items-center gap-2">

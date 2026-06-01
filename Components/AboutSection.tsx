@@ -23,10 +23,10 @@ import HemanthImage from "@/public/Team/Hemanth.png";
 const leadershipTeam = [
   {
     name: "Ganesh E",
-    role: "CEO",
+    role: "Founder & CEO",
     image: GaneshImage,
     description:
-      "Ganesh, CEO of CORNIXE, is passionate about creating impactful learning experiences that inspire growth, excellence, and future-ready skills.",
+      "Ganesh, Founder & CEO of CORNIXE, is passionate about creating impactful learning experiences that inspire growth, excellence, and future-ready skills.",
   },
 
   {
