@@ -137,7 +137,7 @@ export default function CoursesPage() {
               </div>
 
               {/* 🔥 COURSE ROW */}
-              <div className="flex gap-5 overflow-x-auto pb-2 no-scrollbar">
+              <div className=" gap-5 overflow-x-auto pb-2 no-scrollbar grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 
                 {groupedCourses[category].map((course: any) => (
                   <div
@@ -146,7 +146,7 @@ export default function CoursesPage() {
                   >
                     {/* IMAGE */}
                     <div className="h-60 w-full overflow-hidden rounded-t-xl">
-                      <Image
+                      <img
                         src={course.image || "/placeholder.jpg"}
                         alt="Image"
                         width={400}

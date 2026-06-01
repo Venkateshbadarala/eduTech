@@ -12,6 +12,7 @@ import {
 } from "framer-motion";
 import { Users, Briefcase, TrendingUp, Video } from "lucide-react";
 import { BarChart3, BookOpen, Trophy } from "lucide-react";
+import Link from "next/link";
 
 type Stat = {
   value: number;
@@ -197,12 +198,12 @@ useEffect(() => {
 
               {/* BUTTON */}
               <div className="flex items-center gap-4 xl:mt-6 lg:mt-2 mt-6">
-                <button className="bg-gradient-to-r from-(--color-primary) to-(--color-secondary) text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2 hover:scale-105 transition">
+                <Link href="/courses" className="bg-gradient-to-r from-(--color-primary) to-(--color-secondary) text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2 hover:scale-105 transition">
                   Explore Programs
                   <span className=" text-white rounded-full w-6 h-6 flex items-center justify-center">
                     →
                   </span>
-                </button>
+                </Link>
               </div>
               <div className="hidden lg:flex xl:mt-6 lg:mt-3 mt-6">
                 <motion.div
