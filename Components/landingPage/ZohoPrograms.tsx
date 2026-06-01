@@ -18,41 +18,55 @@ import {
 } from "react-icons/pi";
 
 export default function ZohoCertifiedPrograms() {
-  const [courses, setCourses] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
+const [courses, setCourses] = useState<any[]>([]);
+const [loading, setLoading] = useState(false);
 
-  // 🔥 FETCH COURSES
-  const fetchCourses = async () => {
-    try {
-      setLoading(true);
+// 🔥 FETCH COURSES
+const fetchCourses = async () => {
+  try {
+    setLoading(true);
 
-      const res = await fetch("/api/courses");
+    const res = await fetch("/api/courses");
 
-      if (!res.ok) {
-        const text = await res.text();
+    if (!res.ok) {
+      const text = await res.text();
 
-        console.error("API ERROR:", text);
+      console.error("API ERROR:", text);
 
-        throw new Error("Failed");
-      }
-
-      const data = await res.json();
-
-      setCourses(data.courses || []);
-    } catch (err) {
-      console.error(err);
-
-      toast.error(
-        "Error fetching courses ❌"
-      );
-    } finally {
-      setLoading(false);
+      throw new Error("Failed");
     }
-  };
 
-  useEffect(() => {
-    fetchCourses();
-  }, []);
+    const data = await res.json();
+
+    // ✅ Allowed Zoho Sub Categories
+    const allowedSubCategories = [
+      "TECH & DATA",
+      "MECH & CIVIL",
+      "EEE & ECE",
+      "MANAGEMENT STREAM",
+    ];
+
+    // ✅ Filter Courses
+    const filteredCourses = (data.courses || []).filter(
+      (course: any) =>
+        allowedSubCategories.includes(
+          course.subcategory?.trim().toUpperCase()
+        )
+    );
+
+    setCourses(filteredCourses);
+  } catch (err) {
+    console.error(err);
+
+    toast.error("Error fetching courses ❌");
+  } finally {
+    setLoading(false);
+  }
+};
+
+useEffect(() => {
+  fetchCourses();
+}, []);
 
   return (
     <section

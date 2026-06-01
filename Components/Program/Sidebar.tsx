@@ -81,10 +81,7 @@ const normalizeCategory = (cat: string) => {
   return cat.trim().toLowerCase();
 };
 
-const categoryLabelMap: Record<
-  string,
-  string
-> = {
+const categoryLabelMap: Record<string, string | string[]> = {
 
   // 🔥 MAIN STREAMS
   "advanced program":
@@ -109,8 +106,9 @@ const categoryLabelMap: Record<
     "DESIGNING STREAM",
 
   // 🔥 ADVANCED PROGRAM
-  "web development":
-    "ADVANCED PROGRAM",
+  "web development": ["ADVANCED PROGRAM", "TECH & DATA"],
+
+    
 
   "advanced digital marketing":
     "ADVANCED PROGRAM",
@@ -132,8 +130,7 @@ const categoryLabelMap: Record<
     "TECH & DATA",
 
   // 🔥 MECH & CIVIL
-  mechanical:
-    "MECH & CIVIL",
+  mechanical:["MECH & CIVIL","EEE & ECE",],
 
   civil:
     "MECH & CIVIL",
@@ -155,8 +152,8 @@ const categoryLabelMap: Record<
   business:
     "MANAGEMENT STREAM",
 
-  "digital marketing":
-    "MANAGEMENT STREAM",
+  "digital marketing": ["MANAGEMENT STREAM", "ADVANCED PROGRAM"],
+    
 
   finance:
     "MANAGEMENT STREAM",
@@ -237,22 +234,35 @@ const Sidebar: FC<Props> = ({ onSelectCategory, onClose }) => {
   }, []);
 
   // ✅ GROUP COURSES
-  const grouped = courses.reduce((acc: any, course: any) => {
+const grouped = courses.reduce(
+  (acc: any, course: any) => {
     const normalized = normalizeCategory(
-      course.subcategory 
+      course.subcategory
     );
 
-    const mappedCategory =
-      categoryLabelMap[normalized] || "ADVANCED PROGRAM";
+    const categories =
+      categoryLabelMap[normalized] ||
+      ["ADVANCED PROGRAM"];
 
-    if (!acc[mappedCategory]) {
-      acc[mappedCategory] = [];
-    }
+    const categoryArray =
+      Array.isArray(categories)
+        ? categories
+        : [categories];
 
-    acc[mappedCategory].push(course);
+    categoryArray.forEach(
+      (category) => {
+        if (!acc[category]) {
+          acc[category] = [];
+        }
+
+        acc[category].push(course);
+      }
+    );
 
     return acc;
-  }, {});
+  },
+  {}
+);
 
   return (
     <motion.div

@@ -110,8 +110,15 @@ export default function LayoutClient({
           z-50
         "
       >
-        <motion.a
-          href="/contact"
+        <motion.button
+        type="button"
+  onClick={() =>
+    window.open(
+      `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=Hi%20CORNIXE,%20I%20would%20like%20to%20know%20more%20about%20your%20courses.`,
+      "_blank"
+    )
+  }
+          
           whileHover={{
             scale: 1.08,
           }}
@@ -150,7 +157,7 @@ export default function LayoutClient({
          
 
         
-        </motion.a>
+        </motion.button>
       </motion.div>
 
       {/* FOOTER */}

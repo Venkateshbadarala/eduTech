@@ -1,10 +1,36 @@
 "use client";
 
 import { motion } from "framer-motion";
-import  zoho from "@/public/Companies/zoho.png";
+import zoho4 from "@/public/Companies/zoho.png";
 import Logo from "@/public/logo.png";
 import { PiCheckCircleFill } from "react-icons/pi";
 import { Link } from "lucide-react";
+
+import zoho1 from "@/public/zoho/zohobooks.jpeg";
+import zoho2 from "@/public/zoho/zohopeople.jpeg";
+import zoho3 from "@/public/zoho/zohopayroll.jpeg";
+import Image from "next/image";
+
+const zoho = [
+  {
+    id: 1,
+    src: zoho1,
+    alt: "Zoho Books",
+    title: "Zoho Books",
+  },
+  {
+    id: 2,
+    src: zoho2,
+    alt: "Zoho People",
+    title: "Zoho People",
+  },
+  {
+    id: 3,
+    src: zoho3,
+    alt: "Zoho Payroll",
+    title: "Zoho Payroll",
+  },
+];
 
 export default function ZohoHero() {
   return (
@@ -14,7 +40,6 @@ export default function ZohoHero() {
         py-28 px-6
       "
     >
-
       {/* GRID */}
       <div
         className="
@@ -30,7 +55,6 @@ export default function ZohoHero() {
       <div className="absolute bottom-10 right-10 w-72 h-72 bg-(--color-secondary)/20 rounded-full blur-3xl" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
-
         <motion.div
           initial={{
             opacity: 0,
@@ -45,7 +69,6 @@ export default function ZohoHero() {
           }}
           className="text-center"
         >
-
           {/* BADGE */}
           <div
             className="
@@ -60,17 +83,9 @@ export default function ZohoHero() {
               shadow-[0_10px_40px_rgba(0,0,0,0.08)]
             "
           >
-
-            
-
-            
-
             <span className="text-(--color-black-1) md:text-lg text-sm">
               In collaboration with{" "}
-
-              <span className="font-bold text-(--color-primary)">
-                ZOHO
-              </span>
+              <span className="font-bold text-(--color-primary)">ZOHO</span>
             </span>
           </div>
 
@@ -85,7 +100,6 @@ export default function ZohoHero() {
             "
           >
             Upskill with{" "}
-
             <span
               className="
                 bg-gradient-to-r
@@ -96,7 +110,6 @@ export default function ZohoHero() {
             >
               Zoho Certified
             </span>{" "}
-
             Programs
           </h1>
 
@@ -104,33 +117,30 @@ export default function ZohoHero() {
           <p
             className="
               mt-8
-              max-w-4xl mx-auto
-              text-sm md:text-xl leading-relaxed
+              max-w-6xl mx-auto
+              text-sm md:text-lg leading-relaxed
               text-(--color-gray-2)
             "
           >
-            Industry-ready programs designed in
-            collaboration with Zoho. Learn CRM,
-            automation, analytics, cloud solutions,
-            and business workflows through
-            real-world projects and practical
-            implementation.
+            Industry-ready programs designed in collaboration with Zoho. Learn
+            CRM, automation, analytics, cloud solutions, and business workflows
+            through real-world projects and practical implementation.
           </p>
-            <div className="mt-10 flex items-center justify-center gap-6">
-              <img
+          <div className="mt-10 flex items-center justify-center gap-6">
+            <img
               src={Logo.src}
               alt="Zoho"
-             
-              className="object-contain h-28 w-28 md:h-62 md:w-62" 
+              className="object-contain h-28 w-28 md:h-62 md:w-62"
             />
-            <span><Link className="h-10 w-10 md:h-12 md:w-12"/></span>
-             <img
-              src={zoho.src}
+            <span>
+              <Link className="h-10 w-10 md:h-12 md:w-12" />
+            </span>
+            <img
+              src={zoho4.src}
               alt="Zoho"
-             
-              className="object-contain h-28 w-28 md:h-62 md:w-62" 
+              className="object-contain h-28 w-28 md:h-62 md:w-62"
             />
-            </div>
+          </div>
           {/* STATS */}
           <div
             className="
@@ -140,23 +150,71 @@ export default function ZohoHero() {
               text-(--color-gray-1)
             "
           >
-
             <div className="flex items-center gap-2 text-black-1">
               <PiCheckCircleFill className="text-(--color-primary)" />
-
               18+ Courses
             </div>
 
             <div className="flex items-center gap-2 text-black-1">
               <PiCheckCircleFill className="text-(--color-primary)" />
-
               Zoho Certified
             </div>
 
             <div className="flex items-center gap-2 text-black-1">
               <PiCheckCircleFill className="text-(--color-primary)" />
-
               25k+ Learners
+            </div>
+          </div>
+          <div className="mt-16 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+              {zoho.map((item) => (
+                <div
+                  key={item.id}
+                  className="
+          bg-white
+          rounded-3xl
+          p-6
+          shadow-md
+          hover:shadow-2xl
+          hover:-translate-y-2
+          transition-all duration-300
+          border border-gray-100
+          flex flex-col items-center justify-center
+          text-center
+          group
+        "
+                >
+                  {/* IMAGE */}
+                  <div
+                    className="
+            w-28 h-28
+            md:w-40 md:h-40
+            flex items-center justify-center
+          "
+                  >
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      width={160}
+                      height={160}
+                      className="
+              object-contain
+              w-full h-full
+              transition-transform duration-300
+              group-hover:scale-110
+            "
+                    />
+                  </div>
+
+                  {/* TITLE */}
+                  <h3 className="mt-4 text-lg font-semibold text-gray-800">
+                    {item.title}
+                  </h3>
+
+                  {/* SUBTITLE */}
+                  <p className="text-sm text-gray-500 mt-1">Industry Tool</p>
+                </div>
+              ))}
             </div>
           </div>
         </motion.div>

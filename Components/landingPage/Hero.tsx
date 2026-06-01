@@ -159,15 +159,7 @@ useEffect(() => {
       {/* 🔥 HERO */}
       <div className=" flex items-center flex-col justify-center ">
         <div className="lg:max-w-[calc(100vw)] xl:max-w-[calc(100vw-100px)] mx-auto lg:grid lg:grid-cols-2  items-center px-6 mt-5   justify-center lg:h-[100vh]   ">
-          <div className=" relative  justify-center  w-full h-full lg:hidden block">
-             <Image
-              src={Course1}
-              alt="Hero Image"
-              width={1000}
-              height={1000}
-              className="w-full relative mix-blend-multiply h-full  "
-            />
-          </div>
+          
           {/* LEFT */}
           <motion.div ref={heroContentRef}>
             <div className="mt-4">
@@ -276,6 +268,15 @@ useEffect(() => {
               height={1000}
               className="w-full relative mix-blend-multiply hidden lg:block"
             />
+           
+             <Image
+              src={Course1}
+              alt="Hero Image"
+              width={1000}
+              height={1000}
+              className="w-full relative mix-blend-multiply h-full lg:hidden block mt-5 "
+            />
+         
            
 
          <div className="absolute top-[18%] right-2 flex-col gap-5 z-20 hidden lg:flex">

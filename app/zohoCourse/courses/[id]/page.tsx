@@ -261,7 +261,7 @@ export default function Page() {
       {/* 🔥 PRICING */}
       {course.pricing && (
         <section className=" text-center px-6">
-          <PricingSection pricing={course.pricing} />
+          <PricingSection pricing={course.pricing} courseType="Zoho" />
         </section>
       )}
       

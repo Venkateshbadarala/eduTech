@@ -42,7 +42,7 @@ export default function RegisterNowSection() {
 
   return (
     <>
-      <section className="relative  py-20 px-6">
+      <section className="relative  lg:py-20 pb-20 px-6">
         {/* BLURS */}
         <div className="absolute top-0 left-0 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
 

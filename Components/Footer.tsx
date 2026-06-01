@@ -53,11 +53,11 @@ export default function Footer() {
   };
 
   const techCourses = courses.filter(
-    (course: any) => course.category === "tech",
+    (course: any) => course.category === "Tech",
   );
 
   const nonTechCourses = courses.filter(
-    (course: any) => course.category === "non-tech",
+    (course: any) => course.category === "Non-Tech",
   );
 
   useEffect(() => {
@@ -191,7 +191,7 @@ export default function Footer() {
               </div>
 
               <div className="flex items-center gap-2">
-                <Phone size={16} /> +91 9108126243
+                <Phone size={16} /> +91 9003003324
               </div>
             </div>
           </div>
@@ -355,7 +355,7 @@ export default function Footer() {
               </div>
 
               <div className="flex items-center gap-2">
-                <Phone size={16} /> +91 9108126243
+                <Phone size={16} /> +91 9003003324
               </div>
             </div>
           </div>

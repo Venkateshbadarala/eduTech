@@ -158,7 +158,7 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
- const [openPortal, setOpenPortal] = useState(false);
+  const [openPortal, setOpenPortal] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // 🔥 scroll hide (desktop navbar)
@@ -340,17 +340,14 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
               })}
 
               <button
-                              type="button"
-                              onClick={() => setOpenPortal(true)}
-                              className="
-                              cursor pointer
+                type="button"
+                onClick={() => setOpenPortal(true)}
+                className="
+                              cursor pointer text-gray-700
                               "
-                            >
-                              Zoho
-              
-                             
-                            </button>
-                            
+              >
+                LMS
+              </button>
 
               {/* ADMIN */}
               {isAdmin && (
@@ -421,12 +418,27 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
               </div>
             )}
             <span className="hidden md:block">|</span>
-            <button
-              type="button"
-              className="bg-gradient-to-r from-primary to-secondary text-white px-2.5 py-2 rounded-full hidden md:block"
-            >
-              <p className="">Contact Us</p>
-            </button>
+           <button
+  type="button"
+  onClick={() =>
+    window.open(
+      `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=Hi%20CORNIXE,%20I%20would%20like%20to%20know%20more%20about%20your%20courses.`,
+      "_blank"
+    )
+  }
+  className="
+    bg-gradient-to-r
+    from-primary
+    to-secondary
+    text-white
+    px-2.5
+    py-2
+    rounded-full
+    hidden md:block
+  "
+>
+  <p>Contact Us</p>
+</button>
           </div>
         </div>
       </motion.nav>
@@ -562,42 +574,33 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
               </Link>
             );
           })}
-             <button
-  type="button"
-  onClick={() => setOpenPortal(true)}
-  className="
+          <button
+            type="button"
+            onClick={() => setOpenPortal(true)}
+            className="
     flex flex-col items-center
     text-xs
   "
->
-  <div
-    className={`
+          >
+            <div
+              className={`
       w-10 h-10 rounded-2xl
       flex items-center justify-center
       transition-all
-      ${
-        openPortal
-          ? "bg-blue-600 text-white"
-          : "text-gray-500"
-      }
+      ${openPortal ? "bg-blue-600 text-white" : "text-gray-500"}
     `}
-  >
-    <SiZoho size={20} />
-  </div>
+            >
+              <SiZoho size={20} />
+            </div>
 
-  <span className=" text-[11px]">
-    Zoho
-  </span>
-</button>
+            <span className=" text-[11px] text-gray-500">LMS</span>
+          </button>
         </div>
       </div>
 
       {/* AUTH MODAL */}
       <AuthModal isOpen={open} onClose={() => setOpen(false)} />
-        <InpatPortal
-                                    isOpen={openPortal}
-                                    onClose={() => setOpenPortal(false)}
-                                  />
+      <InpatPortal isOpen={openPortal} onClose={() => setOpenPortal(false)} />
     </>
   );
 };

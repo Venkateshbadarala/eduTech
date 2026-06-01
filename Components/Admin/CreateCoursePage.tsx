@@ -14,28 +14,515 @@ import { useRouter } from "next/navigation";
 import CapstoneProjectEditor from "./CapstoneProjectEditor";
 import JobRolesEditor from "./JobRolesEditor";
 const emptyCourse = {
-  title: "",
-  category: "",
-  description: "",
-  image: "",
-  headline: "",
-  tagline: "",
-  trend: false,
-  trenddesc: "",
-  duration: "",
+  title: "Medical Coding - CPC Preparation",
+
+  category: "Healthcare & Life Sciences",
+
+  subcategory: "Medical Coding",
+
+  description:
+    "Master Medical Coding, ICD-10-CM, CPT, HCPCS, Medical Terminology, Anatomy, Physiology, Healthcare Compliance, and CPC Exam Preparation. Gain industry-ready skills for healthcare documentation, insurance claims processing, reimbursement systems, and medical coding certification careers.",
+
+  image:
+    "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2400&auto=format&fit=crop",
+
+  headline:
+    "Become a Certified Professional Medical Coder (CPC)",
+
+  tagline:
+    "Master ICD-10, CPT, HCPCS & Medical Coding with CPC Exam Preparation",
+
+  trend: true,
+
+  trenddesc:
+    "Medical Coding professionals are in high demand globally due to the rapid growth of healthcare services, insurance systems, and digital health records.",
+
+  duration: "4 Months",
+
   start: "ongoing",
-  stats: [],
-  skills: [],
-  modules: [],
-  mastery:[],
-capstoneProjects:[],
-jobRoles:[],
-  tools: [],
-  pricing: [],
-  brochure: { file: "" },
+
+  stats: [
+    {
+      value: 95,
+    },
+    {
+      value: 16,
+    },
+    {
+      value: 50000,
+    },
+  ],
+
+  skills: [
+    {
+      title: "Medical Terminology",
+      description:
+        "Understand medical vocabulary, abbreviations, roots, prefixes, and suffixes used in healthcare documentation.",
+      image:
+        "https://cdn-icons-png.flaticon.com/512/2966/2966486.png",
+    },
+
+    {
+      title: "ICD-10 Coding",
+      description:
+        "Assign diagnosis codes accurately using ICD-10-CM guidelines and coding standards.",
+      image:
+        "https://cdn-icons-png.flaticon.com/512/4320/4320371.png",
+    },
+
+    {
+      title: "CPT Coding",
+      description:
+        "Master procedural coding, modifiers, evaluation & management coding, and reimbursement practices.",
+      image:
+        "https://cdn-icons-png.flaticon.com/512/3774/3774299.png",
+    },
+
+    {
+      title: "HCPCS Coding",
+      description:
+        "Learn HCPCS Level I & II coding for healthcare supplies, services, and equipment.",
+      image:
+        "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+    },
+
+    {
+      title: "Medical Documentation",
+      description:
+        "Interpret physician notes, patient records, and healthcare documentation accurately.",
+      image:
+        "https://cdn-icons-png.flaticon.com/512/2921/2921222.png",
+    },
+
+    {
+      title: "Healthcare Compliance",
+      description:
+        "Understand HIPAA, ethics, fraud prevention, audits, and coding compliance regulations.",
+      image:
+        "https://cdn-icons-png.flaticon.com/512/3063/3063822.png",
+    },
+  ],
+
+  modules: [
+    {
+      title: "Introduction to Medical Coding",
+      topics: [
+        "Medical Coding Basics",
+        "Healthcare Systems",
+        "Coding Types",
+        "Importance of Coding",
+      ],
+    },
+
+    {
+      title: "Coding Workflow and Documentation",
+      topics: [
+        "Medical Records",
+        "Coding Workflow",
+        "Data Sources",
+        "Professional Skills",
+      ],
+    },
+
+    {
+      title: "Fundamentals of Medical Terminology",
+      topics: [
+        "Medical Vocabulary",
+        "Word Roots",
+        "Prefixes",
+        "Suffixes",
+      ],
+    },
+
+    {
+      title: "Applied Medical Terminology",
+      topics: [
+        "Medical Abbreviations",
+        "Physician Reports",
+        "Case Studies",
+        "Terminology Practice",
+      ],
+    },
+
+    {
+      title: "Overview of Human Anatomy",
+      topics: [
+        "Body Structure",
+        "Anatomical Regions",
+        "Body Planes",
+        "Medical Terminology",
+      ],
+    },
+
+    {
+      title: "Physiology and Body Systems",
+      topics: [
+        "Body Systems",
+        "Physiology Basics",
+        "Clinical Documentation",
+        "Coding Scenarios",
+      ],
+    },
+
+    {
+      title: "Introduction to ICD-10-CM",
+      topics: [
+        "ICD Structure",
+        "Code Categories",
+        "Guidelines",
+        "Diagnosis Coding",
+      ],
+    },
+
+    {
+      title: "Advanced ICD-10-CM Coding",
+      topics: [
+        "Clinical Records",
+        "Comorbidities",
+        "Code Selection",
+        "Best Practices",
+      ],
+    },
+
+    {
+      title: "Introduction to CPT Coding",
+      topics: [
+        "CPT Structure",
+        "Code Categories",
+        "E/M Coding",
+        "Coding Applications",
+      ],
+    },
+
+    {
+      title: "CPT Coding Practice",
+      topics: [
+        "Surgical Coding",
+        "Radiology Coding",
+        "Modifiers",
+        "Case Exercises",
+      ],
+    },
+
+    {
+      title: "HCPCS Coding Fundamentals",
+      topics: [
+        "HCPCS Level I",
+        "HCPCS Level II",
+        "Code Differences",
+        "Medical Supplies Coding",
+      ],
+    },
+
+    {
+      title: "HCPCS Modifiers and Billing",
+      topics: [
+        "Modifiers",
+        "Insurance Billing",
+        "Reimbursements",
+        "Practical Coding",
+      ],
+    },
+
+    {
+      title: "Medical Ethics and Compliance",
+      topics: [
+        "HIPAA",
+        "Patient Privacy",
+        "Fraud Prevention",
+        "Ethical Coding",
+      ],
+    },
+
+    {
+      title: "Quality, Audits and Professionalism",
+      topics: [
+        "Audit Readiness",
+        "Documentation Standards",
+        "Communication Skills",
+        "Career Development",
+      ],
+    },
+
+    {
+      title: "CPC Exam Preparation",
+      topics: [
+        "Mock Tests",
+        "Exam Strategies",
+        "Time Management",
+        "Career Opportunities",
+      ],
+    },
+  ],
+
+  mastery: [
+    {
+      value: "95%",
+      label: "Practical Coding Skills",
+      image:
+        "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+    },
+
+    {
+      value: "500+",
+      label: "Coding Exercises",
+      image:
+        "https://cdn-icons-png.flaticon.com/512/2921/2921222.png",
+    },
+
+    {
+      value: "16",
+      label: "Industry Modules",
+      image:
+        "https://cdn-icons-png.flaticon.com/512/4320/4320371.png",
+    },
+
+    {
+      value: "100%",
+      label: "CPC Exam Focused",
+      image:
+        "https://cdn-icons-png.flaticon.com/512/190/190411.png",
+    },
+  ],
+
+  capstoneProjects: [
+    {
+      name: "Complete Patient Record Coding",
+
+      whatYouDo:
+        "Analyze patient documentation and assign ICD-10, CPT, and HCPCS codes accurately.",
+
+      keySteps: [
+        "Medical Record Review",
+        "Diagnosis Coding",
+        "Procedure Coding",
+        "Compliance Validation",
+      ],
+
+      dataset:
+        "Real-world healthcare documentation and coding scenarios",
+    },
+
+    {
+      name: "Healthcare Claims Processing Project",
+
+      whatYouDo:
+        "Perform end-to-end coding and billing workflow for healthcare reimbursement.",
+
+      keySteps: [
+        "Documentation Review",
+        "Code Assignment",
+        "Billing Workflow",
+        "Claims Validation",
+      ],
+
+      dataset:
+        "Healthcare insurance claims and coding records",
+    },
+  ],
+
+  jobRoles: [
+    {
+      name: "Medical Coder",
+      image:
+        "https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=2400&auto=format&fit=crop",
+      packageRange: "₹3 LPA - ₹6 LPA",
+    },
+
+    {
+      name: "Certified Professional Coder (CPC)",
+      image:
+        "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2400&auto=format&fit=crop",
+      packageRange: "₹4 LPA - ₹8 LPA",
+    },
+
+    {
+      name: "Medical Billing Specialist",
+      image:
+        "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2400&auto=format&fit=crop",
+      packageRange: "₹3.5 LPA - ₹7 LPA",
+    },
+
+    {
+      name: "Coding Auditor",
+      image:
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2400&auto=format&fit=crop",
+      packageRange: "₹5 LPA - ₹12 LPA",
+    },
+
+    {
+      name: "Healthcare Documentation Specialist",
+      image:
+        "https://images.unsplash.com/photo-1585435557343-3b092031a831?q=80&w=2400&auto=format&fit=crop",
+      packageRange: "₹4 LPA - ₹8 LPA",
+    },
+
+    {
+      name: "Medical Coding Trainer",
+      image:
+        "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=2400&auto=format&fit=crop",
+      packageRange: "₹5 LPA - ₹10 LPA",
+    },
+  ],
+
+  tools: [
+    {
+      image:
+        "https://cdn-icons-png.flaticon.com/512/2966/2966486.png",
+    },
+    {
+      image:
+        "https://cdn-icons-png.flaticon.com/512/4320/4320371.png",
+    },
+    {
+      image:
+        "https://cdn-icons-png.flaticon.com/512/3774/3774299.png",
+    },
+    {
+      image:
+        "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+    },
+    {
+      image:
+        "https://cdn-icons-png.flaticon.com/512/2921/2921222.png",
+    },
+    {
+      image:
+        "https://cdn-icons-png.flaticon.com/512/3063/3063822.png",
+    },
+    {
+      image:
+        "https://cdn-icons-png.flaticon.com/512/190/190411.png",
+    },
+    {
+      image:
+        "https://cdn-icons-png.flaticon.com/512/4207/4207247.png",
+    },
+  ],
+
+  pricing: [
+  {
+    name: "Normal",
+    badge: "RECORDED",
+    title: "Recorded",
+    subtitle: "Learn at your own pace",
+
+    features: [
+      "Recorded Sessions",
+      "Assignments",
+      "Certification",
+      "Industry Projects",
+      "LMS Access",
+    ],
+
+    price: "5999",
+    note: "Best for Beginners",
+    highlight: false,
+  },
+
+  {
+    name: "Normal",
+    badge: "MOST POPULAR",
+    title: "Mentor Led",
+    subtitle: "Guided learning with mentor support",
+
+    features: [
+      "Recorded Sessions",
+      "Assignments",
+      "Certification",
+      "Industry Projects",
+      "LMS Access",
+      "Live Session",
+      "Doubt Clearing Session",
+      "Mentor Guidance",
+      "Placement Support",
+    ],
+
+    price: "8999",
+    note: "Most Popular",
+    highlight: true,
+  },
+
+  {
+    name: "Normal",
+    badge: "PROFESSIONAL",
+    title: "Professional",
+    subtitle: "Become placement ready",
+
+    features: [
+      "Recorded Sessions",
+      "Assignments",
+      "Certification",
+      "Industry Projects",
+      "LMS Access",
+      "Live Session",
+      "Doubt Clearing Session",
+      "Mentor Guidance",
+      "Placement Support",
+      "Interview Preparation",
+      "1:1 Premium Session",
+      "Portfolio Review",
+    ],
+
+    price: "14999",
+    note: "Career Focused",
+    highlight: false,
+  },
+
+  // ================= ZOHO =================
+
+  {
+    name: "Zoho",
+    badge: "RECORDED",
+    title: "Recorded",
+    subtitle: "Self-paced Zoho learning",
+
+    features: [
+      "Recorded Sessions",
+      "Hands-on Projects",
+      "Certificates",
+      "Study Materials",
+      "Direct Certification from Zoho",
+      "Placement Support",
+      "Doubt Clearing Sessions",
+      "Live Sessions",
+    ],
+
+    price: "7999",
+    note: "Learn Zoho at your convenience",
+    highlight: false,
+  },
+
+  {
+    name: "Zoho",
+    badge: "PROFESSIONAL",
+    title: "Professional",
+    subtitle: "Complete Zoho career pathway",
+
+    features: [
+      "Recorded Sessions",
+      "Hands-on Projects",
+      "Certificates",
+      "Study Materials",
+      "Live Sessions",
+      "Doubt Clearing Sessions",
+      "Placement Support",
+      "Direct Certification from Zoho",
+      "Interview Preparation",
+      "1:1 Premium Session",
+      "Mentor Guidance",
+    ],
+
+    price: "14999",
+    note: "Premium Career Growth",
+    highlight: true,
+  },
+],
+
+  brochure: {
+    file: "",
+  },
 };
-
-
 export default function CreateCoursePage({ slug }: any) {
   const isEdit = !!slug;
   const dropdownRef = useRef<HTMLDivElement>(null);
