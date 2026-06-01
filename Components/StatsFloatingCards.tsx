@@ -41,7 +41,7 @@ function CountUp({ value }: { value: number }) {
 export default function StatsFloatingCards() {
   const stats: Stat[] = [
     {
-      value: 15000,
+      value: 25000,
       suffix: "+",
       label: "Students",
       sub: "Learning with us",

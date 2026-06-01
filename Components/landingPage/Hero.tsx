@@ -119,7 +119,7 @@ useEffect(() => {
 
   const stats: Stat[] = [
     {
-      value: 15,
+      value: 25,
       suffix: "K+",
       label: "Students",
       sub: "Learning with us",
