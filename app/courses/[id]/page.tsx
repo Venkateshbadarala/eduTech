@@ -23,6 +23,7 @@ import CapstoneProjectsSection from "@/Components/CoursePage/CapstoneProjectsSec
 import JobRolesEditor from "@/Components/Admin/JobRolesEditor";
 import JobRolesSection from "@/Components/CoursePage/JobRolesSection";
 import CertificateShowcase from "@/Components/Program/CertificateShowcase";
+import AlumniCompanies from "@/Components/landingPage/AlumniCompanies";
 
 const emptyCourse = {
   title: "",
@@ -253,15 +254,19 @@ export default function Page() {
       )}
 
       {course.jobRoles && (
-        <section className="py-16 text-center">
+        <section className="pt-16 text-center">
           <JobRolesSection roles={course.jobRoles} />
         </section>
       )}
 
+       <section className=" text-center">
+          <AlumniCompanies/>
+        </section>
+       
       {/* 🔥 PRICING */}
       {course.pricing && (
         <section className=" text-center px-6">
-          <PricingSection pricing={course.pricing} courseType="Normal"/>
+          <PricingSection />
         </section>
       )}
       

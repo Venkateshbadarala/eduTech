@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Course from "@/public/hero6.png";
-import Course1 from "@/public/Course1.png";
+import Course1 from "@/public/hero10.png";
 import {
   AnimatePresence,
   motion,

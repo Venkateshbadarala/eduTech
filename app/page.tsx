@@ -18,6 +18,7 @@ import ElitePacks from "@/Components/Program/ElitePacks";
 import Services from "@/Components/landingPage/Services";
 import InpatPortal from "@/Components/landingPage/InpatPortal";
 import RegisterNowSection from "@/Components/landingPage/RegisterNowButton";
+import AlumniCompanies from "@/Components/landingPage/AlumniCompanies";
 
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -64,6 +65,7 @@ const [openPortal, setOpenPortal] = useState(false);
 
       <ElitePacks />
       <TeamSection />
+      <AlumniCompanies />
       <Testimonials />
     </>
   );

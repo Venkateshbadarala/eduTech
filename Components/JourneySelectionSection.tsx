@@ -10,7 +10,7 @@ import {
 
 const stats = [
   {
-    number: 30,
+    number: 25,
     suffix: "K+",
     label: "Students Empowered",
   },

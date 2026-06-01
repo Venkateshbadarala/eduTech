@@ -216,7 +216,7 @@ community, and create a lasting impact in the future of education.
               {[
                 {
                   icon: Users,
-                  title: "12K+",
+                  title: "25K+",
                   subtitle: "Students",
                 },
                 {

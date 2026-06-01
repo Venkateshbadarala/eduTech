@@ -118,7 +118,7 @@ export default function TrendingCourses() {
 
       {/* 🔥 GRID */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
-        {trendingCourses.map((course: any, i) => (
+        {trendingCourses.slice(0, 6).map((course: any, i) => (
           <motion.div
             key={i}
             style={{ y: cardY }}

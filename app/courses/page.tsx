@@ -9,7 +9,7 @@ import Image from "next/image";
 export default function CoursesPage() {
   const [courses, setCourses] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("tech");
 
   // 🔥 FETCH COURSES
   const fetchCourses = async () => {
@@ -35,7 +35,6 @@ export default function CoursesPage() {
 
   // ✅ FILTER LOGIC
   const filteredCourses = courses.filter((course) => {
-    if (filter === "all") return true;
     if (filter === "tech") return course.subcategory?.toLowerCase().includes("tech");
     if (filter === "non-tech") return !course.subcategory?.toLowerCase().includes("tech");
     return true;
@@ -67,7 +66,7 @@ export default function CoursesPage() {
 
         {/* 🔥 FILTERS */}
         <div className="flex gap-3 mt-6">
-          {["all", "tech", "non-tech"].map((f) => (
+          {[ "tech", "non-tech"].map((f) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
@@ -80,7 +79,7 @@ export default function CoursesPage() {
                 }
               `}
             >
-              {f === "all" ? "All" : f === "tech" ? "Tech" : "Non-Tech"}
+              {f === "tech" ? "Tech" : f === "tech" ? "Tech" : "Non-Tech"}
             </button>
           ))}
         </div>

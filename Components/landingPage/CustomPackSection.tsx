@@ -223,7 +223,7 @@ export default function CustomPackSection() {
                 <span className="font-bold text-lg  text-white">
                   4 Individual Courses 
                 </span>{" "}
-                worth ₹35,000
+                worth <span className="line-through">₹35,000</span>
               </p>
 
                   

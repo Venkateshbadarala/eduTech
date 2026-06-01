@@ -12,7 +12,7 @@ interface HomeProps {
 
 const features = [
   "25+ Real-World Projects",
-  "80+ Hours of Live Classes",
+  "40+ Hours of Live Classes",
   "Self-Paced Learning",
   "1:1 Mentorship",
   "Capstone Project",

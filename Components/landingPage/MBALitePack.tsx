@@ -244,7 +244,7 @@ export default function MBALitePack() {
                   MBA Lite Bundle
                 </span>{" "}
 
-                worth ₹42,500
+                worth <span className="line-through">₹42,500</span>
               </p>
 
               <h2

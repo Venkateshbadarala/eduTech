@@ -197,7 +197,8 @@ export default function TechStarterPack() {
                 <span className="font-bold text-lg text-white">
                   Tech Starter Pack
                 </span>{" "}
-                worth ₹1,20,000
+                worth <span className="line-through">₹1,20,000</span>
+                
               </p>
 
               <h2

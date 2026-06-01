@@ -53,82 +53,82 @@ const team = [
    {
     image: Ansh,
 
-    name: "Ansh",
+    name: "Ansh R Hiran",
 
-    role: "COO",
+    role: "Stock marketing",
 
     linkedin:
-      "https://www.linkedin.com/",
+      "https://www.linkedin.com/in/ansh-r-hiran-b499b9242/",
   },
    {
     image: Arib,
 
-    name: "Arib",
+    name: "Arib Nawal",
 
-    role: "COO",
+    role: "Cloud computing	",
 
     linkedin:
-      "https://www.linkedin.com/",
+      "https://www.linkedin.com/in/arib-nawal11/",
   },
    {
     image: subhasis,
 
-    name: "Subhasis",
+    name: "Subhasis Thakurta",
 
-    role: "COO",
+    role: "Human resourses	",
 
     linkedin:
-      "https://www.linkedin.com/",
+      "https://www.linkedin.com/in/subhasis-thakurta-shrm-cp-60471614/",
   },
    {
     image: Farhath,
 
-    name: "Farhath",
+    name: "Farhath Bhat",
 
-    role: "COO",
+    role: "Data Science	",
 
     linkedin:
-      "https://www.linkedin.com/",
+      "https://www.linkedin.com/in/farhathbhat/",
   },
    {
     image: titturaja,
 
-    name: "Tittu Raja",
+    name: "H Tittu Raja S",
 
-    role: "COO",
+    role: "Digital Marketing	",
 
     linkedin:
-      "https://www.linkedin.com/",
+      "https://www.linkedin.com/in/titturaja/",
   },
   {
     image: uttam,
 
-    name: "Uttam",
+    name: "Uttam Grade",
 
-    role: "COO",
+    role: "AI & ML",
 
     linkedin:
-      "https://www.linkedin.com/",
+      "https://www.linkedin.com/in/uttamgrade/",
   },
   {
     image: vaishnavu,
 
-    name: "Vaishnavu",
+    name: "Vaishnavu C V",
 
-    role: "COO",
+    role: "Cyber Security	",
 
     linkedin:
-      "https://www.linkedin.com/",
+      "https://www.linkedin.com/in/vaishnavucv/",
   },
   {
     image: Vinay,
 
-    name: "Vinay",
+    name: "Vinay Chowdary",
 
-    role: "COO",
+    role: "Embedded system",
 
     linkedin:
-      "https://www.linkedin.com/",
+      "https://www.linkedin.com/in/vinay-chowdary-phd-54a10347/",
   },
 ];
 
