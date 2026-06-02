@@ -106,7 +106,7 @@ const categoryLabelMap: Record<string, string | string[]> = {
     "DESIGNING STREAM",
 
   // 🔥 ADVANCED PROGRAM
-  "web development": ["ADVANCED PROGRAM", "TECH & DATA"],
+  "web development": ["ADVANCED PROGRAM"],
 
     
 
@@ -152,7 +152,7 @@ const categoryLabelMap: Record<string, string | string[]> = {
   business:
     "MANAGEMENT STREAM",
 
-  "digital marketing": ["MANAGEMENT STREAM", "ADVANCED PROGRAM"],
+  "digital marketing": [ "ADVANCED PROGRAM"],
     
 
   finance:

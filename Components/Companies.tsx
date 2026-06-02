@@ -14,14 +14,15 @@ import EY from "@/public/Companies/EY.png";
 import IBM from "@/public/Companies/IBM.png";
 import mindtree from "@/public/Companies/mindtree.jpg";
 import zoho from "@/public/Companies/zoho.png";
-import wipro from "@/public/Companies/wipro.png";
+import Accenture from "@/public/Companies/Accenture.png";
+import infosys from "@/public/Companies/infosys.png";
 import tcs from "@/public/Companies/Tcs.webp";
 import zerodha from "@/public/Companies/zerodha.png";
 import razorpay from "@/public/Companies/razorpay.png";
 import Capgemini from "@/public/Companies/capgemini.png";
 
 
-const companies = [amazon, hcl, meta, microsoft, oracle, unity, EY, IBM, mindtree, zoho, tcs, zerodha, razorpay, Capgemini];
+const companies = [amazon, hcl, meta, microsoft, oracle, unity, EY, IBM, mindtree, zoho, tcs, zerodha, razorpay, Capgemini,Accenture,infosys];
 
 export default function Companies() {
   const container = useRef<HTMLDivElement | null>(null);

@@ -49,7 +49,7 @@ const leadershipTeam = [
 const stats = [
   {
     icon: <PiUsersThreeBold size={30} />,
-    count: 15000,
+    count: 25000,
     suffix: "+",
     label: "Students Enrolled",
   },
@@ -79,26 +79,26 @@ const stats = [
 const commitments = [
   {
     icon: <PiBookOpenBold size={22} />,
-    title: "Quality Courses",
-    desc: "Industry-aligned curriculum with practical real-world applications.",
+    title: " Ruthless Execution Over Theory",
+    desc: "We smash through abstract fluff, plunging you straight into live, high-stakes execution to build immediate, undeniable authority.",
   },
 
   {
     icon: <PiChalkboardTeacherBold size={22} />,
-    title: "Expert Mentorship",
-    desc: "Learn directly from professionals with years of industry experience.",
+    title: " The Elite Inner Circle",
+    desc: "No career academics here. You are mentored by battle-tested titans who are actively dominating the front lines of the market.",
   },
 
   {
     icon: <PiRocketLaunchBold size={22} />,
-    title: "Practical Learning",
-    desc: "Hands-on projects designed to strengthen skills and portfolios.",
+    title: " High-Octane Ecosystems",
+    desc: "Through aggressive internships and live project deployments, you stop watching from the sidelines and start calling the shots.",
   },
 
   {
     icon: <PiSuitcaseBold size={22} />,
-    title: "Career Support",
-    desc: "Internships, placements, and personalized career guidance.",
+    title: " The Unfair Advantage",
+    desc: "Other platforms train you to apply for jobs. Cornixe weaponizes your skill set, giving you the tactical mastery and fierce confidence to command any room.",
   },
 ];
 
@@ -145,13 +145,13 @@ export default function AboutCornixe() {
             <h2
               className="
                 mt-5
-                text-3xl md:text-6xl
+                text-3xl md:text-5xl
                 font-black
                 leading-tight
                 text-black-1
               "
             >
-              Empowering the{" "}
+              Why We Broke Into the Industry:{" "}
 
               <span
                 className="
@@ -161,10 +161,10 @@ export default function AboutCornixe() {
                   text-transparent bg-clip-text
                 "
               >
-                Next Generation
+                The Catalyst
               </span>{" "}
 
-              of Global Innovators
+             
             </h2>
 
             <p
@@ -176,15 +176,8 @@ export default function AboutCornixe() {
                 max-w-2xl
               "
             >
-              At Cornixe, we bridge the gap
-              between education and industry
-              through immersive training,
-              mentorship, internships, and
-              real-world learning experiences.
-              We empower learners with the
-              confidence, clarity, and skills
-              needed to thrive in the evolving
-              professional world.
+             Traditional education trains you to survive exams, leaving you stranded in the real world. Millions graduate with elite potential but zero market readiness - trapped between academic theory and industry reality.
+Cornixe ignites your true potential. We engineered a hyper-accelerated ecosystem that transforms raw ambition into unstoppable, day-one corporate powerhouses, completely empowering your vision.
             </p>
 
             {/* SIGNATURE */}
@@ -474,45 +467,42 @@ export default function AboutCornixe() {
 
             <h2
               className="
-                mt-5
-                text-3xl md:text-5xl
-                font-black
-                leading-tight
-                text-black-1
-              "
-            >
-              Real Skills. Real Projects.{" "}
-
-              <span
-                className="
+               text-3xl md:text-5xl
+  mt-5 font-bold
                   bg-gradient-to-r
                   from-primary
                   to-secondary
                   text-transparent bg-clip-text
+              "
+            >
+              The Cornixe Edge: {" "}
+
+              <span
+                className="
+                
+                
+                font-black
+                leading-tight
+                text-black-1
                 "
               >
-                Real Opportunities.
+                Why We Are Unrivaled.
               </span>
             </h2>
 
             <p
               className="
-                mt-7
-                text-lg
+                mt-4
+                text-md
                 leading-relaxed
                 text-gray-2
               "
             >
-              Our approach combines practical
-              learning, expert mentorship,
-              internships, and placement support
-              to ensure learners become truly
-              industry-ready with confidence and
-              real-world experience.
+              We don’t compete; we operate on an entirely different wavelength. While others offer passive video lectures, Cornixe delivers an elite career transformation.
             </p>
 
             {/* FEATURES */}
-            <div className="mt-10 grid sm:grid-cols-2 gap-6">
+            <div className="mt-5 grid sm:grid-cols-2 gap-6">
               {commitments.map((item, index) => (
                 <motion.div
                   key={index}
@@ -521,18 +511,21 @@ export default function AboutCornixe() {
                   }}
                   className="
                     flex gap-4
-
+flex-col
                     rounded-2xl
                     bg-white
 
                     p-5
-
+         
                     shadow-[0_10px_40px_rgba(0,0,0,0.05)]
                   "
                 >
                   <div
                     className="
-                      w-14 h-14
+                     flex gap-2 items-center
+                    "
+                  >
+                  <h4 className=" w-12 h-12
                       rounded-2xl
 
                       bg-primary
@@ -540,13 +533,7 @@ export default function AboutCornixe() {
                       flex items-center justify-center
 
                       text-white
-                      shrink-0
-                    "
-                  >
-                    {item.icon}
-                  </div>
-
-                  <div>
+                      shrink-0">{item.icon}</h4>  
                     <h4
                       className="
                         font-bold
@@ -555,10 +542,14 @@ export default function AboutCornixe() {
                     >
                       {item.title}
                     </h4>
+                  </div>
+
+                  <div>
+                    
 
                     <p
                       className="
-                        mt-2
+                        
                         text-sm
                         leading-relaxed
                         text-gray-2
