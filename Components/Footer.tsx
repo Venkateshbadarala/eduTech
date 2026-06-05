@@ -14,7 +14,7 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
 const socialIcons = [
-  { icon: <InstagramIcon />, name: "Instagram", link: "#" },
+  { icon: <InstagramIcon />, name: "Instagram", link: "https://www.instagram.com/cornixe.in?igsh=aXoxdWdoYnQxNTR0&utm_source=qr" },
   { icon: <FacebookIcon />, name: "Facebook", link: "#" },
   { icon: <TwitterIcon />, name: "Twitter", link: "#" },
   { icon: <LinkedInIcon />, name: "LinkedIn", link: "#" },

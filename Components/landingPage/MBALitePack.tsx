@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-
+import poster from "@/public/MBA LITE PACK.png";
 import Image from "next/image";
 
 import {
@@ -11,6 +11,7 @@ import {
   PiRocketLaunchBold,
   PiArrowRightBold,
   PiCertificateBold,
+  PiDownloadSimpleBold,
 } from "react-icons/pi";
 
 const universities = [
@@ -166,23 +167,23 @@ export default function MBALitePack() {
             relative overflow-hidden
             rounded-[40px]
             border border-white/10
-            bg-white
-            shadow-[0_15px_60px_rgba(0,0,0,0.15)]
+           
+            
             backdrop-blur-2xl
-            p-10 md:p-16
+           
           "
         >
-<div className="
-              absolute inset-0
-              bg-gradient-to-r
-              from-(--color-primary)/10
-              via-transparent
-              to-(--color-secondary)/10
-            "
-          />
-         
+<div className=" inset-0 relative">
+  <img
+    src={poster.src}
+    alt="Background"
+    className="w-full  object-cover rounded-xl "
+  />
+ </div>
 
-          <div className="relative z-10 text-center">
+          
+        </div>
+<div className="  z-10 flex flex-col items-center justify-center mt-10 lg:mt-20 ">
 
             <motion.h1
               initial={{
@@ -194,6 +195,7 @@ export default function MBALitePack() {
                 y: 0,
               }}
               className="
+              flex items-center justify-center gap-3
                 text-3xl md:text-5xl
                 font-black
                 leading-tight
@@ -250,6 +252,7 @@ export default function MBALitePack() {
               <h2
                 className="
                   mt-2
+                  text-center
                       text-4xl font-black
                       text-white
                        bg-clip-text
@@ -274,6 +277,8 @@ export default function MBALitePack() {
                   px-10 py-4
                   rounded-2xl
                   bg-white
+              
+                  flex items-center justify-center gap-3
                   text-black
                   font-semibold
                   shadow-xl
@@ -281,6 +286,7 @@ export default function MBALitePack() {
                   transition-all duration-300
                 "
               >
+                <PiDownloadSimpleBold size={20} />
                 Download Brochure
               </button>
 
@@ -288,9 +294,9 @@ export default function MBALitePack() {
                 className="
                   px-10 py-4
                   rounded-2xl
-                  bg-gradient-to-r
-                  from-(--color-primary)
-                  to-(--color-secondary)
+
+                  flex items-center justify-center gap-3
+                 bg-[#201547]
                   text-white
                   font-semibold
                   shadow-[0_10px_40px_rgba(139,92,246,0.35)]
@@ -299,10 +305,17 @@ export default function MBALitePack() {
                 "
               >
                 Enroll Now
+                 <PiArrowRightBold
+                                  size={18}
+                                  className="
+                                    group-hover:translate-x-1
+                                    transition
+                                  "
+                                />
               </button>
             </div>
           </div>
-        </div>
+        
 
         {/* BENEFITS */}
         <div

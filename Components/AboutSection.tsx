@@ -70,7 +70,7 @@ const stats = [
 
   {
     icon: <PiTrophyBold size={30} />,
-    count: 50000,
+    count: 20000,
     suffix: "+",
     label: "Successful Learners",
   },

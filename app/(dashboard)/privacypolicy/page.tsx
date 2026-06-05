@@ -239,7 +239,7 @@ export default function Page() {
                 text-center
               "
             >
-              support@mindenious.com
+              Cornixeedutech@gmail.com
             </a>
           </div>
         </div>

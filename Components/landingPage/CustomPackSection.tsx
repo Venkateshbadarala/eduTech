@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import poster from "@/public/Make your own pack .png";
 
 import { color, motion } from "framer-motion";
 
@@ -143,24 +144,25 @@ export default function CustomPackSection() {
             relative overflow-hidden
             rounded-[40px]
             border border-white/10
-            bg-white
-            shadow-[0_15px_60px_rgba(0,0,0,0.15)]
+           
             backdrop-blur-2xl
-            p-8 md:p-12
+           
           "
         >
 
           {/* BG GLOW */}
-          <div className="
-              absolute inset-0
-              bg-gradient-to-r
-              from-(--color-primary)/10
-              via-transparent
-              to-(--color-secondary)/10
-            "
-          />
+         <div className=" inset-0 relative">
+           <img
+             src={poster.src}
+             alt="Background"
+             className="w-full  object-cover rounded-xl "
+           />
+          </div>
 
-          <div className="relative z-10">
+          
+        </motion.div>
+
+        <div className=" z-10 mt-10 lg:mt-20">
 
             {/* TITLE */}
             <div className=" text-center text-3xl md:text-5xl
@@ -221,7 +223,7 @@ export default function CustomPackSection() {
                   <p className="text-white/80">
                 Unlock a{" "}
                 <span className="font-bold text-lg  text-white">
-                  4 Individual Courses 
+                  2 Individual Courses 
                 </span>{" "}
                 worth <span className="line-through">₹35,000</span>
               </p>
@@ -304,7 +306,6 @@ export default function CustomPackSection() {
               </button>
             </div>
           </div>
-        </motion.div>
 
         {/* SECTION TITLE */}
         <div className="text-center mt-28">

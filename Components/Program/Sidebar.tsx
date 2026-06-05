@@ -280,7 +280,13 @@ const grouped = courses.reduce(
 
         <div className="flex flex-row gap-4">
           <button
-            type="button"
+             type="button"
+  onClick={() =>
+    window.open(
+      `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=Hi%20CORNIXE,%20I%20would%20like%20to%20know%20more%20about%20your%20courses.`,
+      "_blank"
+    )
+  }
             className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 rounded-full"
           >
             Talk with us

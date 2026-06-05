@@ -3,11 +3,12 @@
 import { motion } from "framer-motion";
 
 import Image from "next/image";
-
+import poster from "@/public/TECH Starter Pack .png";
 import {
   PiArrowRightBold,
   PiBriefcaseBold,
   PiCertificateBold,
+  PiDownloadSimpleBold,
   PiRocketLaunchBold,
   PiSparkleFill,
 } from "react-icons/pi";
@@ -128,90 +129,92 @@ export default function TechStarterPack() {
             relative overflow-hidden
             rounded-[40px]
             border border-white/10
-            bg-white
-            shadow-[0_15px_60px_rgba(0,0,0,0.15)]
+            
             backdrop-blur-2xl
             
-            p-10 md:p-16
+            
           "
         >
           {/* BG GLOW */}
-          <div
-            className="
-              absolute inset-0
-             bg-white
-              rounded-[40px]
-            "
-          />
+         <div className=" inset-0 relative">
+  <img
+    src={poster.src}
+    alt="Background"
+    className="w-full  object-cover rounded-xl "
+  />
+ </div>
 
-          <div className="relative z-10 text-center">
-            {/* TITLE */}
+         
+        </motion.div>
+
+        <div className="  flex flex-col items-center text-center mt-10 lg:mt-20">
+
             <motion.h1
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  className="
+    text-3xl md:text-5xl
+    font-black
+    leading-tight
+    text-(--color-black-1)
+  "
+>
+  Achieve Academic Excellence With{" "}
+  <span
+    className="
+      bg-gradient-to-r
+      from-(--color-primary)
+      to-(--color-secondary)
+      text-transparent
+      bg-clip-text
+    "
+  >
+    MBA Lite Pack
+  </span>
+</motion.h1>
+            {/* PRICE BOX */}
+            <motion.div
               initial={{
                 opacity: 0,
-                y: 30,
+                scale: 0.9,
               }}
               whileInView={{
                 opacity: 1,
-                y: 0,
+                scale: 1,
               }}
               className="
-                text-3xl md:text-5xl
-                font-black
-                leading-tight
-                text-(--color-black-1)
-              "
-            >
-              Achieve Academic Excellence With
-              <span
-                className="
-                  block
-                  bg-gradient-to-r
-                  from-(--color-primary)
-                  to-(--color-secondary)
-                  text-transparent
-                  bg-clip-text
-                "
-              >
-                Tech Starter Pack
-              </span>
-            </motion.h1>
-
-            {/* PRICE BOX */}
-            <div
-              className="
-                mt-8 mx-auto
+                mt-10 mx-auto
                 max-w-md
                 rounded-3xl
-                border border-white/10
                 bg-[#201547]
                   shadow-[0_15px_60px_rgba(0,0,0,0.15)]
-                
+                border border-white/10
                 backdrop-blur-xl
-                
                 p-6
               "
             >
+
               <p className="text-white/80">
-                Unlock a{" "}
+                Unlock an{" "}
+
                 <span className="font-bold text-lg text-white">
-                  Tech Starter Pack
+                  MBA Lite Bundle
                 </span>{" "}
-                worth <span className="line-through">₹1,20,000</span>
-                
+
+                worth <span className="line-through">₹42,500</span>
               </p>
 
               <h2
                 className="
-                  mt-3
-                  text-5xl
-                  font-black
-                  text-white
+                  mt-2
+                      text-4xl font-black
+                      text-white
+                       bg-clip-text
                 "
               >
-                ₹9,999
+                ₹7,999
               </h2>
-            </div>
+            </motion.div>
 
             {/* BUTTONS */}
             <div
@@ -222,40 +225,51 @@ export default function TechStarterPack() {
                 gap-5
               "
             >
+
               <button
                 className="
-                  bg-white
-                  hover:bg-gray-100
-                  text-(--color-black-1)
                   px-10 py-4
                   rounded-2xl
+                  group
+                  flex items-center justify-center gap-3
+                  bg-white
+                  text-black
+                  border border-black/10
                   font-semibold
-                  shadow-[0_15px_60px_rgba(0,0,0,0.15)]
+                  shadow-xl
+                  hover:scale-105
                   transition-all duration-300
                 "
               >
+                <PiDownloadSimpleBold size={20} />
                 Download Brochure
               </button>
 
               <button
                 className="
                   px-10 py-4
+                  group
+                  flex items-center justify-center gap-3
                   rounded-2xl
-                  bg-gradient-to-r
-                  from-(--color-primary)
-                  to-(--color-secondary)
+                 bg-[#201547]
                   text-white
                   font-semibold
+                  shadow-[0_10px_40px_rgba(139,92,246,0.35)]
                   hover:scale-105
                   transition-all duration-300
-                  shadow-[0_15px_50px_rgba(0,0,0,0.2)]
                 "
               >
                 Enroll Now
+                <PiArrowRightBold
+                  size={18}
+                  className="
+                    group-hover:translate-x-1
+                    transition
+                  "
+                />
               </button>
             </div>
           </div>
-        </motion.div>
 
         {/* BENEFITS */}
         <div

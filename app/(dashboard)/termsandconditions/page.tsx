@@ -275,7 +275,7 @@ export default function Page() {
                 transition
                 shadow-lg
               ">
-               support@cornixe.com
+               Cornixeedutech@gmail.com
               </button>
 
               <button className="
@@ -286,7 +286,7 @@ export default function Page() {
                 hover:bg-white/20
                 transition
               ">
-                +91 9108126243
+                +91 9003003324
               </button>
             </div>
           </div>
