@@ -179,13 +179,13 @@ export default function Testimonials() {
             {/* TOP */}
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3 ">
-                <Image
+                {/* <Image
                   src={item.image}
                   alt={item.name}
                   width={40}
                   height={40}
                   className="rounded-full object-cover h-10 w-10"
-                />
+                /> */}
                 <h3 className="font-semibold text-gray-800">
                   {item.name}
                 </h3>
