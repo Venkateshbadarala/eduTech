@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-import Image from "next/image";
 import poster from "@/public/TECH Starter Pack .png";
+import Image from "next/image";
+
 import {
   PiArrowRightBold,
   PiBriefcaseBold,
@@ -129,14 +129,14 @@ export default function TechStarterPack() {
             relative overflow-hidden
             rounded-[40px]
             border border-white/10
-            
+          
             backdrop-blur-2xl
             
             
           "
         >
           {/* BG GLOW */}
-         <div className=" inset-0 relative">
+          <div className=" inset-0 relative">
   <img
     src={poster.src}
     alt="Background"
@@ -146,75 +146,76 @@ export default function TechStarterPack() {
 
          
         </motion.div>
-
-        <div className="  flex flex-col items-center text-center mt-10 lg:mt-20">
-
+ <div className=" z-10 flex flex-col items-center justify-center mt-10 lg:mt-20">
+            {/* TITLE */}
             <motion.h1
-  initial={{ opacity: 0, y: 40 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  className="
-    text-3xl md:text-5xl
-    font-black
-    leading-tight
-    text-(--color-black-1)
-  "
->
-  Achieve Academic Excellence With{" "}
-  <span
-    className="
-      bg-gradient-to-r
-      from-(--color-primary)
-      to-(--color-secondary)
-      text-transparent
-      bg-clip-text
-    "
-  >
-    MBA Lite Pack
-  </span>
-</motion.h1>
-            {/* PRICE BOX */}
-            <motion.div
               initial={{
                 opacity: 0,
-                scale: 0.9,
+                y: 30,
               }}
               whileInView={{
                 opacity: 1,
-                scale: 1,
+                y: 0,
               }}
               className="
-                mt-10 mx-auto
+               text-center
+                text-3xl md:text-5xl
+                font-black
+                leading-tight
+                text-(--color-black-1)
+              "
+            >
+              Achieve Academic Excellence With{" "}
+              <span
+                className="
+                
+                  bg-gradient-to-r
+                  from-(--color-primary)
+                  to-(--color-secondary)
+                  text-transparent
+                  bg-clip-text
+                "
+              >
+                Tech Starter Pack
+              </span>
+            </motion.h1>
+
+            {/* PRICE BOX */}
+            <div
+              className="
+                mt-8 mx-auto
                 max-w-md
                 rounded-3xl
+                border border-white/10
                 bg-[#201547]
                   shadow-[0_15px_60px_rgba(0,0,0,0.15)]
-                border border-white/10
+                
                 backdrop-blur-xl
+                
                 p-6
               "
             >
-
               <p className="text-white/80">
-                Unlock an{" "}
-
+                Unlock a{" "}
                 <span className="font-bold text-lg text-white">
-                  MBA Lite Bundle
+                  Tech Starter Pack
                 </span>{" "}
-
-                worth <span className="line-through">₹42,500</span>
+                worth <span className="line-through">₹1,20,000</span>
+                
               </p>
 
               <h2
                 className="
-                  mt-2
-                      text-4xl font-black
-                      text-white
-                       bg-clip-text
+                  mt-3
+                  text-5xl
+                  font-black
+                  text-white
+                   text-center
                 "
               >
-                ₹7,999
+                ₹9,999
               </h2>
-            </motion.div>
+            </div>
 
             {/* BUTTONS */}
             <div
@@ -225,19 +226,16 @@ export default function TechStarterPack() {
                 gap-5
               "
             >
-
               <button
                 className="
+                  bg-white
+                  hover:bg-gray-100
+                  text-(--color-black-1)
                   px-10 py-4
                   rounded-2xl
-                  group
-                  flex items-center justify-center gap-3
-                  bg-white
-                  text-black
-                  border border-black/10
                   font-semibold
-                  shadow-xl
-                  hover:scale-105
+                    flex items-center justify-center gap-3
+                  shadow-[0_15px_60px_rgba(0,0,0,0.15)]
                   transition-all duration-300
                 "
               >
@@ -248,28 +246,28 @@ export default function TechStarterPack() {
               <button
                 className="
                   px-10 py-4
-                  group
-                  flex items-center justify-center gap-3
                   rounded-2xl
+                  flex items-center justify-center gap-3
                  bg-[#201547]
                   text-white
                   font-semibold
-                  shadow-[0_10px_40px_rgba(139,92,246,0.35)]
                   hover:scale-105
                   transition-all duration-300
+                  shadow-[0_15px_50px_rgba(0,0,0,0.2)]
                 "
               >
                 Enroll Now
-                <PiArrowRightBold
-                  size={18}
-                  className="
-                    group-hover:translate-x-1
-                    transition
-                  "
-                />
+                  <PiArrowRightBold
+                                  size={18}
+                                  className="
+                                    group-hover:translate-x-1
+                                    transition
+                                  "
+                                />
               </button>
             </div>
           </div>
+
 
         {/* BENEFITS */}
         <div

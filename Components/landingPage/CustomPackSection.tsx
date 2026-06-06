@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import poster from "@/public/Make your own pack .png";
+import poster from "@/public/custom.jpeg";
 
 import { color, motion } from "framer-motion";
 
@@ -125,7 +125,7 @@ export default function CustomPackSection() {
 
       <div className="absolute bottom-10 right-10 w-72 h-72 bg-(--color-secondary)/20 rounded-full blur-3xl" />
 
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="relative z-10  mx-auto">
 
         {/* TOP HERO */}
         <motion.div
@@ -151,12 +151,15 @@ export default function CustomPackSection() {
         >
 
           {/* BG GLOW */}
-         <div className=" inset-0 relative">
-           <img
+         <div className=" inset-0 relative flex items-center justify-center">
+          <div className="">
+ <img
              src={poster.src}
              alt="Background"
              className="w-full  object-cover rounded-xl "
            />
+          </div>
+          
           </div>
 
           
@@ -285,10 +288,7 @@ export default function CustomPackSection() {
                   rounded-2xl
                   font-semibold
                   text-white
-                  bg-gradient-to-r
-                  from-(--color-primary)
-                
-                  to-(--color-secondary)
+                  bg-[#201547]
                   hover:scale-105
                   transition-all duration-300
                   shadow-[0_10px_40px_rgba(0,102,255,0.18)]

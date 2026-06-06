@@ -195,18 +195,18 @@ export default function MBALitePack() {
                 y: 0,
               }}
               className="
-              flex items-center justify-center gap-3
+              text-center
                 text-3xl md:text-5xl
                 font-black
                 leading-tight
                 text-(--color-black-1)
               "
             >
-              Achieve Academic Excellence With
+              Achieve Academic Excellence With{" "}
 
               <span
                 className="
-                  block
+                  
                   bg-gradient-to-r
                   from-(--color-primary)
                   to-(--color-secondary)
