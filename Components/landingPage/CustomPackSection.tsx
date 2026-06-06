@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import poster from "@/public/custom.jpeg";
+import poster from "@/public/image.png";
 
 import { color, motion } from "framer-motion";
 
@@ -226,7 +226,7 @@ export default function CustomPackSection() {
                   <p className="text-white/80">
                 Unlock a{" "}
                 <span className="font-bold text-lg  text-white">
-                  2 Individual Courses 
+                  3 Individual Courses 
                 </span>{" "}
                 worth <span className="line-through">₹35,000</span>
               </p>
