@@ -19,6 +19,7 @@ import Services from "@/Components/landingPage/Services";
 import InpatPortal from "@/Components/landingPage/InpatPortal";
 import RegisterNowSection from "@/Components/landingPage/RegisterNowButton";
 import AlumniCompanies from "@/Components/landingPage/AlumniCompanies";
+import FAQSection from "@/Components/FAQSection";
 
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -67,6 +68,7 @@ const [openPortal, setOpenPortal] = useState(false);
       <TeamSection />
       <AlumniCompanies />
       <Testimonials />
+      <FAQSection/>
     </>
   );
 }

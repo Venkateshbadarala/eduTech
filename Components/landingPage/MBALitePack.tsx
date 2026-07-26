@@ -258,7 +258,7 @@ export default function MBALitePack() {
                        bg-clip-text
                 "
               >
-                ₹7,999
+                ₹14,999
               </h2>
             </motion.div>
 
@@ -778,7 +778,7 @@ export default function MBALitePack() {
                text-xl md:text-4xl 
             "
           >
-            Available At Just ₹7,999/-
+            Available At Just ₹14,999/-
           </p>
 
           

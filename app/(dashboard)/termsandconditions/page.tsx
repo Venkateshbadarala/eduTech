@@ -275,7 +275,7 @@ export default function Page() {
                 transition
                 shadow-lg
               ">
-               Cornixeedutech@gmail.com
+              career@cornixe.in
               </button>
 
               <button className="

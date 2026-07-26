@@ -213,7 +213,7 @@ export default function TechStarterPack() {
                    text-center
                 "
               >
-                ₹9,999
+                ₹17,999
               </h2>
             </div>
 
@@ -764,7 +764,7 @@ export default function TechStarterPack() {
                text-xl md:text-4xl 
             "
           >
-            Available At Just ₹9,999/-
+            Available At Just ₹17,999/-
           </p>
 
           

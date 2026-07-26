@@ -567,7 +567,7 @@ export default function GoldenCareers() {
                 text-transparent bg-clip-text
               "
             >
-              Available At Just ₹11,999/-
+              Available At Just ₹24,999/-
             </p>
 
             <button

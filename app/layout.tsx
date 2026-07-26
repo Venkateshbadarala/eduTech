@@ -12,7 +12,7 @@ const figtree = Figtree({
 
 export const metadata: Metadata = {
   title: "Cornixe",
-  description: "Modern learning platform",
+  description: "Cornixe offers Data Science, Artificial Intelligence, Business Analytics, Full Stack Development, Zoho Training and Internship Programs in Chennai with live projects, certifications and placement assistance.",
   icons: {
     icon: [
       { url: logo.src, sizes: "32x32", type: "image/png" },

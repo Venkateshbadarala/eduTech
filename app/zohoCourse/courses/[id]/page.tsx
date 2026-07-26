@@ -27,9 +27,9 @@ import ZohoShowcase from "@/Components/landingPage/ZohoShowcase";
 const plans = [
   {
     badge: "RECORDED",
-    title: "Self-Paced",
-    subtitle: "Self-paced Zoho learning",
-    price: "7999",
+    title: "Live",
+    subtitle: "Live Zoho learning",
+    price: "22999",
     note: "Learn Zoho at your convenience",
     highlight: false,
     features: [
@@ -47,7 +47,7 @@ const plans = [
     badge: "PROFESSIONAL",
     title: "Professional",
     subtitle: "Complete Zoho career pathway",
-    price: "14999",
+    price: "24999",
     note: "Premium Career Growth",
     highlight: true,
     features: [

@@ -243,7 +243,7 @@ export default function CustomPackSection() {
                        bg-clip-text
                     "
                   >
-                    ₹7,999
+                    ₹12,999
                   </h3>
                 </div>
               </div>
@@ -655,7 +655,7 @@ export default function CustomPackSection() {
                text-xl md:text-4xl 
             "
           >
-            Available At Just ₹7,999/-
+            Available At Just ₹12,999/-
           </p>
 
           

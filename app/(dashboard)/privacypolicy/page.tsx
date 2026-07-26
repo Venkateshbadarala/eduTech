@@ -239,7 +239,7 @@ export default function Page() {
                 text-center
               "
             >
-              Cornixeedutech@gmail.com
+          career@cornixe.in
             </a>
           </div>
         </div>
