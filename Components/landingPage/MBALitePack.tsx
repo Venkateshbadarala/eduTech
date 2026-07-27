@@ -593,7 +593,7 @@ export default function MBALitePack() {
               text-(--color-gray-2)
             "
           >
-            Featuring 7+ Career Focused Programs
+            Featuring 5+ Career Focused Programs
           </p>
 
           {/* TAGS */}

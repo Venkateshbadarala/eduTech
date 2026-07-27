@@ -746,7 +746,7 @@ export default function TechStarterPack() {
                 text-(--color-gray-2)
               "
             >
-              15+ Courses worth{" "}
+              9+ Courses worth{" "}
 
               <span className="line-through">
                 ₹1,20,000

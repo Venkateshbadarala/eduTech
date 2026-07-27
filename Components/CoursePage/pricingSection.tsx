@@ -132,8 +132,6 @@
 //   );
 // }
 
-
-
 "use client";
 
 import { Check, X, Crown } from "lucide-react";
@@ -216,18 +214,20 @@ const allFeatures = [
 
 export default function PricingSection() {
   return (
-    <section className="py-20 px-6 ">
-       {/* Heading */}
-      <div className="mb-10 px-4">        <h2 className="text-3xl md:text-5xl font-bold text-black-1 leading-tight">          Unlock Premium Learning at a Limited Price
+    <section className="  ">
+      {/* Heading */}
+      <div className="mb-10">
+        {" "}
+        <h2 className="text-3xl md:text-5xl font-bold text-black-1 leading-tight">
+          {" "}
+          Unlock Premium Learning at a Limited Price
         </h2>
-
         <p className="text-gray-500 mt-5 max-w-6xl mx-auto text-md md:text-lg leading-relaxed">
-          Get industry-ready skills with
-         high-quality training,
-         affordable pricing, practical
-         projects, and expert guidance.       </p>
+          Get industry-ready skills with high-quality training, affordable
+          pricing, practical projects, and expert guidance.{" "}
+        </p>
       </div>
-  <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-10">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-10 sm:grid-cols-2 grid-cols-1">
         {plans.map((plan, index) => (
           <div
             key={index}
@@ -275,11 +275,7 @@ export default function PricingSection() {
               <h2
                 className={`
                   text-3xl font-black
-                  ${
-                    plan.highlight
-                      ? "text-white"
-                      : "text-slate-900"
-                  }
+                  ${plan.highlight ? "text-white" : "text-slate-900"}
                 `}
               >
                 {plan.title}
@@ -288,11 +284,7 @@ export default function PricingSection() {
               <p
                 className={`
                   mt-3 text-sm
-                  ${
-                    plan.highlight
-                      ? "text-slate-300"
-                      : "text-slate-500"
-                  }
+                  ${plan.highlight ? "text-slate-300" : "text-slate-500"}
                 `}
               >
                 {plan.subtitle}
@@ -302,11 +294,7 @@ export default function PricingSection() {
                 <h3
                   className={`
                     text-5xl font-black
-                    ${
-                      plan.highlight
-                        ? "text-white"
-                        : "text-slate-900"
-                    }
+                    ${plan.highlight ? "text-white" : "text-slate-900"}
                   `}
                 >
                   ₹{plan.price}
@@ -322,11 +310,7 @@ export default function PricingSection() {
             <div
               className={`
                 border-t
-                ${
-                  plan.highlight
-                    ? "border-white/10"
-                    : "border-gray-200"
-                }
+                ${plan.highlight ? "border-white/10" : "border-gray-200"}
               `}
             />
 
@@ -334,14 +318,10 @@ export default function PricingSection() {
             <div className="flex flex-col flex-1 px-10 py-10">
               <div className="space-y-6 flex-1">
                 {allFeatures.map((feature) => {
-                  const included =
-                    plan.features.includes(feature);
+                  const included = plan.features.includes(feature);
 
                   return (
-                    <div
-                      key={feature}
-                      className="flex items-center gap-3"
-                    >
+                    <div key={feature} className="flex items-center gap-3">
                       <div
                         className={`
                           w-7 h-7
@@ -357,11 +337,7 @@ export default function PricingSection() {
                           }
                         `}
                       >
-                        {included ? (
-                          <Check size={14} />
-                        ) : (
-                          <X size={14} />
-                        )}
+                        {included ? <Check size={14} /> : <X size={14} />}
                       </div>
 
                       <span
@@ -404,9 +380,7 @@ export default function PricingSection() {
                   }
                 `}
               >
-                {plan.highlight
-                  ? "Get Started"
-                  : "Choose Plan"}
+                {plan.highlight ? "Get Started" : "Choose Plan"}
               </button>
             </div>
           </div>

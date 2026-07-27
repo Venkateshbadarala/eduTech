@@ -26,7 +26,7 @@ import ZohoShowcase from "@/Components/landingPage/ZohoShowcase";
 
 const plans = [
   {
-    badge: "RECORDED",
+    badge: "Live",
     title: "Live",
     subtitle: "Live Zoho learning",
     price: "22999",
@@ -37,6 +37,7 @@ const plans = [
       "Hands-on Projects",
       "Certificates",
       "Study Materials",
+      "Live Sessions",
       "Doubt Clearing Sessions",
       "Placement Support",
       "Direct Certification from Zoho",
@@ -329,7 +330,7 @@ export default function Page() {
                    affordable pricing, practical
                    projects, and expert guidance.       </p>
                 </div>
-            <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10">
+            <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 sm:grid-cols-2 grid-cols-1">
                   {plans.map((plan, index) => (
                     <div
                       key={index}
