@@ -5,10 +5,7 @@ import zoho4 from "@/public/Companies/zoho.png";
 import Logo from "@/public/logo.png";
 import { PiCheckCircleFill } from "react-icons/pi";
 import { Link } from "lucide-react";
-
-import zoho1 from "@/public/zoho/zohobooks.jpeg";
-import zoho2 from "@/public/zoho/zohopeople.jpeg";
-import zoho3 from "@/public/zoho/zohopayroll.jpeg";
+import zoho1 from "@/public/zoho/zoho book.jpeg";
 import Image from "next/image";
 
 const zoho = [
@@ -18,28 +15,11 @@ const zoho = [
     alt: "Zoho Books",
     title: "Zoho Books",
   },
-  {
-    id: 2,
-    src: zoho2,
-    alt: "Zoho People",
-    title: "Zoho People",
-  },
-  {
-    id: 3,
-    src: zoho3,
-    alt: "Zoho Payroll",
-    title: "Zoho Payroll",
-  },
 ];
 
 export default function ZohoHero() {
   return (
-    <section
-      className="
-        relative overflow-hidden
-        py-28 px-6
-      "
-    >
+    <section className="relative overflow-hidden py-28 px-6">
       {/* GRID */}
       <div
         className="
@@ -51,35 +31,24 @@ export default function ZohoHero() {
 
       {/* BLURS */}
       <div className="absolute top-10 left-10 w-72 h-72 bg-(--color-primary)/20 rounded-full blur-3xl" />
-
       <div className="absolute bottom-10 right-10 w-72 h-72 bg-(--color-secondary)/20 rounded-full blur-3xl" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 40,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 0.7,
-          }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
           className="text-center"
         >
-          {/* BADGE */}
+          {/* Badge */}
           <div
             className="
               inline-flex items-center gap-4
               md:px-8 md:py-4 py-2 px-4
               rounded-full
-
               border border-white/10
               bg-white/10
               backdrop-blur-xl
-
               shadow-[0_10px_40px_rgba(0,0,0,0.08)]
             "
           >
@@ -89,7 +58,7 @@ export default function ZohoHero() {
             </span>
           </div>
 
-          {/* TITLE */}
+          {/* Heading */}
           <h1
             className="
               mt-10
@@ -113,7 +82,7 @@ export default function ZohoHero() {
             Programs
           </h1>
 
-          {/* DESCRIPTION */}
+          {/* Description */}
           <p
             className="
               mt-8
@@ -122,30 +91,33 @@ export default function ZohoHero() {
               text-(--color-gray-2)
             "
           >
-            Industry-ready programs designed in collaboration with Zoho. Learn
-            CRM, automation, analytics, cloud solutions, and business workflows
-            through real-world projects and practical implementation.
+            Industry-ready programs designed in collaboration with Zoho.
           </p>
+
+          {/* Logos */}
           <div className="mt-10 flex items-center justify-center gap-6">
             <img
               src={Logo.src}
-              alt="Zoho"
+              alt="Cornixe"
               className="object-contain h-28 w-28 md:h-62 md:w-62"
             />
-            <span>
-              <Link className="h-10 w-10 md:h-12 md:w-12" />
-            </span>
+
+            <Link className="h-10 w-10 md:h-12 md:w-12" />
+
             <img
               src={zoho4.src}
               alt="Zoho"
               className="object-contain h-28 w-28 md:h-62 md:w-62"
             />
           </div>
-          {/* STATS */}
+
+          {/* Stats */}
           <div
             className="
               mt-10
-              flex flex-wrap items-center justify-center
+              flex flex-wrap
+              items-center
+              justify-center
               gap-8
               text-(--color-gray-1)
             "
@@ -165,57 +137,55 @@ export default function ZohoHero() {
               25k+ Learners
             </div>
           </div>
-          <div className="mt-16 max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-              {zoho.map((item) => (
-                <div
-                  key={item.id}
-                  className="
-          bg-white
-          rounded-3xl
-          p-6
-          shadow-md
-          hover:shadow-2xl
-          hover:-translate-y-2
-          transition-all duration-300
-          border border-gray-100
-          flex flex-col items-center justify-center
-          text-center
-          group
-        "
-                >
-                  {/* IMAGE */}
-                  <div
+
+          {/* Single Centered Card */}
+          <div className="mt-16 flex justify-center">
+            {zoho.map((item) => (
+              <div
+                key={item.id}
+                className="
+                  w-full
+                  max-w-md
+                  bg-white
+                  rounded-3xl
+                  p-8
+                  shadow-md
+                  hover:shadow-2xl
+                  hover:-translate-y-2
+                  transition-all
+                  duration-300
+                  border
+                  border-gray-100
+                  flex
+                  flex-col
+                  items-center
+                  justify-center
+                  text-center
+                  group
+                "
+              >
+                <div className="w-32 h-32 md:w-44 md:h-44 flex items-center justify-center">
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    width={180}
+                    height={180}
                     className="
-            w-28 h-28
-            md:w-40 md:h-40
-            flex items-center justify-center
-          "
-                  >
-                    <Image
-                      src={item.src}
-                      alt={item.alt}
-                      width={160}
-                      height={160}
-                      className="
-              object-contain
-              w-full h-full
-              transition-transform duration-300
-              group-hover:scale-110
-            "
-                    />
-                  </div>
-
-                  {/* TITLE */}
-                  <h3 className="mt-4 text-lg font-semibold text-gray-800">
-                    {item.title}
-                  </h3>
-
-                  {/* SUBTITLE */}
-                  <p className="text-sm text-gray-500 mt-1">Industry Tool</p>
+                      object-contain
+                      w-full
+                      h-full
+                      transition-transform
+                      duration-300
+                      group-hover:scale-110
+                    "
+                  />
                 </div>
-              ))}
-            </div>
+
+                <h3 className="mt-5 text-2xl font-semibold text-gray-800">
+                  {item.title}
+                </h3>
+              </div>
+            ))}
           </div>
         </motion.div>
       </div>

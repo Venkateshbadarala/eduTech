@@ -215,17 +215,24 @@ useEffect(() => {
 
         {/* LOADING */}
         {loading && (
-          <div
-            className="
-              mt-20
-              text-center
-              text-lg
-              font-semibold
-              text-(--color-gray-1)
-            "
-          >
-            Loading Courses...
+         
+            <section className="py-16 px-6 md:px-16">
+        <div className="animate-pulse max-w-6xl mx-auto">
+          <div className="h-6 w-40 bg-gray-300 rounded-full mx-auto mb-6" />
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-white rounded-2xl shadow p-4">
+                <div className="h-40 bg-gray-200 rounded-xl mb-4" />
+                <div className="h-4 w-3/4 bg-gray-200 rounded mb-2" />
+                <div className="h-3 w-full bg-gray-200 rounded mb-2" />
+                <div className="h-8 w-full bg-gray-200 rounded" />
+              </div>
+            ))}
           </div>
+        </div>
+      </section>
+         
         )}
 
         {/* COURSES */}
@@ -323,7 +330,7 @@ useEffect(() => {
                     />
 
                     {/* CERTIFIED */}
-                    <div
+                    {/* <div
                       className="
                         absolute top-5 left-5
 
@@ -343,7 +350,7 @@ useEffect(() => {
                       <PiCertificateBold size={16} />
 
                       Zoho Certified
-                    </div>
+                    </div> */}
 
                     {/* CATEGORY */}
                     <div

@@ -10,12 +10,12 @@ import {
   PiSparkleFill,
 } from "react-icons/pi";
 
-import internshipCertificate from "@/public/Student Certificate Sample_Zoho Books.jpeg";
+import internshipCertificate from "@/public/Zoho book certification.jpeg";
 
 
 const certificates = [
   {
-    title: "Internship Certificate",
+    title: "Zoho Books Certification",
 
     subtitle:
       "Industry internship completion certificate with verification and recognition.",
@@ -174,8 +174,10 @@ export default function ZohoShowcase() {
         <div
           className="
             mt-20
-            grid lg:grid-cols-2
-            gap-10 
+            flex
+            justify-center
+            items-center
+            
           "
         >
           {certificates.map(
@@ -284,11 +286,15 @@ export default function ZohoShowcase() {
                 <div className="relative z-10 px-8 pb-8">
                   <div
                     className="
-                      flex items-center justify-between
-                      gap-4
+                      flex
+                      flex-col
+                      items-center
+                      justify-center
+                      text-center
+                      gap-6
                     "
                   >
-                    <div>
+                    <div className="w-full text-center">
                       <h3
                         className="
                           text-2xl md:text-3xl
@@ -312,7 +318,7 @@ export default function ZohoShowcase() {
 
                     <div
                       className="
-                        hidden md:flex
+                        flex
                         w-16 h-16
                         rounded-2xl
 

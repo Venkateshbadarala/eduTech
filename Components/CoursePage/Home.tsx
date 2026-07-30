@@ -23,6 +23,7 @@ const features = [
   "Community Access",
   "Lifetime Material Access",
   "Latest Tools & Tech",
+  "Zoho Books Certification",
 ];
 
 export default function Home({

@@ -23,6 +23,8 @@ import JobRolesEditor from "@/Components/Admin/JobRolesEditor";
 import JobRolesSection from "@/Components/CoursePage/JobRolesSection";
 import CertificateShowcase from "@/Components/Program/CertificateShowcase";
 import ZohoShowcase from "@/Components/landingPage/ZohoShowcase";
+import ZohoCurriculum from "@/Components/landingPage/ZohoCurriculum";
+
 
 const plans = [
   {
@@ -40,7 +42,6 @@ const plans = [
       "Live Sessions",
       "Doubt Clearing Sessions",
       "Placement Support",
-      "Direct Certification from Zoho",
     ],
   },
 
@@ -58,7 +59,7 @@ const plans = [
       "Study Materials",
       "Doubt Clearing Sessions",
       "Placement Support",
-      "Direct Certification from Zoho",
+
       "Live Sessions",
       "Interview Preparation",
       "1:1 Premium Session",
@@ -75,7 +76,6 @@ const allFeatures = [
   
   "Doubt Clearing Sessions",
   "Placement Support",
-  "Direct Certification from Zoho",
   "Live Sessions",
   "Interview Preparation",
   "1:1 Premium Session",
@@ -275,6 +275,12 @@ export default function Page() {
           <ModulesSection modules={course.modules} />
         </section>
       )}
+      {/* 🔥 ZOHO CURRICULUM */}
+      <section className="py-10 max-w-6xl mx-auto px-6">
+        <ZohoCurriculum />
+      </section>
+
+
 
       {/* 🔥 TOOLS */}
       {course.tools && (
