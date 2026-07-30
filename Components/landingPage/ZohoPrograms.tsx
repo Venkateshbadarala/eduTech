@@ -203,13 +203,7 @@ useEffect(() => {
               text-(--color-gray-2)
             "
           >
-            Industry-focused learning
-            programs powered with
-            practical training, live
-            implementation, enterprise
-            workflows, and certification-ready
-            projects in collaboration with
-            Zoho.
+            Industry focused learning programs by cornixe along with zoho and zoho books
           </p>
         </div>
 

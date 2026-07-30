@@ -91,7 +91,7 @@ export default function ZohoHero() {
               text-(--color-gray-2)
             "
           >
-            Industry-ready programs designed in collaboration with Zoho.
+            Industry-ready programs designed in collaboration with Zoho and Zoho Books, providing practical training, live implementation, enterprise workflows, and certification-ready projects to enhance your skills and career prospects.
           </p>
 
           {/* Logos */}
