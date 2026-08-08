@@ -30,9 +30,9 @@ const plans = [
   {
     badge: "Live",
     title: "Live",
-    subtitle: "Live Zoho learning",
+    subtitle: "Live learning",
     price: "22999",
-    note: "Learn Zoho at your convenience",
+    note: "Learn at your convenience",
     highlight: false,
     features: [
       "Recorded Sessions",
@@ -48,7 +48,6 @@ const plans = [
   {
     badge: "PROFESSIONAL",
     title: "Professional",
-    subtitle: "Complete Zoho career pathway",
     price: "24999",
     note: "Premium Career Growth",
     highlight: true,

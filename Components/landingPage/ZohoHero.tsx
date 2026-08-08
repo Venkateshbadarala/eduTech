@@ -5,7 +5,7 @@ import zoho4 from "@/public/Companies/zoho.png";
 import Logo from "@/public/logo.png";
 import { PiCheckCircleFill } from "react-icons/pi";
 import { Link } from "lucide-react";
-import zoho1 from "@/public/zoho/zoho book.jpeg";
+import zoho1 from "@/public/zoho/zoho-Book.jpeg";
 import Image from "next/image";
 
 const zoho = [

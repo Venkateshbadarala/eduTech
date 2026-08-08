@@ -149,10 +149,10 @@ useEffect(() => {
                 text-(--color-black-1)
               "
             >
-              All Programs Are{" "}
+             
 
               <span className="text-(--color-primary)">
-                Zoho Certified
+               
               </span>
             </p>
           </motion.div>
