@@ -1,72 +1,68 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import { motion } from "framer-motion";
-
 import Image from "next/image";
 import Link from "next/link";
-
 import toast from "react-hot-toast";
 
 import zoho from "@/public/Companies/zoho.png";
 
 import {
-  PiArrowRightBold,
   PiCertificateBold,
   PiSparkleFill,
 } from "react-icons/pi";
 
 export default function ZohoCertifiedPrograms() {
-const [courses, setCourses] = useState<any[]>([]);
-const [loading, setLoading] = useState(false);
+  const [courses, setCourses] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
 
-// 🔥 FETCH COURSES
-const fetchCourses = async () => {
-  try {
-    setLoading(true);
+  // 🔥 FETCH COURSES
+  const fetchCourses = async () => {
+    try {
+      setLoading(true);
 
-    const res = await fetch("/api/courses");
+      const res = await fetch("/api/courses");
 
-    if (!res.ok) {
-      const text = await res.text();
+      if (!res.ok) {
+        const text = await res.text();
 
-      console.error("API ERROR:", text);
+        console.error("API ERROR:", text);
 
-      throw new Error("Failed");
+        throw new Error("Failed");
+      }
+
+      const data = await res.json();
+
+      // ✅ Allowed Zoho Sub Categories
+      const allowedSubCategories = [
+        "TECH & DATA",
+        "MECH & CIVIL",
+        "EEE & ECE",
+        "MANAGEMENT STREAM",
+      ];
+
+      // ✅ Filter Courses
+      const filteredCourses = (data.courses || []).filter(
+        (course: any) =>
+          allowedSubCategories.includes(
+            course.subcategory?.trim().toUpperCase()
+          )
+      );
+
+      setCourses(filteredCourses);
+    } catch (err) {
+      console.error(err);
+
+      toast.error("Error fetching courses ❌");
+    } finally {
+      setLoading(false);
     }
+  };
 
-    const data = await res.json();
-
-    // ✅ Allowed Zoho Sub Categories
-    const allowedSubCategories = [
-      "TECH & DATA",
-      "MECH & CIVIL",
-      "EEE & ECE",
-      "MANAGEMENT STREAM",
-    ];
-
-    // ✅ Filter Courses
-    const filteredCourses = (data.courses || []).filter(
-      (course: any) =>
-        allowedSubCategories.includes(
-          course.subcategory?.trim().toUpperCase()
-        )
-    );
-
-    setCourses(filteredCourses);
-  } catch (err) {
-    console.error(err);
-
-    toast.error("Error fetching courses ❌");
-  } finally {
-    setLoading(false);
-  }
-};
-
-useEffect(() => {
-  fetchCourses();
-}, []);
+  useEffect(() => {
+    fetchCourses();
+  }, []);
 
   return (
     <section
@@ -75,7 +71,6 @@ useEffect(() => {
         px-6 md:py-16 py-8
       "
     >
-
       {/* GRID */}
       <div
         className="
@@ -109,7 +104,7 @@ useEffect(() => {
         {/* HEADER */}
         <div className="text-center">
 
-          {/* BADGE */}
+          {/* ZOHO LOGO */}
           <motion.div
             initial={{
               opacity: 0,
@@ -119,42 +114,27 @@ useEffect(() => {
               opacity: 1,
               y: 0,
             }}
+            transition={{
+              duration: 0.7,
+            }}
             className="
-              inline-flex items-center gap-4
-              md:px-8 md:py-4 py-2 px-4
-              rounded-full
-
-              border border-white/10
-              bg-white/10
-              backdrop-blur-xl
-
-              shadow-[0_15px_60px_rgba(0,0,0,0.08)]
+              flex
+              justify-center
+              items-center
+              overflow-visible
             "
           >
-
             <img
               src={zoho.src}
               alt="Zoho"
               className="
-                object-contain h-12 w-12 md:h-12 md:w-12
+                object-contain
+                h-24 w-24
+                md:h-28 md:w-28
+                lg:h-32 lg:w-32
+                scale-[3.2]
               "
             />
-
-            
-
-            <p
-              className="
-                text-sm md:text-base
-                font-semibold
-                text-(--color-black-1)
-              "
-            >
-             
-
-              <span className="text-(--color-primary)">
-               
-              </span>
-            </p>
           </motion.div>
 
           {/* TITLE */}
@@ -171,8 +151,10 @@ useEffect(() => {
               duration: 0.7,
             }}
             className="
-              mt-10
-              text-3xl md:text-5xl
+              mt-14
+              text-3xl
+              md:text-5xl
+              lg:text-6xl
               font-black
               leading-tight
               text-(--color-black-1)
@@ -185,7 +167,8 @@ useEffect(() => {
                 bg-gradient-to-r
                 from-(--color-primary)
                 to-(--color-secondary)
-                text-transparent bg-clip-text
+                text-transparent
+                bg-clip-text
               "
             >
               Zoho Certified
@@ -194,39 +177,50 @@ useEffect(() => {
             Programs
           </motion.h1>
 
+          {/* DESCRIPTION */}
           <p
             className="
               mt-8
-              max-w-4xl mx-auto
-              text-sm md:text-xl
+              max-w-4xl
+              mx-auto
+              text-sm
+              md:text-xl
               leading-relaxed
               text-(--color-gray-2)
             "
           >
-            Industry focused learning programs by cornixe along with zoho and zoho books
+            Industry focused learning programs by cornixe along with zoho and
+            zoho books
           </p>
+
         </div>
 
         {/* LOADING */}
         {loading && (
-         
-            <section className="py-16 px-6 md:px-16">
-        <div className="animate-pulse max-w-6xl mx-auto">
-          <div className="h-6 w-40 bg-gray-300 rounded-full mx-auto mb-6" />
+          <section className="py-16 px-6 md:px-16">
+            <div className="animate-pulse max-w-6xl mx-auto">
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white rounded-2xl shadow p-4">
-                <div className="h-40 bg-gray-200 rounded-xl mb-4" />
-                <div className="h-4 w-3/4 bg-gray-200 rounded mb-2" />
-                <div className="h-3 w-full bg-gray-200 rounded mb-2" />
-                <div className="h-8 w-full bg-gray-200 rounded" />
+              <div className="h-6 w-40 bg-gray-300 rounded-full mx-auto mb-6" />
+
+              <div className="grid md:grid-cols-3 gap-8">
+                {[1, 2, 3].map((i) => (
+                  <div
+                    key={i}
+                    className="bg-white rounded-2xl shadow p-4"
+                  >
+                    <div className="h-40 bg-gray-200 rounded-xl mb-4" />
+
+                    <div className="h-4 w-3/4 bg-gray-200 rounded mb-2" />
+
+                    <div className="h-3 w-full bg-gray-200 rounded mb-2" />
+
+                    <div className="h-8 w-full bg-gray-200 rounded" />
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-         
+
+            </div>
+          </section>
         )}
 
         {/* COURSES */}
@@ -239,7 +233,6 @@ useEffect(() => {
               gap-7
             "
           >
-
             {courses.map(
               (course: any, index) => (
                 <motion.div
@@ -251,14 +244,11 @@ useEffect(() => {
                   className="
                     group
                     relative overflow-hidden
-
                     rounded-[32px]
                     border border-white/10
                     bg-white/10
                     backdrop-blur-2xl
-
                     shadow-[0_15px_60px_rgba(0,0,0,0.08)]
-
                     transition-all duration-500
                   "
                 >
@@ -270,7 +260,6 @@ useEffect(() => {
                       opacity-0
                       group-hover:opacity-100
                       transition duration-500
-
                       bg-gradient-to-br
                       from-(--color-primary)/10
                       via-transparent
@@ -296,7 +285,6 @@ useEffect(() => {
                       overflow-hidden
                     "
                   >
-
                     <img
                       src={
                         course.image ||
@@ -306,7 +294,6 @@ useEffect(() => {
                       className="
                         w-full h-full
                         object-cover
-
                         transition-transform duration-700
                         group-hover:scale-110
                       "
@@ -324,38 +311,32 @@ useEffect(() => {
                     />
 
                     {/* CERTIFIED */}
-                    {/* <div
+                    {/*
+                    <div
                       className="
                         absolute top-5 left-5
-
                         flex items-center gap-2
-
                         px-4 py-2
                         rounded-full
-
                         border border-white/10
                         bg-white/10
                         backdrop-blur-xl
-
                         text-white
                         text-xs font-semibold
                       "
                     >
                       <PiCertificateBold size={16} />
-
                       Zoho Certified
-                    </div> */}
+                    </div>
+                    */}
 
                     {/* CATEGORY */}
                     <div
                       className="
                         absolute top-5 right-5
-
                         px-4 py-2
                         rounded-full
-
                         bg-(--color-primary)/80
-
                         text-white
                         text-xs font-semibold
                       "
@@ -370,7 +351,6 @@ useEffect(() => {
                         left-6 right-6
                       "
                     >
-
                       <h2
                         className="
                           text-2xl
@@ -382,11 +362,13 @@ useEffect(() => {
                         {course.title}
                       </h2>
                     </div>
+
                   </div>
 
                   {/* CONTENT */}
                   <div className="relative z-10 p-7">
 
+                    {/* DESCRIPTION */}
                     <p
                       className="
                         text-base
@@ -407,16 +389,14 @@ useEffect(() => {
                       "
                     >
 
+                      {/* ENTERPRISE READY */}
                       <div
                         className="
                           flex items-center gap-2
-                          
                           px-4 py-2
                           rounded-xl
-
                           bg-(--color-primary)/10
                           text-(--color-primary)
-
                           text-sm font-semibold
                         "
                       >
@@ -425,38 +405,34 @@ useEffect(() => {
                         Enterprise Ready
                       </div>
 
+                      {/* VIEW COURSE */}
                       <Link
                         href={`/zohoCourse/courses/${course._id}`}
                       >
                         <button
                           className="
                             group/btn
-
                             inline-flex items-center gap-2
-
                             px-5 py-3
                             rounded-2xl
-                             md:text-lg text-sm
+                            md:text-lg text-sm
                             bg-gradient-to-r
                             from-(--color-primary)
                             to-(--color-secondary)
-
                             text-white
                             font-semibold
-
                             hover:scale-105
                             transition-all duration-300
-
                             shadow-lg
                           "
                         >
                           View Course
-
-                         
                         </button>
                       </Link>
+
                     </div>
                   </div>
+
                 </motion.div>
               )
             )}
@@ -479,7 +455,6 @@ useEffect(() => {
             </div>
           )}
 
-        
       </div>
     </section>
   );
