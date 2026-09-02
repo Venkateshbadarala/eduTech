@@ -171,7 +171,7 @@ export default function ZohoCertifiedPrograms() {
                 bg-clip-text
               "
             >
-              Zoho Certified
+              Expert-Led
             </span>{" "}
 
             Programs

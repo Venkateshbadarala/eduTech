@@ -126,9 +126,7 @@ bg-white/50
                     text-gray-2 mt-5 max-w-6xl mx-auto text-md md:text-lg leading-relaxed relative
                 "
               >
-                Learn through industry-focused Zoho programs
-                covering CRM, Creator, Analytics, Books,
-                Desk, and enterprise business solutions.
+                Learn through industry-focused Zoho Books programs.
                 Gain practical experience, work on real-world
                 projects, and earn recognized certifications
                 to accelerate your professional growth.
