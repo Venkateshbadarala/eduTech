@@ -240,7 +240,7 @@ export default function Footer() {
               {nonTechCourses.map((c: any, i) => (
                 <li key={i}>
                   <Link
-                    href={`/courses/${c.slug || i}`}
+                    href={`/courses/${c._id || i}`}
                     className="hover:text-(--color-primary)"
                   >
                     {c.title}
