@@ -352,13 +352,13 @@ const Navbar = ({ onOpenSidebar }: NavbarProps) => {
               {/* ADMIN */}
               {isAdmin && (
                 <Link
-                  href="/admin"
+                  href="/cornixeAdminTech"
                   className={`
         text-[15px]
         font-medium
         transition-all duration-300
         ${
-          pathname === "/admin"
+          pathname === "/cornixeAdminTech"
             ? "text-blue-600"
             : "text-gray-700 hover:text-blue-600"
         }

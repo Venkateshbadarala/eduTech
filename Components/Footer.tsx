@@ -395,7 +395,10 @@ export default function Footer() {
             {open === section.key && (
               <ul className="mt-2 space-y-2 text-(--color-gray-1)">
                 {section.data.map((item: any, i: number) => (
+                     <Link
+                    href={`/courses/${item._id || i}`}>
                   <li key={i}>{item.title || item}</li>
+                  </Link>
                 ))}
               </ul>
             )}
